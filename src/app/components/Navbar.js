@@ -109,7 +109,7 @@ const Navbar = () => {
 			<li className="text-gray-300">
 				|
 			</li>
-			<Link className={`text-lg  hover:text-blue-500 hover:font-bold ${location==='/dashboard/addasset' ? "text-blue-500 font-bold":"text-gray-400"}`} href={"/dashboard/addasset"}>Add Asset</Link>
+			<Link className={`text-lg  hover:text-blue-500 hover:font-bold ${location==='/dashboard/addasset' ? "text-blue-500 font-bold":"text-gray-400"}`} href={"/dashboard/Portfolio"}>Portfolio </Link>
 			<li className="text-gray-300">
 				|
 			</li>

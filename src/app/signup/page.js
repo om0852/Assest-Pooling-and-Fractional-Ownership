@@ -11,6 +11,8 @@ const page = () => {
   const [data, setdata] = useState({
     name: "",
     email: "",
+    phone: "",
+    role:"user",
     password: "",
     cpassword: "",
   });
@@ -24,33 +26,45 @@ const page = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if( data.email && data.name && data.password && data.cpassword ){
-    if (data.password === data.cpassword) {
-      const res = await fetch(`http://localhost:3000/api/signup`, {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-      const response = await res.json();
-      if (response.status === 200) {
-        toast.success("Registration Successful", {
-          position: "top-center",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
+    if (data.email && data.name && data.password && data.cpassword) {
+      if (data.password === data.cpassword) {
+        const res = await fetch(`http://localhost:3000/api/signup`, {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
         });
-        setTimeout(() => {
-          router.push("/login");
-        }, 3000);
+        const response = await res.json();
+        if (response.status === 200) {
+          toast.success("Registration Successful", {
+            position: "top-center",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+          setTimeout(() => {
+            router.push("/orgsignup");
+          }, 3000);
+        } else {
+          toast.error("Registration Failed.Try again", {
+            position: "top-center",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        }
       } else {
-        toast.error("Registration Failed.Try again", {
+        toast.error("Confirm Password Not Match", {
           position: "top-center",
           autoClose: 3000,
           hideProgressBar: false,
@@ -62,7 +76,7 @@ const page = () => {
         });
       }
     } else {
-      toast.error("Confirm Password Not Match", {
+      toast.error("Please Fill all Fields", {
         position: "top-center",
         autoClose: 3000,
         hideProgressBar: false,
@@ -72,18 +86,6 @@ const page = () => {
         progress: undefined,
         theme: "colored",
       });
-    }}
-    else{
-        toast.error("Please Fill all Fields", {
-            position: "top-center",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "colored",
-          }); 
     }
   };
 
@@ -129,7 +131,7 @@ const page = () => {
                 id="name"
                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
                 placeholder="Enter your Name"
-                required=""
+                required="true"
               />
             </div>
             <div>
@@ -146,7 +148,24 @@ const page = () => {
                 id="email"
                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
                 placeholder="name@company.com"
-                required=""
+                required="true"
+              />
+            </div>
+            <div>
+              <label
+                htmlFor="phone"
+                className="block mb-2 text-sm font-medium text-gray-900 "
+              >
+                Your Phone Number
+              </label>
+              <input
+                onChange={(e) => onchange(e)}
+                type="text"
+                name="phone"
+                id="phone"
+                className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
+                placeholder="123*****9"
+                required="true"
               />
             </div>
             <div>
@@ -163,7 +182,7 @@ const page = () => {
                 id="password"
                 placeholder="••••••••"
                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
-                required=""
+                required="true"
               />
             </div>
             <div>
@@ -180,7 +199,7 @@ const page = () => {
                 id="cpassword"
                 placeholder="••••••••"
                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
-                required=""
+                required="true"
               />
             </div>
 

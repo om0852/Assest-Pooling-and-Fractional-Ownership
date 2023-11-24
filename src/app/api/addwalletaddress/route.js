@@ -1,20 +1,19 @@
 import User from "../../../models/User";
 import connectDB from "../../../utils/mongoose";
 import { NextResponse } from "next/server";
-var CryptoJS = require("crypto-js");
 
 export async function POST(req, res) {
   try {
     const body = await req.json();
-    console.log(body)
-    const {name,email,password,phone,address,organization}=body;
-    const userdata={name,phone,address,organization,email,password:CryptoJS.AES.encrypt( password,"secretkey123").toString()}
+    const { useremail, walletaddress } = body;
     await connectDB();
-    await User.create(userdata);
-console.log("account create successfully")
+    console.log(body);
+    await User.updateOne({ email:useremail }, { metamaskaddress: walletaddress });
+    console.log("account created");
     return NextResponse.json({ status: 200 }, { error: "success" });
   } catch (error) {
-    console.log(error);
+    console.log("account not create");
+    console.log(error.message);
     return NextResponse.json({ status: 300 }, { error: "error in addproduct" });
   }
 }

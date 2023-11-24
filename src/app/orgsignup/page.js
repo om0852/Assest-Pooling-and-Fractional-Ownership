@@ -9,8 +9,10 @@ const page = () => {
   const router = useRouter();
   const [data, setdata] = useState({
     email: "",
-    organization:"",
-    address:"",
+    organization: "",
+    address: "",
+    role: "Admin",
+    phone: "",
     password: "",
     cpassword: "",
   });
@@ -24,33 +26,52 @@ const page = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if( data.email && data.organization && data.address && data.password && data.cpassword ){
-    if (data.password === data.cpassword) {
-      const res = await fetch(`http://localhost:3000/api/orgsignup`, {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-      const response = await res.json();
-      if (response.status === 200) {
-        toast.success("Registration Successful", {
-          position: "top-center",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
+    if (
+      data.email &&
+      data.organization &&
+      data.address &&
+      data.password &&
+      data.cpassword
+    ) {
+      if (data.password === data.cpassword) {
+        const res = await fetch(`http://localhost:3000/api/orgsignup`, {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
         });
-        setTimeout(() => {
-          router.push("/login");
-        }, 3000);
+        const response = await res.json();
+        if (response.status === 200) {
+          toast.success("Registration Successful", {
+            position: "top-center",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+          localStorage.setItem("APFOS_useremail",data.email);
+          setTimeout(() => {
+            router.push("/addwalletdetails");
+          }, 3000);
+        } else {
+          toast.error("Registration Failed.Try again", {
+            position: "top-center",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        }
       } else {
-        toast.error("Registration Failed.Try again", {
+        toast.error("Confirm Password Not Match", {
           position: "top-center",
           autoClose: 3000,
           hideProgressBar: false,
@@ -62,7 +83,7 @@ const page = () => {
         });
       }
     } else {
-      toast.error("Confirm Password Not Match", {
+      toast.error("Please fill all Fields", {
         position: "top-center",
         autoClose: 3000,
         hideProgressBar: false,
@@ -72,18 +93,6 @@ const page = () => {
         progress: undefined,
         theme: "colored",
       });
-    }}
-    else{
-        toast.error("Please fill all Fields", {
-            position: "top-center",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "colored",
-          });   
     }
   };
   return (
@@ -121,7 +130,7 @@ const page = () => {
                 Your email
               </label>
               <input
-                onChange={(e)=>onchange(e)}
+                onChange={(e) => onchange(e)}
                 type="email"
                 name="email"
                 id="email"
@@ -138,10 +147,27 @@ const page = () => {
                 Organization Name
               </label>
               <input
-              onChange={(e)=>onchange(e)}
+                onChange={(e) => onchange(e)}
                 type="text"
                 name="organization"
                 id="org"
+                className="bg-white border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                placeholder="Your Organization"
+                required="true"
+              />
+            </div>
+            <div>
+              <label
+                for="organization"
+                className="block mb-2 text-sm font-medium text-gray-900 "
+              >
+                Phone Number
+              </label>
+              <input
+                onChange={(e) => onchange(e)}
+                type="text"
+                name="phone"
+                id="phone"
                 className="bg-white border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                 placeholder="Your Organization"
                 required="true"
@@ -155,7 +181,7 @@ const page = () => {
                 Address
               </label>
               <input
-                onChange={(e)=>onchange(e)}
+                onChange={(e) => onchange(e)}
                 type="text"
                 name="address"
                 id="address"
@@ -172,7 +198,7 @@ const page = () => {
                 Password
               </label>
               <input
-                onChange={(e)=>onchange(e)}
+                onChange={(e) => onchange(e)}
                 type="password"
                 name="password"
                 id="password"
@@ -189,7 +215,7 @@ const page = () => {
                 Confirm password
               </label>
               <input
-                onChange={(e)=>onchange(e)}
+                onChange={(e) => onchange(e)}
                 type="password"
                 name="cpassword"
                 id="cpassword"

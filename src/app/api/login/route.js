@@ -7,17 +7,16 @@ var jwt = require('jsonwebtoken');
 
 export async function POST(req, res) {
   try {
-
     const body = await req.json();
     await connectDB();
-    console.log("login");
+    console.log("login")
     const user = await User.findOne({ email: body.email });
     const bytes = CryptoJS.AES.decrypt(user.password, "secretkey123");
     const decryptpass = bytes.toString(CryptoJS.enc.Utf8);
     if (user) {
       if (body.email===user.email && decryptpass === body.password) {
         var token = jwt.sign({ name:user.name,email:user.email,address:user.address,pincode:user.pincode,phone:user.phone }, 'jwttoken',{expiresIn: '2days'});
-        return NextResponse.json({ status: 200,token , message: "success"});
+        return NextResponse.json({ status: 200,token ,metamaskaddress:user.metamaskaddress, message: "success"});
       } else {
         return NextResponse.json(
           { status: 201 },

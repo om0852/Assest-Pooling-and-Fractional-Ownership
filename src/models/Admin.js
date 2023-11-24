@@ -1,16 +1,18 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
-
-const AdminSchema = new mongoose.Schema({
+const AdminSchema = new mongoose.Schema(
+  {
     name: { type: String, reqired: true },
     email: { type: String, reqired: true, unique: true },
     password: { type: String, reqired: true },
-    address: { type: String, default:'' },
-    organization: { type: String, default:'' },
-    phone: { type: String,default:'' },
-    role: { type: String,default:'admin' },
+    address: { type: String, default: "" },
+    organization: { type: String, default: "" },
+    metamaskadress: { type: String, default: "" },
+    phone: { type: String, default: "" },
+    role: { type: String, default: "admin" },
+  },
+  { timestamps: true }
+);
 
-}, { timestamps: true })
-
-mongoose.models = {}
+mongoose.models = {};
 export default mongoose.model("Admin", AdminSchema);

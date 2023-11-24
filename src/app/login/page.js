@@ -43,7 +43,14 @@ const page = () => {
             progress: undefined,
             theme: "colored",
           });
+          localStorage.setItem("APFOS_useremail",data.email);
+          console.log(response);
+          if(response.metamaskaddress==""){
+            router.push("/addwalletdetails");
+          }
+          else{
             router.push("/")
+          }
         } else if(response.status===201) {
           toast.error("Invalid Credentials,Try Again..", {
             position: "top-center",
