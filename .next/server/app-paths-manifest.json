@@ -1,10 +1,7 @@
 {
-  "/not-found": "app/not-found.js",
   "/page": "app/page.js",
-  "/orgsignup/page": "app/orgsignup/page.js",
+  "/Portfolio/page": "app/Portfolio/page.js",
   "/login/page": "app/login/page.js",
-  "/signup/page": "app/signup/page.js",
   "/orglogin/page": "app/orglogin/page.js",
-  "/api/orglogin/route": "app/api/orglogin/route.js",
-  "/api/login/route": "app/api/login/route.js"
+  "/Portfolio/AddAssest/page": "app/Portfolio/AddAssest/page.js"
 }
