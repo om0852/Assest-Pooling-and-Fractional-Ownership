@@ -9,7 +9,7 @@ export async function POST(req, res) {
   try {
     const body = await req.json();
     await connectDB();
-    console.log("login")
+    console.log("login");
     const user = await User.findOne({ email: body.email });
     const bytes = CryptoJS.AES.decrypt(user.password, "secretkey123");
     const decryptpass = bytes.toString(CryptoJS.enc.Utf8);

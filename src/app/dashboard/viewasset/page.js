@@ -215,7 +215,6 @@ const AssestList = () => {
             </div>
 
           </div>
-          
      
         </div>
       </div>

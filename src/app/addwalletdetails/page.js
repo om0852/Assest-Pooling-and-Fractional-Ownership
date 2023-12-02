@@ -88,7 +88,7 @@ const page = () => {
           <form className="space-y-4 md:space-y-6" method="POST">
             <div>
               <label
-                for="email"
+                htmlFor="email"
                 className="block mb-2 text-sm font-medium text-gray-900 "
               >
                 Enter Wallet Address

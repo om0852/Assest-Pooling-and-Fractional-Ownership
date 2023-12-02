@@ -1,4 +1,4 @@
-// File: D:\CodePlayground\Final project\Next\bluechipart\src\app\orglogin\page.js
+// File: D:\Assest-Pooling-and-Fractional-Ownershi\src\app\orglogin\page.js
 import * as entry from '../../../../src/app/orglogin/page.js'
 import type { ResolvingMetadata } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

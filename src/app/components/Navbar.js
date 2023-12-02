@@ -109,7 +109,7 @@ const Navbar = () => {
 			<li className="text-gray-300">
 				|
 			</li>
-			<Link className={`text-lg  hover:text-blue-500 hover:font-bold ${location==='/dashboard/addasset' ? "text-blue-500 font-bold":"text-gray-400"}`} href={"/dashboard/Portfolio"}>Portfolio </Link>
+			<Link className={`text-lg  hover:text-blue-500 hover:font-bold ${location==='/dashboard/addasset' ? "text-blue-500 font-bold":"text-gray-400"}`} href={"/Portfolio"}>Portfolio </Link>
 			<li className="text-gray-300">
 				|
 			</li>
@@ -143,10 +143,10 @@ const Navbar = () => {
 						<Link className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded" href={"/dashboard"}>Dashboard</Link>
 					</li>
 					<li className="mb-1">
-						<Link className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded" href={"/viewasset"}>Assets</Link>
+						<Link className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded" href={"/Portfolio"}>Portfolio</Link>
 					</li>
 					<li className="mb-1">
-						<Link className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded" href={"/addasset"}>Add Asset</Link>
+						<Link className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded" href={"/Assest"}>Asset</Link>
 					</li>
 					<li className="mb-1">
 						<Link className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded" href={"/users"}>Users</Link>
@@ -165,7 +165,7 @@ const Navbar = () => {
 		</nav>
 		</div>
 	</div></>}</>
-	
+
   )
 }
 

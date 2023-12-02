@@ -1,4 +1,4 @@
-// File: D:\CodePlayground\Final project\Next\bluechipart\src\app\layout.js
+// File: D:\Assest-Pooling-and-Fractional-Ownershi\src\app\layout.js
 import * as entry from '../../../src/app/layout.js'
 import type { ResolvingMetadata } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
