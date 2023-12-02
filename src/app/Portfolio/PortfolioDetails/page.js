@@ -9,17 +9,21 @@ export default function Main() {
 
   const [portfoliodata, setportfoliodata] = useState("");
   const fetchdata = async () => {
-    const res = await fetch(`http://localhost:3000/api/portfolio/`, {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    let pid = urlParams.get('pid'); // value1
+
+    const res = await fetch(`http://localhost:3000/api/portfolio/portfoliodetails`, {
       method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ email: localStorage.getItem("APFOS_useremail") }),
+      body: JSON.stringify({pid:pid}),
     });
     const response = await res.json();
     console.log(response)
-    setportfoliodata(response.error);
+    setportfoliodata(response.error.Assests);
   }
   useEffect(() => {
     fetchdata();

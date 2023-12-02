@@ -52,9 +52,9 @@ export default function Main() {
             portfoliodata &&  portfoliodata.map((data) => {
                 return (
                   <div className="flex rounded items-center border-b-2 border-gray-300 px-5 py-5" key={data.id}>
-                    <div className="w-[75%]">
+                    <Link  href={`/Portfolio/PortfolioDetails?pid=${data._id}`} className="w-[75%]">
                       <p className="text-lg font-semibold">{data.PortfolioName}</p>
-                    </div>
+                    </Link>
                     <div className="w-[18%] md:w-32 text-center mx-1">
                       <p className="text-lg font-bold">{data.price}</p>
                     </div>
