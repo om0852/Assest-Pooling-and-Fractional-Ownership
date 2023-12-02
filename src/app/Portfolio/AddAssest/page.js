@@ -7,26 +7,34 @@ import "react-toastify/dist/ReactToastify.css";
 
 const page = () => {
     const router=useRouter();
+    // const  id = router.query;
+    useEffect(()=>{
+
+  },[])
     const [data, setdata] = useState({
       AType:"",
       Assest_Title:"",
       Assest_Price:"",
       Assest_Quantity:"",
       Assest_Description:"",
-    Assest_Price:""
+      pid:""
     })
 
     const onchange = (e) => {
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+      let pid = urlParams.get('pid'); // value1
+
         let name = e.target.name;
         let val = e.target.value;
-        setdata({ ...data,email:localStorage.getItem("APFOS_useremail")
- ,[name]: val });
-        console.log(val);
+        setdata({ ...data,pid:pid,[name]: val });
+
+        console.log(data);
       };
 
       const handleSubmit = async (e) => {
         e.preventDefault();
-        const res = await fetch(`http://localhost:3000/api/portfolio/createportfolio`, {
+        const res = await fetch(`http://localhost:3000/api/portfolio/Assest/createAssest`, {
           method: "POST",
           headers: {
             Accept: "application/json",
@@ -104,14 +112,14 @@ Add Assest
                       <input onChange={(e)=>onchange(e)} type="text" name="Assest_Title" id="Assest_Title" className="bg-white border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Enter Assest Name" required=""/>
                   </div>
                   <label for="AType" className="block mb-2 text-sm font-medium text-gray-900 ">Assest Type</label>
-                  <select onSelect={(e)=>onchange(e)} type="text" name="AType" id="AType" className="bg-white border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
+                  <select onChange={(e)=>onchange(e)} type="text" name="AType" id="AType" className="bg-white border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
 <option value="Stock">Stock</option>
 <option value="Cryptocurrency">Cryptocurrency</option>
 <option value="Painting Assest">Painting Assest</option>
                   </select>
                   <div>
-                      <label for="Assest_Quatity" className="block mb-2 text-sm font-medium text-gray-900 ">Assest Quantity</label>
-                      <input onChange={(e)=>onchange(e)} type="number" name="Assest_Quatity" id="Assest_Quatity" className="bg-white border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Enter Assest Quantity" required=""/>
+                      <label for="Assest_Quantity" className="block mb-2 text-sm font-medium text-gray-900 ">Assest Quantity</label>
+                      <input onChange={(e)=>onchange(e)} type="number" name="Assest_Quantity" id="Assest_Quatity" className="bg-white border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Enter Assest Quantity" required=""/>
                   </div>
                   <div>
                       <label for="Assest_Description" className="block mb-2 text-sm font-medium text-gray-900 ">Assest Description</label>
@@ -119,7 +127,7 @@ Add Assest
                   </div>
                   <div>
                       <label for="Assest_Price" className="block mb-2 text-sm font-medium text-gray-900 ">Assest Price</label>
-                      <input onChange={(e)=>onchange(e)} type="text" name="Assest_Price " id="Assest_Price" className="bg-white border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Enter Assest Price" required=""/>
+                      <input onChange={(e)=>onchange(e)} type="text" name="Assest_Price" id="Assest_Price" className="bg-white border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Enter Assest Price" required=""/>
                   </div>
 
                   <button onClick={handleSubmit} type="submit" className="w-full text-white bg-blue-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">Next</button>

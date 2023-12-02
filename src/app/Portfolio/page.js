@@ -6,10 +6,7 @@ import  Link  from 'next/link'
 export default function Main() {
   const router = useRouter();
 
-  // Uncomment the following block if needed
-  // if (!localStorage.getItem("token")) {
-  //   router.push("/login");
-  // }
+
   const [portfoliodata, setportfoliodata] = useState("");
   const fetchdata = async () => {
     const res = await fetch(`http://localhost:3000/api/portfolio/`, {
@@ -63,9 +60,10 @@ export default function Main() {
                     </div>
                     <div className="w-[24%] text-center mx-1">
                       <p className="mx-auto font-bold w-16 py-1 px-2">
-                        <Link href="/Portfolio/AddAssest" className="text-red-500 font-bold py-1 px-2">
-                          Add Asset
-                        </Link>
+                      <Link href={`/Portfolio/AddAssest?pid=${data._id}`}>
+  Add Asset
+</Link>
+
                       </p>
                     </div>
                     <div className="w-[12%] text-center mx-1">
