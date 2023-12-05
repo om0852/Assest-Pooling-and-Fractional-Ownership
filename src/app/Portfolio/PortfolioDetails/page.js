@@ -43,12 +43,17 @@ export default function Main() {
               <p className="text-lg font-bold">Price</p>
             </div>
             <div className="w-[24%] text-center mx-1">
-              <p className="mx-auto font-bold w-16 py-1 px-2">Add</p>
+              <p className="mx-auto font-bold w-16 py-1 px-2">Assest Type</p>
             </div>
-            <div className="w-[12%] text-center mx-1">
-              <button className="text-red-500 font-bold py-1 px-2  ">
-                Remove
-              </button>
+            <div className="w-[24%] text-center mx-1">
+              <p className="mx-auto font-bold w-16 py-1 px-2">Assest Quantity</p>
+            </div>
+            <div className="w-[24%] text-center mx-1">
+              <p className="mx-auto font-bold w-16 py-1 px-2">Assest Description</p>
+            </div>
+
+            <div className="w-[24%] text-center mx-1">
+              <p className="mx-auto font-bold w-16 py-1 px-2">Option</p>
             </div>
           </div>
           <div className="bg-white  rounded-lg my-2">
@@ -57,18 +62,20 @@ export default function Main() {
                 return (
                   <div className="flex rounded items-center border-b-2 border-gray-300 px-5 py-5" key={data.id}>
                     <div className="w-[75%]">
-                      <p className="text-lg font-semibold">{data.PortfolioName}</p>
+                      <p className="text-lg font-semibold">{data.Assest_Title}</p>
                     </div>
                     <div className="w-[18%] md:w-32 text-center mx-1">
                       <p className="text-lg font-bold">{data.price}</p>
                     </div>
-                    <div className="w-[24%] text-center mx-1">
-                      <p className="mx-auto font-bold w-16 py-1 px-2">
-                      <Link href={`/Portfolio/AddAssest?pid=${data._id}`}>
-  Add Asset
-</Link>
+                    <div className="w-[18%] md:w-32 text-center mx-1">
+                      <p className="text-lg font-bold">{data.AType}</p>
+                    </div>
 
-                      </p>
+                    <div className="w-[18%] md:w-32 text-center mx-1">
+                      <p className="text-lg font-bold">{data.Assest_Quantity}</p>
+                    </div>
+                    <div className="w-[18%] md:w-32 text-center mx-1">
+                      <p className="text-lg font-bold">{data.Assest_Description}</p>
                     </div>
                     <div className="w-[12%] text-center mx-1">
                       <button className="text-red-500 font-bold py-1 px-2">

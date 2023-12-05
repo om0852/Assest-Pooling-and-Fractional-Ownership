@@ -1,5 +1,8 @@
 {
   "/not-found": "app/not-found.js",
+  "/page": "app/page.js",
+  "/Portfolio/page": "app/Portfolio/page.js",
+  "/dashboard/page": "app/dashboard/page.js",
   "/Portfolio/PortfolioDetails/page": "app/Portfolio/PortfolioDetails/page.js",
-  "/api/portfolio/portfoliodetails/route": "app/api/portfolio/portfoliodetails/route.js"
+  "/api/portfolio/AllPortfolio/route": "app/api/portfolio/AllPortfolio/route.js"
 }
