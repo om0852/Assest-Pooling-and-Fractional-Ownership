@@ -1,7 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
-import  Link  from 'next/link'
+import Link from 'next/link'
 
 export default function Main() {
   const router = useRouter();
@@ -19,11 +19,11 @@ export default function Main() {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({pid:pid}),
+      body: JSON.stringify({ pid: pid }),
     });
     const response = await res.json();
     console.log(response)
-    setportfoliodata(response.error.Assests);
+    setportfoliodata(response.error);
   }
   useEffect(() => {
     fetchdata();
@@ -58,7 +58,7 @@ export default function Main() {
           </div>
           <div className="bg-white  rounded-lg my-2">
             {
-            portfoliodata &&  portfoliodata.map((data) => {
+              portfoliodata.Assests && portfoliodata.Assests.map((data) => {
                 return (
                   <div className="flex rounded items-center border-b-2 border-gray-300 px-5 py-5" key={data.id}>
                     <div className="w-[75%]">
@@ -86,8 +86,11 @@ export default function Main() {
                 );
               })
             }
+            <div className="flex rounded items-center border-b-2 border-gray-300 px-5 py-5">
+              Total:-  {portfoliodata && portfoliodata.Price}
+            </div>
 
-                </div>
+          </div>
 
 
         </div>

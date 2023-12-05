@@ -27,10 +27,11 @@
       "static/chunks/main-app.js",
       "static/chunks/app/dashboard/page.js"
     ],
-    "/not-found": [
+    "/Portfolio/AddAssest/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/not-found.js"
+      "static/css/app/Portfolio/AddAssest/page.css",
+      "static/chunks/app/Portfolio/AddAssest/page.js"
     ]
   }
 }

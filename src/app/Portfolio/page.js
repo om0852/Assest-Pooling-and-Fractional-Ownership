@@ -1,7 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
-import  Link  from 'next/link'
+import Link from 'next/link'
 
 export default function Main() {
   const router = useRouter();
@@ -49,20 +49,20 @@ export default function Main() {
           </div>
           <div className="bg-white  rounded-lg my-2">
             {
-            portfoliodata &&  portfoliodata.map((data) => {
+              portfoliodata && portfoliodata.map((data) => {
                 return (
                   <div className="flex rounded items-center border-b-2 border-gray-300 px-5 py-5" key={data.id}>
-                    <Link  href={`/Portfolio/PortfolioDetails?pid=${data._id}`} className="w-[75%]">
+                    <Link href={`/Portfolio/PortfolioDetails?pid=${data._id}`} className="w-[75%]">
                       <p className="text-lg font-semibold">{data.PortfolioName}</p>
                     </Link>
                     <div className="w-[18%] md:w-32 text-center mx-1">
-                      <p className="text-lg font-bold">{data.price}</p>
+                      <p className="text-lg font-bold">{data.Price}</p>
                     </div>
                     <div className="w-[24%] text-center mx-1">
                       <p className="mx-auto font-bold w-16 py-1 px-2">
-                      <Link href={`/Portfolio/AddAssest?pid=${data._id}`}>
-  Add Asset
-</Link>
+                        <Link href={`/Portfolio/AddAssest?pid=${data._id}`}>
+                          Add Asset
+                        </Link>
 
                       </p>
                     </div>
@@ -76,7 +76,7 @@ export default function Main() {
               })
             }
 
-                </div>
+          </div>
 
 
         </div>

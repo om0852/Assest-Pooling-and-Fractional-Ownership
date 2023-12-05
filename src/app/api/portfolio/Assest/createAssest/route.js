@@ -7,25 +7,32 @@ export async function POST(req, res) {
   try {
     const body = await req.json();
     console.log(body)
-    const {AType,
-  Assest_Title,
-  Assest_Price,
-  Assest_Quantity,
-  Assest_Description,
-  PortfolioName,
-  pid}=body;
+    const { AType,
+      Assest_Title,
+      Assest_Price,
+      Assest_Quantity,
+      Assest_Description,
+      PortfolioName,
+      pid } = body;
     await connectDB();
-    const data = {AType,
-  Assest_Title,
-  Assest_Price,
-  Assest_Quantity,
-  Assest_Description,
-  Date:new Date()
-};
-    const portfoliodata = await Portfolio.findOne({_id:pid});
+    const data = {
+      AType,
+      Assest_Title,
+      Assest_Price,
+      Assest_Quantity,
+      Assest_Description,
+      Date: new Date()
+    };
+    let total = 0;
+    const portfoliodata = await Portfolio.findOne({ _id: pid });
+    if (portfoliodata.Price) {
+      total = parseInt(portfoliodata.Price)
+    }
     portfoliodata.Assests.push(data);
-    const portfoliodataupdate = await Portfolio.updateOne({_id:pid},{Assests:portfoliodata.Assests});
-   console.log("assest added successfully");
+    total += (parseInt(Assest_Price) * Assest_Quantity);
+    console.log(total);
+    const portfoliodataupdate = await Portfolio.updateOne({ _id: pid }, { Assests: portfoliodata.Assests, Price: total });
+    console.log("assest added successfully");
     return NextResponse.json({ status: 200 }, { error: "success" });
   } catch (error) {
     console.log(error);
