@@ -8,11 +8,15 @@ export async function POST(req, res) {
   try {
     const body = await req.json();
     console.log(body)
-    const { pname, email } = body;
+    const { pname, email, Assests } = body;
     await connectDB();
     const userdetails = await User.findOne({ email: email });
-    console.log(userdetails);
-    await Portfolio.create({ userId: userdetails._id, PortfolioName: pname, Price: "0" })
+    let total = 0;
+    for (let i = 0; i < Assests.length; i++) {
+      console.log(Assests[i].Assest_Price)
+      total += parseFloat(Assests[i].Assest_Price);
+    }
+    await Portfolio.create({ userId: userdetails._id, Assests: Assests, PortfolioName: pname, Price: total })
     console.log("portfolio create successfully")
     return NextResponse.json({ status: 200 }, { error: "portfolio create successfully" });
   } catch (error) {

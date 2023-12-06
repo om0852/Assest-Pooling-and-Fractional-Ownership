@@ -75,6 +75,9 @@ export default function Main() {
                 );
               })
             }
+            <div className="flex rounded items-center border-b-2 border-gray-300 px-5 py-5">
+              <Link style={{ color: "green" }} href="/Portfolio/CreatePortfolio">Create New Portfolio</Link>
+            </div>
 
           </div>
 

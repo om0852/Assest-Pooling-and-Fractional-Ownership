@@ -65,7 +65,7 @@ export default function Main() {
                       <p className="text-lg font-semibold">{data.Assest_Title}</p>
                     </div>
                     <div className="w-[18%] md:w-32 text-center mx-1">
-                      <p className="text-lg font-bold">{data.price}</p>
+                      <p className="text-lg font-bold">{data.Assest_Price}</p>
                     </div>
                     <div className="w-[18%] md:w-32 text-center mx-1">
                       <p className="text-lg font-bold">{data.AType}</p>

@@ -5,10 +5,10 @@ import { NextResponse } from "next/server";
 
 export async function POST(req, res) {
     try {
-        console.log("allportflop")
+        // console.log("allportflop")
         await connectDB();
         const portfoliodata = await Portfolio.find();
-        console.log(portfoliodata);
+        // console.log(portfoliodata);
         return NextResponse.json({ status: 200, error: portfoliodata });
     } catch (error) {
         console.log(error);
