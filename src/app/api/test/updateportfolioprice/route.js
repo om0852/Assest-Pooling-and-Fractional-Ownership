@@ -1,7 +1,7 @@
-import User from "../../../../models/User";
-import Portfolio from "../../../models/Portfolio";
-import Assests from "../../../models/Assests";
-import connectDB from "../../../utils/mongoose";
+// import User from "../../../models/User";
+import Portfolio from "../../../../models/Portfolio";
+import Assests from "../../../../models/Assests";
+import connectDB from "../../../../utils/mongoose";
 import { NextResponse } from "next/server";
 
 export async function POST(req, res) {
@@ -11,11 +11,14 @@ export async function POST(req, res) {
         const portfoliodata = await Portfolio.find();
         for (let i = 0; i < portfoliodata.length; i++) {
             const Assestdata = await Assests.find({ AssestId: portfoliodata[i]._id });
-            if (Assestdata) {
+            if (Assestdata != []) {
                 for (let j = 0; j < Assestdata.length; j++) {
-                    profit = portfoliodata[i].Price - Assestdata[i].AssestBuyAmount;
-                    const updateAssest = await Assests.updateOne({ AssestId: portfoliodata[i]._id });
-
+                    // console.log(Assestdata[j])
+                    let profit = portfoliodata[i].Price - Assestdata[j].AssestBuyPrice;
+                    console.log(profit);
+                    Assestdata[j].Profit.push(profit)
+                    console.log(Assestdata[j].Profit)
+                    const updateAssest = await Assests.updateOne({ AssestId: portfoliodata[i]._id }, { Profit: Assestdata[j].Profit });
                 }
             }
 
