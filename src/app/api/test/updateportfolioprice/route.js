@@ -13,12 +13,11 @@ export async function POST(req, res) {
             const Assestdata = await Assests.find({ AssestId: portfoliodata[i]._id });
             if (Assestdata != []) {
                 for (let j = 0; j < Assestdata.length; j++) {
-                    // console.log(Assestdata[j])
                     let profit = portfoliodata[i].Price - Assestdata[j].AssestBuyPrice;
                     console.log(profit);
-                    Assestdata[j].Profit.push(profit)
+                    Assestdata[j].Profit.push({ Profit: profit, date: new Date() })
                     console.log(Assestdata[j].Profit)
-                    const updateAssest = await Assests.updateOne({ AssestId: portfoliodata[i]._id }, { Profit: Assestdata[j].Profit });
+                    const updateAssest = await Assests.updateOne({ _id: Assestdata[j]._id }, { Profit: Assestdata[j].Profit });
                 }
             }
 
