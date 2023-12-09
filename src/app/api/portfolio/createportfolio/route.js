@@ -14,7 +14,7 @@ export async function POST(req, res) {
     let total = 0;
     for (let i = 0; i < Assests.length; i++) {
       console.log(Assests[i].Assest_Price)
-      total += parseFloat(Assests[i].Assest_Price);
+      total += parseFloat(Assests[i].Assest_Price) * parseFloat(Assests[i].Assest_Quantity);
     }
     await Portfolio.create({ userId: userdetails._id, Assests: Assests, PortfolioName: pname, Price: total })
     console.log("portfolio create successfully")

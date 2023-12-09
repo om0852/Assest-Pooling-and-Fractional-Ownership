@@ -8,7 +8,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Cookies from "js-cookie";
 
-export const CartContext = createContext();
 export default function Main() {
     const router = useRouter();
     const [portfoliodata, setportfoliodata] = useState([]);
@@ -20,7 +19,13 @@ export default function Main() {
             router.push("/Portfolio/CreatePortfolio");
         }
     }, [])
+    function removeAssest(ind) {
+        portfoliodata.splice(ind, 1);
 
+        localStorage.setItem("assestlist", JSON.stringify(portfoliodata));
+        setportfoliodata(portfoliodata);
+        router.push("/Portfolio/AddAssest/AssestList");
+    }
     async function addPortfolio() {
         // let pn = getCookie("PortfolioName")
         const cookieValue = Cookies.get("PortfolioName");
@@ -99,11 +104,11 @@ export default function Main() {
                                             <p className="text-lg font-bold">{data.Assest_Description}</p>
                                         </div>
                                         <div className="w-[12%] text-center mx-1">
-                                            <button onClick={() => {
+                                            <Link href="" onClick={() => {
                                                 removeAssest(index)
                                             }} className="text-red-500 font-bold py-1 px-2">
                                                 Delete
-                                            </button>
+                                            </Link>
                                         </div>
                                     </div>
                                 );

@@ -1,38 +1,33 @@
 {
   "pages": {
+    "/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/page.css",
+      "static/chunks/app/page.js"
+    ],
     "/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
-    "/Portfolio/CreatePortfolio/page": [
+    "/Portfolio/Assests/BuyAssest/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/Portfolio/CreatePortfolio/page.css",
-      "static/chunks/app/Portfolio/CreatePortfolio/page.js"
+      "static/css/app/Portfolio/Assests/BuyAssest/page.css",
+      "static/chunks/app/Portfolio/Assests/BuyAssest/page.js"
     ],
-    "/Portfolio/AddAssest/page": [
+    "/login/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/Portfolio/AddAssest/page.css",
-      "static/chunks/app/Portfolio/AddAssest/page.js"
+      "static/css/app/login/page.css",
+      "static/chunks/app/login/page.js"
     ],
-    "/Portfolio/AddAssest/AssestList/page": [
+    "/Portfolio/Assests/BuyAssestList/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/Portfolio/AddAssest/AssestList/page.css",
-      "static/chunks/app/Portfolio/AddAssest/AssestList/page.js"
-    ],
-    "/Portfolio/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/Portfolio/page.js"
-    ],
-    "/Portfolio/PortfolioDetails/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/Portfolio/PortfolioDetails/page.js"
+      "static/chunks/app/Portfolio/Assests/BuyAssestList/page.js"
     ],
     "/not-found": [
       "static/chunks/webpack.js",

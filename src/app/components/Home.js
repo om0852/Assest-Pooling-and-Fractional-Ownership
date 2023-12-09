@@ -2,6 +2,7 @@
 import react, { useState, useEffect } from 'react'
 import Slider from './Slider';
 import Link from 'next/link';
+import Cookies from "js-cookie";
 
 
 const Home = () => {
@@ -37,11 +38,26 @@ const Home = () => {
 					if (index < 6) {
 						return (
 							<div>
-								<Link key={index} href={`/Portfolio/PortfolioDetails?pid=${elem._id}`}>{elem.PortfolioName}</Link>
-								<Link key={index} href={'/about'}><div className="bg-white shadow-md rounded-lg max-w-sm m-2">
-									buy
+								<div className="card" style={{ width: "18rem", color: "white", border: "1px solid red" }}>
+									<div className="card-body">
+										<h5 className="card-title"><Link key={index} href={`/Portfolio/PortfolioDetails?pid=${elem._id}`}>{elem.PortfolioName}</Link>
+										</h5>
+										<Link onClick={() => { Cookies.set("price", `${elem.Price}`) }} style={{ width: "10vh", color: "black" }} key={index} href={`/Portfolio/Assests/BuyAssest?pid=${elem._id}`}><div className="bg-white shadow-md rounded-lg max-w-sm m-2">
+											buy
+										</div>
+										</Link>
+									</div>
+									<ul className="list-group list-group-flush">
+										<li className="list-group-item">An item</li>
+										<li className="list-group-item">A second item</li>
+										<li className="list-group-item">A third item</li>
+									</ul>
+									<div className="card-body">
+										<a href="#" className="card-link">Card link</a>
+										<a href="#" className="card-link">Another link</a>
+									</div>
 								</div>
-								</Link>
+
 							</div>
 						)
 					}
