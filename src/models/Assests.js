@@ -5,6 +5,7 @@ const AssestSchema = new mongoose.Schema({
     UserId: { type: String, required: true },
     AssestTitle: { type: String, required: true },
     AssestTotalPrice: { type: String, required: true },
+    OrginalBuyPrice: { type: String, required: true },
     AssestBuyPrice: { type: String, required: true },
     PercentageOwn: { type: String, required: true },
     Transactionid: { type: String, required: true },

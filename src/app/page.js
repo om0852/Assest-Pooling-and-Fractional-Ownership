@@ -1,17 +1,25 @@
 "use client";
 import Home from "./components/Home";
-import {useEffect} from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 export default function Main() {
-  const router=useRouter();
+  const router = useRouter();
+  useEffect(() => {
+    const metamasklogin = async () => {
 
-  useEffect(()=>{
-    if(!localStorage.getItem("token")){
-  router.push("/login")
+      const accounts = await window.ethereum.request({
+        method: 'eth_requestAccounts',
+      });
+    };
+    metamasklogin();
+  })
+  useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      router.push("/login")
     }
-  },[])
+  }, [])
   return (
-    <Home/>
+    <Home />
   )
 }

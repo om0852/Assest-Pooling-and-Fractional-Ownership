@@ -5,21 +5,73 @@ import Link from "next/link";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Cookies from "js-cookie";
+import ASPOS from "./APFOS_Contract.json";
+import Web3 from "web3";
 
 const page = () => {
-
+    const [myContract, setMyContract] = useState(null);
+    const [transactionHash, setTransactionHash] = useState(null);
+    const [web3, setweb3] = useState(null);
+    const [UserPrice, setUserPrice] = useState(0);
+    const [sender, setsender] = useState(null);
     const router = useRouter();
+    let price = Cookies.get("price");
+    useEffect(() => {
+        if (window.ethereum) {
+            window.ethereum.on('accountsChanged', handleAccountsChanged);
+        }
+
+        if (!price) {
+            router.push("/")
+        }
+        setContract();
+        fetchEthereumPrice();
+    }, [])
+    const handleAccountsChanged = async (accounts) => {
+        setsender(accounts[0]); // Use the first account in the array
+    };
+    const fetchEthereumPrice = async () => {
+        try {
+            const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=inr');
+            const data = await response.json();
+            return (data.ethereum.inr);
+            // setEthPriceInINR(data.ethereum.inr);
+        } catch (error) {
+            console.error('Error fetching Ethereum price:', error);
+        }
+    }
+
+    const setContract = async () => {
+        try {
+            let web3c = new Web3(window.ethereum)
+            // console.log(a);
+            setweb3(web3c);
+            const accounts = await window.ethereum.request({
+                method: 'eth_requestAccounts',
+            });
+
+            console.log(accounts);
+            setsender(accounts[0]); // Use the first account in the array
+            const contractAddress = "0x3553472E7C500fCE32AdbFa6D34e3e261E276513";
+            const myContractInstance = new web3c.eth.Contract(ASPOS, contractAddress);
+            console.log(myContractInstance)
+            setMyContract(myContractInstance);
+
+        } catch (error) {
+            alert("connect to network")
+        }
+    }
     const [data, setdata] = useState({
         useremail: "",
         BuyAmount: "",
         pid: "",
         PortfolioTotalPrice: "",
-        Transactionid: "786387",
-        Transactionamount: 100
+        Transactionid: null,
+        Transactionamount: null,
+        OrginalBuyPrice: ""
 
     });
     const onchange = (e) => {
-        let price = Cookies.get("price")
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
         let portfolioid = urlParams.get('pid'); // value1
@@ -31,20 +83,53 @@ const page = () => {
             useremail: APFOS_useremail,
             BuyAmount: val,
             pid: portfolioid,
-            PortfolioTotalPrice: price
+            PortfolioTotalPrice: price,
+            OrginalBuyPrice: val
         });
     };
+    const BuyAssest = async (e) => {
+        try {
+            console.log(web3);
+            const receiverAddress = "0xaca8Dd3EC734Db2847c016356F682e5CB7Fe7783";
+            let p = await fetchEthereumPrice();
+            const amountInEther = (parseFloat(data.BuyAmount) / parseFloat(p));
+            console.log(amountInEther)
 
-    const handleSubmit = async (e) => {
+            const result = await myContract.methods.sendToUser(receiverAddress).send({
+                from: sender,
+                value: web3.utils.toWei(amountInEther.toString(), 'ether'),
+            });
+
+            setTransactionHash(result.transactionHash);
+            console.log(result);
+
+
+            await handleSubmit(e, result, amountInEther);
+        }
+        catch (error) {
+            console.log(error)
+            alert("invalid attempt,try again");
+        }
+    }
+    const handleSubmit = async (e, result, amountInEther) => {
 
         e.preventDefault();
+        console.log(data);
         const res = await fetch(`http://localhost:3000/api/portfolio/Assest/BuyAssest`, {
             method: "POST",
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(data),
+            body: JSON.stringify({
+                useremail: data.useremail,
+                BuyAmount: data.BuyAmount,
+                pid: data.pid,
+                PortfolioTotalPrice: data.PortfolioTotalPrice,
+                OrginalBuyPrice: data.OrginalBuyPrice,
+                Transactionid: result.transactionHash,
+                Transactionamount: amountInEther,
+            }),
         });
         const response = await res.json();
         console.log(response)
@@ -59,6 +144,7 @@ const page = () => {
                 progress: undefined,
                 theme: "colored",
             });
+            Cookies.remove("price");
             router.push("/Portfolio/Assests/BuyAssestList");
         } else if (response.error == "Account Not Found") {
             toast.error("Account Not Found", {
@@ -117,6 +203,8 @@ const page = () => {
             useremail: "",
             walletaddress: "",
         });
+
+
     };
 
     return (
@@ -152,7 +240,7 @@ const page = () => {
                         </div>
 
                         <button
-                            onClick={handleSubmit}
+                            onClick={BuyAssest}
                             type="submit"
                             className="w-full text-white bg-blue-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
                         >

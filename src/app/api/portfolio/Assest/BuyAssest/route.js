@@ -13,7 +13,8 @@ export async function POST(req, res) {
       PortfolioTotalPrice,
       BuyAmount,
       Transactionid,
-      Transactionamount
+      Transactionamount,
+      OrginalBuyPrice
     } = body;
     await connectDB();
     let total = 0;
@@ -22,7 +23,7 @@ export async function POST(req, res) {
       return NextResponse.json({ status: 300, error: "Account Not Found" });
 
     }
-    console.log(userData);
+    // console.log(userData);
     const portfoliodata = await Portfolio.findOne({ _id: pid });
     if (portfoliodata == null) {
       return NextResponse.json({ status: 300, error: "Portfolio Not Found" });
@@ -39,10 +40,13 @@ export async function POST(req, res) {
       PercentageOwn: per,
       Transactionid: Transactionid,
       Transactionamount: Transactionamount,
-      Profit: 0
+      Profit: [],
+      OrginalBuyPrice
 
     };
+    console.log(body)
     await Assests.create(data);
+    const update1 = await Portfolio.updateOne({ _id: pid }, { RemainingPrice: (parseFloat(portfoliodata.RemainingPrice) - parseFloat(BuyAmount)) })
     console.log("assest added successfully");
     return NextResponse.json({ status: 200, error: "success" });
   } catch (error) {

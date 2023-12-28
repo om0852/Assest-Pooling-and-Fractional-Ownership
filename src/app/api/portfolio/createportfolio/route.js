@@ -16,7 +16,8 @@ export async function POST(req, res) {
       console.log(Assests[i].Assest_Price)
       total += parseFloat(Assests[i].Assest_Price) * parseFloat(Assests[i].Assest_Quantity);
     }
-    await Portfolio.create({ userId: userdetails._id, Assests: Assests, PortfolioName: pname, Price: total })
+    let data = { Price: total, date: new Date().toUTCString() }
+    await Portfolio.create({ userId: userdetails._id, Assests: Assests, PortfolioName: pname, Price: total, PortfolioPrice: [data], RemainingPrice: total })
     console.log("portfolio create successfully")
     return NextResponse.json({ status: 200 }, { error: "portfolio create successfully" });
   } catch (error) {

@@ -10,9 +10,9 @@ export async function POST(req, res) {
         const { email } = body;
         await connectDB();
         const userdetails = await User.findOne({ email: email });
-        console.log(userdetails)
+        // console.log(userdetails)
         const Assestdata = await Assests.find({ UserId: userdetails._id });
-        console.log(Assestdata);
+        // console.log(Assestdata);
         return NextResponse.json({ status: 200, error: Assestdata });
     } catch (error) {
         console.log(error);
