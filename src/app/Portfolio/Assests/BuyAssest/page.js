@@ -91,7 +91,13 @@ const page = () => {
         try {
             console.log(web3);
             const receiverAddress = "0xaca8Dd3EC734Db2847c016356F682e5CB7Fe7783";
-            let p = await fetchEthereumPrice();
+            let p;
+            try {
+                p = await fetchEthereumPrice();
+            }
+            catch (error) {
+                return alert("check internet connection,try again");
+            }
             const amountInEther = (parseFloat(data.BuyAmount) / parseFloat(p));
             console.log(amountInEther)
 
@@ -108,7 +114,8 @@ const page = () => {
         }
         catch (error) {
             console.log(error)
-            alert("invalid attempt,try again");
+            clearInterval();
+            return alert("invalid attempt,try again");
         }
     }
     const handleSubmit = async (e, result, amountInEther) => {

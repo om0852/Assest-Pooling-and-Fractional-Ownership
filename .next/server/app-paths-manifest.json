@@ -1,8 +1,13 @@
 {
   "/not-found": "app/not-found.js",
   "/page": "app/page.js",
-  "/Portfolio/Assests/BuyAssest/page": "app/Portfolio/Assests/BuyAssest/page.js",
-  "/Portfolio/Assests/BuyAssestList/page": "app/Portfolio/Assests/BuyAssestList/page.js",
-  "/api/portfolio/Assest/BuyAssest/route": "app/api/portfolio/Assest/BuyAssest/route.js",
-  "/api/portfolio/Assest/BuyAssestList/route": "app/api/portfolio/Assest/BuyAssestList/route.js"
+  "/Portfolio/page": "app/Portfolio/page.js",
+  "/Portfolio/AddAssest/page": "app/Portfolio/AddAssest/page.js",
+  "/api/portfolio/route": "app/api/portfolio/route.js",
+  "/Portfolio/PortfolioDetails/page": "app/Portfolio/PortfolioDetails/page.js",
+  "/Portfolio/AddAssest/AssestList/page": "app/Portfolio/AddAssest/AssestList/page.js",
+  "/api/portfolio/createportfolio/route": "app/api/portfolio/createportfolio/route.js",
+  "/api/portfolio/portfoliodetails/route": "app/api/portfolio/portfoliodetails/route.js",
+  "/api/portfolio/AllPortfolio/route": "app/api/portfolio/AllPortfolio/route.js",
+  "/Portfolio/Assests/BuyAssest/page": "app/Portfolio/Assests/BuyAssest/page.js"
 }
