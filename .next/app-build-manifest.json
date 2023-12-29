@@ -1,85 +1,33 @@
 {
   "pages": {
-    "/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/page.css",
-      "static/chunks/app/page.js"
-    ],
     "/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
-    "/Portfolio/page": [
+    "/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/Portfolio/page.js"
-    ],
-    "/login/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/login/page.css",
-      "static/chunks/app/login/page.js"
-    ],
-    "/signup/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/signup/page.css",
-      "static/chunks/app/signup/page.js"
-    ],
-    "/orgsignup/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/orgsignup/page.css",
-      "static/chunks/app/orgsignup/page.js"
-    ],
-    "/orglogin/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/orglogin/page.css",
-      "static/chunks/app/orglogin/page.js"
-    ],
-    "/addwalletdetails/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/addwalletdetails/page.css",
-      "static/chunks/app/addwalletdetails/page.js"
-    ],
-    "/dashboard/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/dashboard/page.js"
-    ],
-    "/Portfolio/CreatePortfolio/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/Portfolio/CreatePortfolio/page.css",
-      "static/chunks/app/Portfolio/CreatePortfolio/page.js"
-    ],
-    "/Portfolio/AddAssest/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/Portfolio/AddAssest/page.css",
-      "static/chunks/app/Portfolio/AddAssest/page.js"
-    ],
-    "/Portfolio/AddAssest/AssestList/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/Portfolio/AddAssest/AssestList/page.css",
-      "static/chunks/app/Portfolio/AddAssest/AssestList/page.js"
-    ],
-    "/Portfolio/PortfolioDetails/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/Portfolio/PortfolioDetails/page.js"
+      "static/css/app/page.css",
+      "static/chunks/app/page.js"
     ],
     "/Portfolio/Assests/BuyAssest/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/css/app/Portfolio/Assests/BuyAssest/page.css",
       "static/chunks/app/Portfolio/Assests/BuyAssest/page.js"
+    ],
+    "/Portfolio/Assests/BuyAssestList/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/Portfolio/Assests/BuyAssestList/page.css",
+      "static/chunks/app/Portfolio/Assests/BuyAssestList/page.js"
+    ],
+    "/dashboard/viewasset/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/dashboard/viewasset/page.js"
     ],
     "/not-found": [
       "static/chunks/webpack.js",

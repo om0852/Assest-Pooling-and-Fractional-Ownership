@@ -10,9 +10,8 @@ import Web3 from "web3";
 
 const page = () => {
     const [myContract, setMyContract] = useState(null);
-    const [transactionHash, setTransactionHash] = useState(null);
+    const [PortfolioDetail, setPortfolioDetail] = useState(null);
     const [web3, setweb3] = useState(null);
-    const [UserPrice, setUserPrice] = useState(0);
     const [sender, setsender] = useState(null);
     const router = useRouter();
     let price = Cookies.get("price");
@@ -20,13 +19,43 @@ const page = () => {
         if (window.ethereum) {
             window.ethereum.on('accountsChanged', handleAccountsChanged);
         }
-
         if (!price) {
             router.push("/")
         }
+        handlePortfolioData();
         setContract();
         fetchEthereumPrice();
     }, [])
+    const handlePortfolioData = async () => {
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        let pid = urlParams.get('pid'); // value1
+        try {
+
+            const res = await fetch(`http://localhost:3000/api/portfolio/portfoliodetails`, {
+                method: "POST",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ pid: pid }),
+            });
+            const response = await res.json();
+            console.log(response)
+            if (response.status == 300) {
+                alert("invalid portfolio ");
+                router.push("/");
+
+            }
+            setPortfolioDetail(response.error);
+        }
+        catch (error) {
+            alert("invalid portfolio ");
+            router.push("/");
+
+        }
+    }
+
     const handleAccountsChanged = async (accounts) => {
         setsender(accounts[0]); // Use the first account in the array
     };
@@ -52,7 +81,7 @@ const page = () => {
 
             console.log(accounts);
             setsender(accounts[0]); // Use the first account in the array
-            const contractAddress = "0x3553472E7C500fCE32AdbFa6D34e3e261E276513";
+            const contractAddress = "0x930BC5ec6339AbC9343de0b5c1b5C1b4163670c8";
             const myContractInstance = new web3c.eth.Contract(ASPOS, contractAddress);
             console.log(myContractInstance)
             setMyContract(myContractInstance);
@@ -89,8 +118,10 @@ const page = () => {
     };
     const BuyAssest = async (e) => {
         try {
-            console.log(web3);
-            const receiverAddress = "0xaca8Dd3EC734Db2847c016356F682e5CB7Fe7783";
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            let pid = urlParams.get('pid'); // value1
+
             let p;
             try {
                 p = await fetchEthereumPrice();
@@ -101,12 +132,11 @@ const page = () => {
             const amountInEther = (parseFloat(data.BuyAmount) / parseFloat(p));
             console.log(amountInEther)
 
-            const result = await myContract.methods.sendToUser(receiverAddress).send({
+            const result = await myContract.methods.deposit(pid).send({
                 from: sender,
                 value: web3.utils.toWei(amountInEther.toString(), 'ether'),
             });
 
-            setTransactionHash(result.transactionHash);
             console.log(result);
 
 
@@ -233,7 +263,10 @@ const page = () => {
                                 htmlFor="email"
                                 className="block mb-2 text-sm font-medium text-gray-900 "
                             >
-                                Enter Amount
+                                Enter Amount<br>
+                                </br>
+                                Total:-{PortfolioDetail && PortfolioDetail.Price}
+                                RemainingPrice:-{PortfolioDetail && PortfolioDetail.RemainingPrice}
                             </label>
                             <input
                                 onChange={(e) => onchange(e)}
@@ -244,6 +277,7 @@ const page = () => {
                                 placeholder="min:10rs"
                                 required="true"
                             />
+                            { }
                         </div>
 
                         <button
