@@ -261,8 +261,7 @@ const page = () => {
                         <div>
                             <label
                                 htmlFor="email"
-                                className="block mb-2 text-sm font-medium text-gray-900 "
-                            >
+                                className="block mb-2 text-sm font-medium text-gray-900 ">
                                 Enter Amount<br>
                                 </br>
                                 Total:-{PortfolioDetail && PortfolioDetail.Price}

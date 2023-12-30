@@ -12,22 +12,22 @@
       "static/css/app/page.css",
       "static/chunks/app/page.js"
     ],
-    "/Portfolio/Assests/BuyAssest/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/Portfolio/Assests/BuyAssest/page.css",
-      "static/chunks/app/Portfolio/Assests/BuyAssest/page.js"
-    ],
     "/Portfolio/Assests/BuyAssestList/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/css/app/Portfolio/Assests/BuyAssestList/page.css",
       "static/chunks/app/Portfolio/Assests/BuyAssestList/page.js"
     ],
-    "/dashboard/viewasset/page": [
+    "/Portfolio/Assests/BuyAssest/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/dashboard/viewasset/page.js"
+      "static/css/app/Portfolio/Assests/BuyAssest/page.css",
+      "static/chunks/app/Portfolio/Assests/BuyAssest/page.js"
+    ],
+    "/not-found": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/not-found.js"
     ]
   }
 }
