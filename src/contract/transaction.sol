@@ -1,35 +1,45 @@
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+// SPDX-License-Identifier: GPL-3.0
 
-contract APFOS_WALLET {
-    address public owner;
-    mapping(string => uint256) public balances;
+pragma solidity >=0.8.2 <0.9.0;
 
-    constructor() {
-        owner = msg.sender;
+contract APFOS {
+
+    struct TransactionInfo {
+        address sender;
+        address receiver;
+        uint256 value;
+        uint256 timestamp; 
     }
 
-    function deposit(string memory id) external payable {
-        require(msg.value > 0, "Deposit amount must be greater than 0");
-        balances[id] += msg.value;
-    }
+    TransactionInfo[] public transactions;
 
-    function withdraw(string memory id,uint _amount ,address payable _receiver) external payable  {
-        require(_amount > 0, "Withdrawal amount must be greater than 0");
-        require(_amount <= balances[id], "Insufficient balance");
-        
+    // Function to send Ether to any user
+    function sendToUser(address payable receiver) public payable {
         // Transfer Ether to the specified receiver
-        _receiver.transfer(_amount);
-        
-        // Update the balance
-        balances[id] -= _amount;
+        (bool sent) = receiver.send(msg.value);
+        require(sent, "Transaction failed");
+
+        // Capture the transaction information
+        TransactionInfo memory newTransaction = TransactionInfo({
+            sender: msg.sender,
+            receiver: receiver,
+            value: msg.value,
+            timestamp: block.timestamp // Capture the block timestamp
+        });
+
+        // Add the transaction information to the array
+        transactions.push(newTransaction);
     }
 
-    function getBalance(string memory id) external view returns (uint256) {
-        return balances[id];
+    // Function to retrieve the number of transactions
+    function getTransactionsCount() public view returns (uint256) {
+        return transactions.length;
     }
 
-    function contractBalance() external view returns (uint256) {
-        return address(this).balance;
+    // Function to retrieve transaction information by index
+    function getTransaction(uint256 index) public view returns (address, address, uint256, uint256) {
+        require(index < transactions.length, "Index out of bounds");
+        TransactionInfo memory transaction = transactions[index];
+        return (transaction.sender, transaction.receiver, transaction.value, transaction.timestamp);
     }
 }

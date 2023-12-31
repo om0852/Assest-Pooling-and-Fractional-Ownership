@@ -4,6 +4,9 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { jwtDecode } from "jwt-decode";
+
+
 
 const page = () => {
   const router = useRouter();
@@ -13,7 +16,41 @@ const page = () => {
     password: ""
   })
 
+  useEffect(() => {
+    if(localStorage.getItem('token')){
+    let token =localStorage.getItem('token').toString();
+    const decoded = jwtDecode(token);
+    console.log(decoded)
+    // Check for expired token
+    var dateNow = new Date() / 1000;
+    if (dateNow > decoded.exp){
+      alert("Your session has been expired.")
+      localStorage.removeItem('token');
+      router.push('/login')
+      }else{
+        toast.error("Your are LoggedIn", {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+        if(decoded.role=="user")
+        {router.push('/')}
+        if(decoded.role=="admin"){
+          router.push('/dashboard')
+         }
+        }
+        
+    }
+  })
+  
+
   const onchange = (e) => {
+    e.preventDefault();
     let name = e.target.name;
     let val = e.target.value;
     setdata({ ...data, [name]: val });
@@ -22,7 +59,20 @@ const page = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    alert(data.email)
+    if(data.email==""||
+    data.password==""){
+      toast.error("Please Enter All Fields", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }else{
+    e.preventDefault();
     const res = await fetch(`http://localhost:3000/api/login`, {
       method: "POST",
       headers: {
@@ -44,6 +94,7 @@ const page = () => {
         progress: undefined,
         theme: "colored",
       });
+
       localStorage.setItem("APFOS_useremail", data.email);
       console.log(response);
       if (response.metamaskaddress == "") {
@@ -77,7 +128,7 @@ const page = () => {
       });
     }
     else {
-      toast.error("Failed to register.Try Again", {
+      toast.error(response.message, {
         position: "top-center",
         autoClose: 3000,
         hideProgressBar: false,
@@ -89,7 +140,7 @@ const page = () => {
       });
     }
     setdata({ email: "", password: "" })
-  };
+  }};
 
 
   return (

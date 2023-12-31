@@ -10,8 +10,9 @@ import Web3 from "web3";
 
 const page = () => {
     const [myContract, setMyContract] = useState(null);
-    const [PortfolioDetail, setPortfolioDetail] = useState(null);
+    const [transactionHash, setTransactionHash] = useState(null);
     const [web3, setweb3] = useState(null);
+    const [UserPrice, setUserPrice] = useState(0);
     const [sender, setsender] = useState(null);
     const router = useRouter();
     let price = Cookies.get("price");
@@ -19,43 +20,13 @@ const page = () => {
         if (window.ethereum) {
             window.ethereum.on('accountsChanged', handleAccountsChanged);
         }
+
         if (!price) {
-            router.push("/")
+            // router.push("/")
         }
-        handlePortfolioData();
         setContract();
         fetchEthereumPrice();
     }, [])
-    const handlePortfolioData = async () => {
-        const queryString = window.location.search;
-        const urlParams = new URLSearchParams(queryString);
-        let pid = urlParams.get('pid'); // value1
-        try {
-
-            const res = await fetch(`http://localhost:3000/api/portfolio/portfoliodetails`, {
-                method: "POST",
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ pid: pid }),
-            });
-            const response = await res.json();
-            console.log(response)
-            if (response.status == 300) {
-                alert("invalid portfolio ");
-                router.push("/");
-
-            }
-            setPortfolioDetail(response.error);
-        }
-        catch (error) {
-            alert("invalid portfolio ");
-            router.push("/");
-
-        }
-    }
-
     const handleAccountsChanged = async (accounts) => {
         setsender(accounts[0]); // Use the first account in the array
     };
@@ -117,39 +88,51 @@ const page = () => {
         });
     };
     const BuyAssest = async (e) => {
-        try {
-            const queryString = window.location.search;
-            const urlParams = new URLSearchParams(queryString);
-            let pid = urlParams.get('pid'); // value1
-
-            let p;
+        e.preventDefault();
+        if (data.BuyAmount > 1 && data.BuyAmount <= 200) {
             try {
-                p = await fetchEthereumPrice();
+                console.log(web3);
+                const receiverAddress = "0xaca8Dd3EC734Db2847c016356F682e5CB7Fe7783";
+                let p;
+                try {
+                    p = await fetchEthereumPrice();
+                }
+                catch (error) {
+                    return alert("check internet connection,try again");
+                }
+                const amountInEther = (parseFloat(data.BuyAmount) / parseFloat(p));
+                console.log(amountInEther)
+
+                const result = await myContract.methods.sendToUser(receiverAddress).send({
+                    from: sender,
+                    value: web3.utils.toWei(amountInEther.toString(), 'ether'),
+                });
+                setTransactionHash(result.transactionHash);
+                console.log(result);
+
+
+                await handleSubmit(e, result, amountInEther);
             }
             catch (error) {
-                return alert("check internet connection,try again");
+                console.log(error)
+                clearInterval();
+                return alert("invalid attempt,try again");
             }
-            const amountInEther = (parseFloat(data.BuyAmount) / parseFloat(p));
-            console.log(amountInEther)
-
-            const result = await myContract.methods.deposit(pid).send({
-                from: sender,
-                value: web3.utils.toWei(amountInEther.toString(), 'ether'),
+        } else {
+            toast.error(`Invalid Amount [${1}-${200}]`, {
+                position: "top-center",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
             });
-
-            console.log(result);
-
-
-            await handleSubmit(e, result, amountInEther);
-        }
-        catch (error) {
-            console.log(error)
-            clearInterval();
-            return alert("invalid attempt,try again");
         }
     }
-    const handleSubmit = async (e, result, amountInEther) => {
 
+    const handleSubmit = async (e, result, amountInEther) => {
         e.preventDefault();
         console.log(data);
         const res = await fetch(`http://localhost:3000/api/portfolio/Assest/BuyAssest`, {
@@ -261,26 +244,23 @@ const page = () => {
                         <div>
                             <label
                                 htmlFor="email"
-                                className="block mb-2 text-sm font-medium text-gray-900 ">
-                                Enter Amount<br>
-                                </br>
-                                Total:-{PortfolioDetail && PortfolioDetail.Price}
-                                RemainingPrice:-{PortfolioDetail && PortfolioDetail.RemainingPrice}
+                                className="block mb-2 text-sm font-medium text-gray-900 "
+                            >
+                                Enter Amount
                             </label>
                             <input
                                 onChange={(e) => onchange(e)}
-                                type="text"
+                                type="number"
                                 name="BuyAmount"
                                 id="BuyAmount"
                                 className="bg-white border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                                 placeholder="min:10rs"
                                 required="true"
                             />
-                            { }
                         </div>
 
                         <button
-                            onClick={BuyAssest}
+                            onClick={(e) => BuyAssest(e)}
                             type="submit"
                             className="w-full text-white bg-blue-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
                         >

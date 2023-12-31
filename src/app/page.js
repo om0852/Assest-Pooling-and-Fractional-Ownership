@@ -20,7 +20,7 @@ try{
   })
   useEffect(() => {
     if (!localStorage.getItem("token")) {
-      router.push("/login")
+      // router.push("/login")
     }
   }, [])
   return (

@@ -1,7 +1,5 @@
 {
-  "/page": "app/page.js",
-  "/Portfolio/Assests/BuyAssestList/page": "app/Portfolio/Assests/BuyAssestList/page.js",
-  "/Portfolio/Assests/BuyAssest/page": "app/Portfolio/Assests/BuyAssest/page.js",
-  "/api/portfolio/Assest/BuyAssest/route": "app/api/portfolio/Assest/BuyAssest/route.js",
-  "/api/portfolio/Assest/BuyAssestList/route": "app/api/portfolio/Assest/BuyAssestList/route.js"
+  "/dashboard/page": "app/dashboard/page.js",
+  "/portfolios/page": "app/portfolios/page.js",
+  "/login/page": "app/login/page.js"
 }

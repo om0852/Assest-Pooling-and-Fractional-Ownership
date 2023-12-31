@@ -4,9 +4,34 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { jwtDecode } from "jwt-decode";
+
 
 const page = () => {
     const router=useRouter();
+
+    useEffect(() => {
+      if(localStorage.getItem('token')){
+      let token =localStorage.getItem('token').toString();
+      const decoded = jwtDecode(token);
+      console.log(decoded)
+      // Check for expired token
+      var dateNow = new Date() / 1000;
+      if (dateNow > decoded.exp){
+        alert("Your session has been expired.")
+        localStorage.removeItem('token');
+        router.push('/login')
+        }else{
+          if(decoded.role=="user")
+          {router.push('/')}
+          if(decoded.role=="admin"){
+            router.push('/dashboard')
+           }
+          }
+          
+      }
+    },[])
+
     const [active, setactive] = useState('user')
     const [data, setdata] = useState({
         email:"",

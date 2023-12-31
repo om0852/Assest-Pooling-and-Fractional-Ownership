@@ -7,7 +7,6 @@ var CryptoJS = require("crypto-js");
 export async function POST(req, res) {
   try {
     const body = await req.json();
-    console.log(body)
     const { pname, email, Assests } = body;
     await connectDB();
     const userdetails = await User.findOne({ email: email });

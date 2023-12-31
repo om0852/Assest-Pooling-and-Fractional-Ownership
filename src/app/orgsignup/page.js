@@ -4,14 +4,50 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { jwtDecode } from "jwt-decode";
+
 
 const page = () => {
   const router = useRouter();
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      let token = localStorage.getItem("token").toString();
+      const decoded = jwtDecode(token);
+      console.log(decoded);
+      // Check for expired token
+      var dateNow = new Date() / 1000;
+      if (dateNow > decoded.exp) {
+        alert("Your session has been expired.");
+        localStorage.removeItem("token");
+        router.push("/login");
+      } else {
+        toast.error("Your are LoggedIn", {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+        if(decoded.role=="admin"){
+          router.push('/dashboard');
+        }
+        if(decoded.role=="user"){
+          router.push('/');
+        }
+      }
+    }else{
+      router.push('/orgsignup');
+    }
+  },[]);
+
   const [data, setdata] = useState({
     email: "",
     organization: "",
     address: "",
-    role: "Admin",
     phone: "",
     password: "",
     cpassword: "",
@@ -33,7 +69,7 @@ const page = () => {
       data.password &&
       data.cpassword
     ) {
-      if (data.password === data.cpassword) {
+      if(data.password.length>=8 ){if (data.password === data.cpassword ) {
         const res = await fetch(`http://localhost:3000/api/orgsignup`, {
           method: "POST",
           headers: {
@@ -57,9 +93,9 @@ const page = () => {
           localStorage.setItem("APFOS_useremail",data.email);
           setTimeout(() => {
             router.push("/addwalletdetails");
-          }, 3000);
+          }, 1000);
         } else {
-          toast.error("Registration Failed.Try again", {
+          toast.error(response.message, {
             position: "top-center",
             autoClose: 3000,
             hideProgressBar: false,
@@ -81,11 +117,22 @@ const page = () => {
           progress: undefined,
           theme: "colored",
         });
+      }}else{
+        toast.error("Password must be 8 Atleast characters", {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
       }
-    } else {
-      toast.error("Please fill all Fields", {
+    }else{
+      toast.error("Enter All Fields", {
         position: "top-center",
-        autoClose: 3000,
+        autoClose: 1000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -96,7 +143,7 @@ const page = () => {
     }
   };
   return (
-    <div className="flex flex-col items-center justify-center px-6 py-6 mx-auto lg:py-4">
+    <div className="flex flex-col items-center justify-center px-6 py-6 mx-auto">
       <div className="mb-6 md:mb-0 flex flex-row justify-content-center justify-center my-2">
         <p className="text-2xl text-center text-white font-bold ml-3 bg-red-500 w-auto h-auto py-1 pr-2">
           <span className=" bg-black text-white px-2 py-1">Bluechip</span> Art{" "}
@@ -110,7 +157,7 @@ const page = () => {
           <div className="flex  w-[100%]">
             <Link
               href={"/signup"}
-              className="w-[50%] text-white bg-blue-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm m-2 px-3 py-2.5 text-center "
+              className="w-[50%] text-gray-600 bg-gray-200 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm m-2 px-3 py-2.5 text-center "
             >
               User
             </Link>
@@ -121,7 +168,7 @@ const page = () => {
               Organization
             </Link>
           </div>
-          <form className="space-y-4 md:space-y-6" action="#">
+          <form className="space-y-4 md:space-y-6" action="#" method="POST">
             <div>
               <label
                 for="email"
@@ -165,7 +212,7 @@ const page = () => {
               </label>
               <input
                 onChange={(e) => onchange(e)}
-                type="text"
+                type="number"
                 name="phone"
                 id="phone"
                 className="bg-white border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
@@ -226,7 +273,7 @@ const page = () => {
             </div>
 
             <button
-              onClick={handleSubmit}
+              onClick={(e)=>handleSubmit(e)}
               type="submit"
               className="w-full text-white bg-blue-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
             >

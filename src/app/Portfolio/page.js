@@ -2,10 +2,28 @@
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import Link from 'next/link'
+import { jwtDecode } from "jwt-decode";
+
 
 export default function Main() {
   const router = useRouter();
-
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      let token = localStorage.getItem("token").toString();
+      const decoded = jwtDecode(token);
+      console.log(decoded);
+      // Check for expired token
+      var dateNow = new Date() / 1000;
+      if (dateNow > decoded.exp) {
+        alert("Your session has been expired.");
+        localStorage.removeItem("token");
+        router.push("/login");
+      } else {
+        fetchdata();
+        
+      }
+    }
+  },[]);
 
   const [portfoliodata, setportfoliodata] = useState("");
   const fetchdata = async () => {
@@ -21,9 +39,9 @@ export default function Main() {
     console.log(response)
     setportfoliodata(response.error);
   }
-  useEffect(() => {
-    fetchdata();
-  }, [])
+  // useEffect(() => {
+  //   fetchdata();
+  // }, [])
   return (
     <div className="w-full h-screen rounded p-2 md:px-16">
       <div className="flex justify-center items-center my-2 mb-4">
