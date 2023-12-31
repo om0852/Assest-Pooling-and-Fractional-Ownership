@@ -2,6 +2,7 @@
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import Link from 'next/link'
+import { toast } from "react-toastify";
 import "../../../../css/BuyAssestList.css";
 import Web3 from "web3";
 import ASPOS from "../BuyAssest/APFOS_Contract.json";
@@ -91,14 +92,49 @@ export default function Main() {
       });
       const sender = accounts[0];
       console.log(Deletedata._id)
-      const result = await myContract.methods.withdraw(Deletedata.AssestId, amountInEther, "0xaca8Dd3EC734Db2847c016356F682e5CB7Fe7783").send({
+      const result = await myContract.methods.withdraw(Deletedata.AssestId, parseInt(amountInEther), "0xaca8Dd3EC734Db2847c016356F682e5CB7Fe7783").send({
         from: sender,
         gas: 200000,
         gasPrice: web3.utils.toWei('40', 'gwei'),
       });
 
       console.log(result);
+      const res = await fetch(`http://localhost:3000/api/portfolio/Assest/SellAssest`, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id: Deletedata._id, price: Deletedata.AssestBuyPrice }),
+      });
+      const response = await res.json();
+      if (response.status == 200) {
+        toast.success("Assest Sell Successfully", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+        router.push("/Portfolio/Assests/BuyAssestList");
+      }
+      else {
+        toast.error("Trnsaction Failed ,Try Again", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+        router.push("/Portfolio/Assests/BuyAssestList");
 
+      }
       // await handleSubmit(e, result, amountInEther);
     }
     catch (error) {

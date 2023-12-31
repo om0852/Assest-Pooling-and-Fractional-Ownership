@@ -88,9 +88,14 @@ const page = () => {
         });
     };
     const BuyAssest = async (e) => {
+
         e.preventDefault();
-        if (data.BuyAmount > 1 && data.BuyAmount <= 200) {
+        if (data.BuyAmount > 1 && data.BuyAmount <= 2000) {
             try {
+                const queryString = window.location.search;
+                const urlParams = new URLSearchParams(queryString);
+                let pid = urlParams.get('pid'); // value1
+
                 console.log(web3);
                 const receiverAddress = "0xaca8Dd3EC734Db2847c016356F682e5CB7Fe7783";
                 let p;
@@ -103,12 +108,14 @@ const page = () => {
                 const amountInEther = (parseFloat(data.BuyAmount) / parseFloat(p));
                 console.log(amountInEther)
 
-                const result = await myContract.methods.sendToUser(receiverAddress).send({
+                const result = await myContract.methods.deposit(pid).send({
                     from: sender,
                     value: web3.utils.toWei(amountInEther.toString(), 'ether'),
                 });
-                setTransactionHash(result.transactionHash);
+
                 console.log(result);
+
+                setTransactionHash(result.transactionHash);
 
 
                 await handleSubmit(e, result, amountInEther);
@@ -119,7 +126,7 @@ const page = () => {
                 return alert("invalid attempt,try again");
             }
         } else {
-            toast.error(`Invalid Amount [${1}-${200}]`, {
+            toast.error(`Invalid Amount [${1}-${2000}]`, {
                 position: "top-center",
                 autoClose: 3000,
                 hideProgressBar: false,
