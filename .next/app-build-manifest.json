@@ -6,6 +6,23 @@
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
+    "/Portfolio/assests/buyassestlist/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/Portfolio/assests/buyassestlist/page.css",
+      "static/chunks/app/Portfolio/assests/buyassestlist/page.js"
+    ],
+    "/portfolios/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/portfolios/page.js"
+    ],
+    "/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/page.css",
+      "static/chunks/app/page.js"
+    ],
     "/login/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -17,28 +34,32 @@
       "static/chunks/main-app.js",
       "static/chunks/app/dashboard/page.js"
     ],
-    "/page": [
+    "/dashboard/portfolios/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/page.css",
-      "static/chunks/app/page.js"
+      "static/chunks/app/dashboard/portfolios/page.js"
     ],
-    "/Portfolio/Assests/BuyAssestList/page": [
+    "/Portfolio/CreatePortfolio/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/Portfolio/Assests/BuyAssestList/page.css",
-      "static/chunks/app/Portfolio/Assests/BuyAssestList/page.js"
+      "static/css/app/Portfolio/CreatePortfolio/page.css",
+      "static/chunks/app/Portfolio/CreatePortfolio/page.js"
     ],
-    "/Portfolio/Assests/BuyAssest/page": [
+    "/dashboard/users/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/Portfolio/Assests/BuyAssest/page.css",
-      "static/chunks/app/Portfolio/Assests/BuyAssest/page.js"
+      "static/chunks/app/dashboard/users/page.js"
     ],
-    "/not-found": [
+    "/dashboard/profile/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/not-found.js"
+      "static/chunks/app/dashboard/profile/page.js"
+    ],
+    "/forgetpassword/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/forgetpassword/page.css",
+      "static/chunks/app/forgetpassword/page.js"
     ]
   }
 }

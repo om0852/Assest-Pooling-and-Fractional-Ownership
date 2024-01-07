@@ -8,8 +8,8 @@ export async function POST(req, res) {
     try {
         // console.log("allportflop")
         const body = await req.json();
-        const { updatedprice } = body; await connectDB();
-        const portfoliodata = await Portfolio.find();
+        const { updatedprice, id } = body; await connectDB();
+        const portfoliodata = await Portfolio.findOne(_id: id);
         for (let i = 0; i < portfoliodata.length; i++) {
             if (portfoliodata[i].PortfolioPrice[portfoliodata[i].PortfolioPrice.length - 1].Price != updatedprice) {
                 let diff = updatedprice - parseFloat(portfoliodata[i].Price);

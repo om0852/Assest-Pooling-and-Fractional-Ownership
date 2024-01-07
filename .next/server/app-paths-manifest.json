@@ -1,9 +1,9 @@
 {
-  "/not-found": "app/not-found.js",
-  "/page": "app/page.js",
-  "/login/page": "app/login/page.js",
   "/dashboard/page": "app/dashboard/page.js",
-  "/Portfolio/Assests/BuyAssestList/page": "app/Portfolio/Assests/BuyAssestList/page.js",
-  "/Portfolio/Assests/BuyAssest/page": "app/Portfolio/Assests/BuyAssest/page.js",
-  "/api/portfolio/Assest/BuyAssestList/route": "app/api/portfolio/Assest/BuyAssestList/route.js"
+  "/login/page": "app/login/page.js",
+  "/forgetpassword/page": "app/forgetpassword/page.js",
+  "/dashboard/portfolios/page": "app/dashboard/portfolios/page.js",
+  "/Portfolio/CreatePortfolio/page": "app/Portfolio/CreatePortfolio/page.js",
+  "/dashboard/users/page": "app/dashboard/users/page.js",
+  "/dashboard/profile/page": "app/dashboard/profile/page.js"
 }

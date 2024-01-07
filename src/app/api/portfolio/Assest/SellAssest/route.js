@@ -8,7 +8,7 @@ export async function POST(req, res) {
     try {
         const body = await req.json();
         // console.log(body);
-        const { id, price } = body;
+        const { id, price, hash } = body;
         // console.log(price)
         await connectDB();
         const AssestData = await Assests.findOne({ _id: id });
@@ -26,7 +26,7 @@ export async function POST(req, res) {
             SellPrice: price,
             AssestBuyPrice: AssestData.AssestBuyPrice,
             PercentageOwn: AssestData.PercentageOwn,
-            Transactionid: AssestData.Transactionid,
+            Transactionid: hash,
             Transactionamount: AssestData.Transactionamount,
         })
         const portfoliodata = await Portfolio.findOne({ _id: AssestData.AssestId });
@@ -38,7 +38,7 @@ export async function POST(req, res) {
         let total = parseFloat(portfoliodata.RemainingPrice) + parseFloat(price);
         const portfolioupdate = await Portfolio.findOneAndUpdate(
             { _id: AssestData.AssestId },
-            { RemainingPrice: total },
+            { RemainingPrice: total, PercentageRemaining: parseFloat(portfoliodata.PercentageRemaining) + parseFloat(AssestData.PercentageOwn) },
             { new: true }
         );
         console.log(portfolioupdate)

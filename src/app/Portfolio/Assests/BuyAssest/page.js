@@ -22,7 +22,7 @@ const page = () => {
         }
 
         if (!price) {
-            // router.push("/")
+            router.push("/")
         }
         setContract();
         fetchEthereumPrice();
@@ -142,7 +142,14 @@ const page = () => {
     const handleSubmit = async (e, result, amountInEther) => {
         e.preventDefault();
         console.log(data);
-        const res = await fetch(`http://localhost:3000/api/portfolio/Assest/BuyAssest`, {
+
+        let url = window.location.href;
+        let domain = new URL(url).hostname;
+        let protocol = new URL(url).protocol;
+        let port = new URL(url).port ? `:${new URL(url).port}` : '';
+        let urlString = `${protocol}//${domain}${port}`;
+
+        const res = await fetch(`${urlString}/api/portfolio/Assest/BuyAssest`, {
             method: "POST",
             headers: {
                 Accept: "application/json",

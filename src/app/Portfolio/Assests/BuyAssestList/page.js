@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { toast } from "react-toastify";
 import "../../../../css/BuyAssestList.css";
 import Web3 from "web3";
-import ASPOS from "../BuyAssest/APFOS_Contract.json";
+import ASPOS from "../buyassest/APFOS_Contract.json";
 
 export default function Main() {
   const router = useRouter();
@@ -18,7 +18,13 @@ export default function Main() {
   const fetchdata = async () => {
     let APFOS_useremail = localStorage.getItem("APFOS_useremail");
 
-    const res = await fetch(`http://localhost:3000/api/portfolio/Assest/BuyAssestList`, {
+    let url = window.location.href;
+    let domain = new URL(url).hostname;
+    let protocol = new URL(url).protocol;
+    let port = new URL(url).port ? `:${new URL(url).port}` : '';
+    let urlString = `${protocol}//${domain}${port}`;
+
+    const res = await fetch(`${urlString}/api/portfolio/Assest/BuyAssestList`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -77,6 +83,12 @@ export default function Main() {
   const handleWithdraw = async () => {
     try {
 
+      let url = window.location.href;
+      let domain = new URL(url).hostname;
+      let protocol = new URL(url).protocol;
+      let port = new URL(url).port ? `:${new URL(url).port}` : '';
+      let urlString = `${protocol}//${domain}${port}`;
+
       let p;
       try {
         p = await fetchEthereumPrice();
@@ -99,13 +111,13 @@ export default function Main() {
       });
 
       console.log(result);
-      const res = await fetch(`http://localhost:3000/api/portfolio/Assest/SellAssest`, {
+      const res = await fetch(`${urlString}/api/portfolio/Assest/SellAssest`, {
         method: "POST",
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ id: Deletedata._id, price: Deletedata.AssestBuyPrice }),
+        body: JSON.stringify({ id: Deletedata._id, price: Deletedata.AssestBuyPrice, hash: result.transactionHash }),
       });
       const response = await res.json();
       if (response.status == 200) {
@@ -119,7 +131,7 @@ export default function Main() {
           progress: undefined,
           theme: "colored",
         });
-        router.push("/Portfolio/Assests/BuyAssestList");
+        router.push("/Portfolio/assests/buyassestlist");
       }
       else {
         toast.error("Trnsaction Failed ,Try Again", {
@@ -132,7 +144,7 @@ export default function Main() {
           progress: undefined,
           theme: "colored",
         });
-        router.push("/Portfolio/Assests/BuyAssestList");
+        router.push("/Portfolio/assests/buyassestlist");
 
       }
       // await handleSubmit(e, result, amountInEther);

@@ -20,14 +20,21 @@ export default function Main() {
         router.push("/login");
       } else {
         fetchdata();
-        
+
       }
     }
-  },[]);
+  }, []);
 
   const [portfoliodata, setportfoliodata] = useState("");
   const fetchdata = async () => {
-    const res = await fetch(`http://localhost:3000/api/portfolio/`, {
+
+    let url = window.location.href;
+    let domain = new URL(url).hostname;
+    let protocol = new URL(url).protocol;
+    let port = new URL(url).port ? `:${new URL(url).port}` : '';
+    let urlString = `${protocol}//${domain}${port}`;
+
+    const res = await fetch(`${urlString}/api/portfolio/`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -53,7 +60,7 @@ export default function Main() {
             <div className="w-[75%] ">
               <p className="text-lg font-bold">Asset Name</p>
             </div>
-            <div className="w-[18%] md:w-32 text-center mx-1">
+            <div className="w-[18%] md:w-32text-center">
               <p className="text-lg font-bold">Price</p>
             </div>
             <div className="w-[24%] text-center mx-1">

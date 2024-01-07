@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation";
 
 const Home = () => {
   const [portfoliodata, setportfoliodata] = useState([]);
-  const router=useRouter();
+  const router = useRouter();
   // useEffect(() => {
   //   allportfoliodata();
   // }, []);
@@ -26,21 +26,21 @@ const Home = () => {
         localStorage.removeItem("token");
         router.push("/login");
       } else {
-        if(decoded.role=="user"){
+        if (decoded.role == "user") {
           allportfoliodata();
         }
-        if(decoded.role=="admin"){
+        if (decoded.role == "admin") {
           router.push('/dashboard');
         }
       }
     }
-  },[]);
+  }, []);
 
 
   const allportfoliodata = async () => {
     // alert("calling ")
     const res = await fetch(
-      `http://localhost:3000//api/portfolio/AllPortfolio`,
+      `${process.env.NEXT_PUBLIC_HOST}api/portfolio/AllPortfolio`,
       {
         method: "POST",
         headers: {
@@ -80,13 +80,13 @@ const Home = () => {
 									</div>
 								</div> */}
                   <Link
-                    href={`/Portfolio/PortfolioDetails?pid=${elem._id}`}
+                    href={`/Portfolio/portfoliodetails?pid=${elem._id}`}
                     key={index}
                   >
                     <div className="bg-white shadow-md rounded-lg max-w-sm m-2">
                       <Link
                         key={index}
-                        href={`/Portfolio/PortfolioDetails?pid=${elem._id}`}
+                        href={`/Portfolio/portfoliodetails?pid=${elem._id}`}
                       >
                         <h2 className="m-2 p-3 font-bold text-blue-600 text-3xl">{elem.PortfolioName}</h2>
                       </Link>
@@ -114,7 +114,7 @@ const Home = () => {
                             onClick={() => {
                               Cookies.set("price", `${elem.Price}`);
                             }}
-                            href={`/Portfolio/Assests/BuyAssest?pid=${elem._id}`}
+                            href={`Portfolio/assests/buyassest?pid=${elem._id}`}
                           >
                             <p className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">
                               Buy

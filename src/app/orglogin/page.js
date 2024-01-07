@@ -47,8 +47,15 @@ const page = () => {
 
       const handleSubmit = async (e) => {
         e.preventDefault();
+        
+      let url = window.location.href;
+      let domain = new URL(url).hostname;
+      let protocol = new URL(url).protocol;
+      let port = new URL(url).port ? `:${new URL(url).port}` : '';
+      let urlString = `${protocol}//${domain}${port}`;
+
         if(data.email && data.password){
-        const res = await fetch(`http://localhost:3000/api/orglogin`, {
+        const res = await fetch(`${urlString}/api/orglogin`, {
           method: "POST",
           headers: {
             Accept: "application/json",

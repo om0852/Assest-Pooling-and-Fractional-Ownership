@@ -1,8 +1,8 @@
-// File: D:\Assest-Pooling-and-Fractional-Ownershi\src\app\Portfolio\Assests\BuyAssestList\page.js
-import * as entry from '../../../../../../src/app/Portfolio/Assests/BuyAssestList/page.js'
+// File: D:\Assest-Pooling-and-Fractional-Ownershi\src\app\Portfolio\assests\buyassestlist\page.js
+import * as entry from '../../../../../../src/app/Portfolio/assests/buyassestlist/page.js'
 import type { ResolvingMetadata } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
-type TEntry = typeof import('../../../../../../src/app/Portfolio/Assests/BuyAssestList/page.js')
+type TEntry = typeof import('../../../../../../src/app/Portfolio/assests/buyassestlist/page.js')
 
 // Check that the entry is a valid entry
 checkFields<Diff<{

@@ -6,7 +6,8 @@ const PortfolioSchema = new mongoose.Schema({
     Price: { type: String, required: true },
     Assests: { type: Array },
     PortfolioPrice: { type: Array },
-    RemainingPrice: { type: String }
+    RemainingPrice: { type: String },
+    PercentageRemaining: { type: Number }
 }, { timestamps: true })
 mongoose.models = {};
 export default mongoose.model.Portfolio || mongoose.model("Portfolio", PortfolioSchema);

@@ -62,6 +62,13 @@ const page = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    let url = window.location.href;
+    let domain = new URL(url).hostname;
+    let protocol = new URL(url).protocol;
+    let port = new URL(url).port ? `:${new URL(url).port}` : '';
+    let urlString = `${protocol}//${domain}${port}`;
+
     if (
       data.email &&
       data.organization &&
@@ -70,7 +77,7 @@ const page = () => {
       data.cpassword
     ) {
       if(data.password.length>=8 ){if (data.password === data.cpassword ) {
-        const res = await fetch(`http://localhost:3000/api/orgsignup`, {
+        const res = await fetch(`${urlString}/api/orgsignup`, {
           method: "POST",
           headers: {
             Accept: "application/json",
