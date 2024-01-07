@@ -429,11 +429,11 @@ const Navbar = () => {
               </Link>
               <li className="text-gray-300">|</li>
               <Link
-                className={`text-lg  hover:text-blue-500 hover:font-bold ${location === "/Portfolio/CreatePortfolio"
+                className={`text-lg  hover:text-blue-500 hover:font-bold ${location === "/Portfolio/createPortfolio"
                   ? "text-blue-500 font-bold"
                   : "text-gray-400"
                   }`}
-                href={"/Portfolio/CreatePortfolio"}
+                href={"/Portfolio/createPortfolio"}
               >
                 Create Portfolio
               </Link>
@@ -606,7 +606,7 @@ const Navbar = () => {
                     <li className="mb-1">
                       <Link
                         className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded"
-                        href={"/Portfolio/CreatePortfolio"}
+                        href={"/Portfolio/createPortfolio"}
                       >
                         Create Portfolio
                       </Link>

@@ -34,11 +34,6 @@
       "static/chunks/main-app.js",
       "static/chunks/app/dashboard/page.js"
     ],
-    "/dashboard/portfolios/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/dashboard/portfolios/page.js"
-    ],
     "/Portfolio/CreatePortfolio/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -60,6 +55,11 @@
       "static/chunks/main-app.js",
       "static/css/app/forgetpassword/page.css",
       "static/chunks/app/forgetpassword/page.js"
+    ],
+    "/Portfolio/portfoliodetails/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/Portfolio/portfoliodetails/page.js"
     ]
   }
 }

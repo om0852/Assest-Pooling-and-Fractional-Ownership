@@ -471,7 +471,7 @@ export default function Main() {
         </div>
         <div className="flex flex-col items-center justify-center my-2 ">
           <Link
-            href={'/dashboard/Portfolio/CreatePortfolio'}
+            href={'/dashboard/Portfolio/createPortfolio'}
             className="text-md font-bold m-2 px-3 py-2 rounded bg-blue-700 text-white"
           >
             Buy
