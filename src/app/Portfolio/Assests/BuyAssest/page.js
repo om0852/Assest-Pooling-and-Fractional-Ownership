@@ -107,10 +107,20 @@ const page = () => {
                 }
                 const amountInEther = (parseFloat(data.BuyAmount) / parseFloat(p));
                 console.log(amountInEther)
+                const gasEstimation = await myContract.methods
+                    .deposit(pid)
+                    .estimateGas({
+                        from: sender,
+                        value: web3.utils.toWei(amountInEther.toString(), 'ether'),
+                    });
+
+                console.log('Gas Estimation:', gasEstimation);
+
 
                 const result = await myContract.methods.deposit(pid).send({
                     from: sender,
                     value: web3.utils.toWei(amountInEther.toString(), 'ether'),
+                    gas: gasEstimation
                 });
 
                 console.log(result);

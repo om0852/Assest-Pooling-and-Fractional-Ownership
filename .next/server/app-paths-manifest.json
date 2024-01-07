@@ -1,10 +1,9 @@
 {
+  "/not-found": "app/not-found.js",
   "/page": "app/page.js",
   "/forgetpassword/page": "app/forgetpassword/page.js",
   "/portfolios/page": "app/portfolios/page.js",
   "/Portfolio/portfoliodetails/page": "app/Portfolio/portfoliodetails/page.js",
-  "/api/UserDetails/route": "app/api/UserDetails/route.js",
   "/api/portfolio/AllPortfolio/route": "app/api/portfolio/AllPortfolio/route.js",
-  "/api/portfolio/portfoliodetails/route": "app/api/portfolio/portfoliodetails/route.js",
   "/Portfolio/assests/buyassestlist/page": "app/Portfolio/assests/buyassestlist/page.js"
 }
