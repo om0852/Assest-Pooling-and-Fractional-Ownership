@@ -101,6 +101,7 @@ const page = () => {
                 let p;
                 try {
                     p = await fetchEthereumPrice();
+                    console.log(p);
                 }
                 catch (error) {
                     return alert("check internet connection,try again");
@@ -189,7 +190,7 @@ const page = () => {
                 theme: "colored",
             });
             Cookies.remove("price");
-            router.push("/Portfolio/Assests/BuyAssestList");
+            router.push("/Portfolio/assests/buyassestlist");
         } else if (response.error == "Account Not Found") {
             toast.error("Account Not Found", {
                 position: "top-center",
@@ -201,7 +202,7 @@ const page = () => {
                 progress: undefined,
                 theme: "colored",
             });
-            router.push("/Login");
+            router.push("/login");
 
         }
         else if (response.error == "Portfolio Not Found") {
