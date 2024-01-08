@@ -5,7 +5,6 @@ import Link from "next/link";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Cookies from "js-cookie";
-// import ASPOS from "./APFOS_Contract.json";
 import Web3 from "web3";
 
 const page = () => {

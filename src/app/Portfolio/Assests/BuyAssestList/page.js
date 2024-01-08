@@ -183,7 +183,6 @@ import Link from "next/link";
 import { toast } from "react-toastify";
 import "../../../../css/BuyAssestList.css";
 import Web3 from "web3";
-import ASPOS from "../buyassest/APFOS_Contract.json";
 
 export default function Main() {
   const router = useRouter();
@@ -244,7 +243,113 @@ export default function Main() {
       // Use the first account in the array
       const contractAddress = "0x930BC5ec6339AbC9343de0b5c1b5C1b4163670c8";
       console.log(ASPOS);
-      const myContractInstance = new web3c.eth.Contract(ASPOS, contractAddress);
+      const myContractInstance = new web3c.eth.Contract([
+        {
+          "inputs": [],
+          "stateMutability": "nonpayable",
+          "type": "constructor"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "string",
+              "name": "",
+              "type": "string"
+            }
+          ],
+          "name": "balances",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "contractBalance",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "string",
+              "name": "id",
+              "type": "string"
+            }
+          ],
+          "name": "deposit",
+          "outputs": [],
+          "stateMutability": "payable",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "string",
+              "name": "id",
+              "type": "string"
+            }
+          ],
+          "name": "getBalance",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [],
+          "name": "owner",
+          "outputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "string",
+              "name": "id",
+              "type": "string"
+            },
+            {
+              "internalType": "uint256",
+              "name": "_amount",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address payable",
+              "name": "_receiver",
+              "type": "address"
+            }
+          ],
+          "name": "withdraw",
+          "outputs": [],
+          "stateMutability": "payable",
+          "type": "function"
+        }
+      ], contractAddress);
       console.log(myContractInstance);
       setMyContract(myContractInstance);
     } catch (error) {
