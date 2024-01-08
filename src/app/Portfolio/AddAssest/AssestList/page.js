@@ -16,7 +16,7 @@ export default function Main() {
         setportfoliodata(JSON.parse(data));
         const cookieValue = Cookies.get("PortfolioName");
         if (!cookieValue) {
-            router.push("/Portfolio/CreatePortfolio");
+            router.push("/Portfolio/createportfolio");
         }
     }, [])
     function removeAssest(ind) {
@@ -24,19 +24,12 @@ export default function Main() {
 
         localStorage.setItem("assestlist", JSON.stringify(portfoliodata));
         setportfoliodata(portfoliodata);
-        router.push("/Portfolio/AddAssest/AssestList");
+        router.push("/Portfolio/addassest/assestlist");
     }
     async function addPortfolio() {
-
-        let url = window.location.href;
-        let domain = new URL(url).hostname;
-        let protocol = new URL(url).protocol;
-        let port = new URL(url).port ? `:${new URL(url).port}` : '';
-        let urlString = `${protocol}//${domain}${port}`;
-
         // let pn = getCookie("PortfolioName")
         const cookieValue = Cookies.get("PortfolioName");
-        const res = await fetch(`${urlString}/api/portfolio/createportfolio`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}api/portfolio/createportfolio`, {
             method: "POST",
             headers: {
                 Accept: "application/json",
@@ -123,7 +116,7 @@ export default function Main() {
                         }
 
                     </div>
-                    <Link href="/Portfolio/AddAssest">Add Assest</Link>
+                    <Link href="/Portfolio/addAssest">Add Assest</Link>
                     <button onClick={addPortfolio}>Create Portfolio</button>
 
                 </div>

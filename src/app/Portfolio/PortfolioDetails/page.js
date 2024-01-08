@@ -18,7 +18,7 @@
 //     let pid = urlParams.get("pid"); // value1
 
 //     const res = await fetch(
-//       `${urlString}/api/portfolio/portfoliodetails`,
+//       `http://localhost:3000/api/portfolio/portfoliodetails`,
 //       {
 //         method: "POST",
 //         headers: {
@@ -75,7 +75,7 @@
 //           </span>
 //         </div>
 //         <div className="flex flex-wrap items-center justify-center my-2 ">
-//           <Link href={`/Portfolio/Assests/BuyAssest?pid=${portfoliodata._id}`} className="text-md font-bold m-2 px-3 py-2 rounded bg-blue-700 text-white">
+//           <Link href={`/Portfolio/assests/buyassest?pid=${portfoliodata._id}`} className="text-md font-bold m-2 px-3 py-2 rounded bg-blue-700 text-white">
 //             BUY</Link>
 //         </div>
 
@@ -203,8 +203,8 @@
 //               })
 //             }
 //             }
-
-
+              
+            
 //             <div className="flex rounded items-center border-b-2 border-gray-300 px-5 py-5">
 //               Total:-  {portfoliodata && portfoliodata.Price}
 //             </div>
@@ -230,41 +230,38 @@ export default function Main() {
   var amt = 0,
     qty = 0,
     ass = 0;
-  const [prices, setprices] = useState({ prev: "", curr: "", rem: "" })
-  const [role, setrole] = useState(null);
+  const [prices, setprices] = useState({prev:"",curr:"",rem:""})
+    const [data, setdata] = useState({
+      AType: "",
+      Assest_Title: "",
+      Assest_Price: "",
+      Assest_Quantity: "",
+      Assest_Description: "",
+    })
 
-  const [data, setdata] = useState({
-    AType: "",
-    Assest_Title: "",
-    Assest_Price: "",
-    Assest_Quantity: "",
-    Assest_Description: "",
-  })
-  let response1;
-
-  useEffect(() => {
-    if (localStorage.getItem("token")) {
-      let token = localStorage.getItem("token").toString();
-      const decoded = jwtDecode(token);
-      console.log(decoded);
-      // Check for expired token
-      var dateNow = new Date() / 1000;
-      if (dateNow > decoded.exp) {
-        alert("Your session has been expired.");
-        localStorage.removeItem("token");
-        router.push("/login");
-      } else {
-        // if (decoded.role == "user") {
-        fetchdata();
-        // }
-        // if(decoded.role=="admin"){
-        //   router.push('/dashboard');
-        // }
+    useEffect(() => {
+      if (localStorage.getItem("token")) {
+        let token = localStorage.getItem("token").toString();
+        const decoded = jwtDecode(token);
+        console.log(decoded);
+        // Check for expired token
+        var dateNow = new Date() / 1000;
+        if (dateNow > decoded.exp) {
+          alert("Your session has been expired.");
+          localStorage.removeItem("token");
+          router.push("/login");
+        } else {
+          if(decoded.role=="user"){
+            fetchdata();
+          }
+          if(decoded.role=="admin"){
+            router.push('/dashboard');
+          }
+        }
+      }else{
+        router.push('/login')
       }
-    } else {
-      router.push('/login')
-    }
-  }, []);
+    },[]);
 
   const router = useRouter();
   const [portfoliodata, setportfoliodata] = useState("");
@@ -274,14 +271,8 @@ export default function Main() {
     const urlParams = new URLSearchParams(queryString);
     let pid = urlParams.get("pid"); // value1
 
-    let url = window.location.href;
-    let domain = new URL(url).hostname;
-    let protocol = new URL(url).protocol;
-    let port = new URL(url).port ? `:${new URL(url).port}` : '';
-    let urlString = `${protocol}//${domain}${port}`;
-
     const res = await fetch(
-      `${urlString}/api/portfolio/portfoliodetails`,
+      `${process.env.NEXT_PUBLIC_HOST}api/portfolio/portfoliodetails`,
       {
         method: "POST",
         headers: {
@@ -292,51 +283,39 @@ export default function Main() {
       }
     );
     const response = await res.json();
-    console.log(response)
-    const res1 = await fetch(`${urlString}/api/UserDetails`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email: localStorage.getItem("APFOS_useremail") }),
-    });
-    response1 = await res1.json();
-    console.log(response1)
-    setrole(response1.error.role);
     console.log("response.error");
     setportfoliodata(response.error);
     setprices(
-      { prev: response.error.PortfolioPrice[response.error.PortfolioPrice.length - 2] && response.error.PortfolioPrice[response.error.PortfolioPrice.length - 2].Price, curr: response.error.PortfolioPrice[response.error.PortfolioPrice.length - 1] && response.error.PortfolioPrice[response.error.PortfolioPrice.length - 1].Price, rem: response.error.RemainingPrice });
+      { prev : response.error.PortfolioPrice[response.error.PortfolioPrice.length-2] && response.error.PortfolioPrice[response.error.PortfolioPrice.length-2].Price , curr : response.error.PortfolioPrice[response.error.PortfolioPrice.length-1] && response.error.PortfolioPrice[response.error.PortfolioPrice.length-1].Price , rem:response.error.RemainingPrice});
+      
+    };
 
-  };
-
-  // const addAssest=async()=>{
-  //   let pid=portfoliodata._id;
-  //     const res = await fetch(
-  //       `${urlString}/api/portfolio/Assest/createAssest`,
-  //       {
-  //         method: "POST",
-  //         headers: {
-  //           Accept: "application/json",
-  //           "Content-Type": "application/json",
-  //         },
-  //         body: JSON.stringify({ pid: pid,data :data}),
-  //       }
-  //     );
-  //     const response = await res.json();
-  //     console.log(response);
-  //     fetchdata();
-  // }
+// const addAssest=async()=>{
+//   let pid=portfoliodata._id;
+//     const res = await fetch(
+//       `http://localhost:3000/api/portfolio/Assest/createAssest`,
+//       {
+//         method: "POST",
+//         headers: {
+//           Accept: "application/json",
+//           "Content-Type": "application/json",
+//         },
+//         body: JSON.stringify({ pid: pid,data :data}),
+//       }
+//     );
+//     const response = await res.json();
+//     console.log(response);
+//     fetchdata();
+// }
 
 
-  // const onchange = (e) => {
-  //   e.preventDefault();
-  //   let name = e.target.name;
-  //   let val = e.target.value;
-  //   setdata({ ...data, [name]: val });
-  //   console.log(data)
-  // };
+// const onchange = (e) => {
+//   e.preventDefault();
+//   let name = e.target.name;
+//   let val = e.target.value;
+//   setdata({ ...data, [name]: val });
+//   console.log(data)
+// };
 
 
 
@@ -344,7 +323,7 @@ export default function Main() {
   //   let pid=portfoliodata._id;
   //   let assest_title=atitle;
   //   const res = await fetch(
-  //     `${urlString}/api/portfolio/Assest/deleteAssest`,
+  //     `http://localhost:3000/api/portfolio/Assest/deleteAssest`,
   //     {
   //       method: "POST",
   //       headers: {
@@ -361,7 +340,7 @@ export default function Main() {
   //   fetchdata();
   // }, []);
   return (
-    <div className=" w-[100%] h-fit rounded p-2 pb-4 md:px-16">
+    <div className=" w-[100%] h-screen rounded p-2 pb-4 md:px-16">
 
       <div className="flex justify-center items-center my-2 mb-4">
         <span className="text-white text-lg font-bold">
@@ -372,17 +351,17 @@ export default function Main() {
         <div className="flex flex-wrap items-center justify-center my-2 mt-4">
           <span className="text-md font-bold m-2 px-2 py-2 rounded bg-orange-700 text-white">
             Previous:
-            {
-              prices.prev ?
-                prices.prev : "Not Available"
-            }
+             {
+             prices.prev ?
+             prices.prev:"Not Available"
+              }
           </span>
           <span className="text-md font-bold m-2 px-2 py-2 rounded bg-green-700 text-white">
             Current:
             {
-              prices.curr ?
-                prices.curr : "Not Available"
-            }
+           prices.curr ?
+           prices.curr:"Not Available"
+              }
           </span>
           <span className="text-md font-bold m-2 px-2 py-2 rounded bg-pink-700 text-white">
             Remaining:{Math.round(portfoliodata.RemainingPrice)}
@@ -390,12 +369,12 @@ export default function Main() {
         </div>
         <div className="flex flex-col items-center justify-center my-2 ">
           <Link
-            href={`/Portfolio/Assests/BuyAssest?pid=${portfoliodata._id}`}
+            href={`/Portfolio/assests/buyassest?pid=${portfoliodata._id}`}
             className="text-md font-bold m-2 px-3 py-2 rounded bg-blue-700 text-white"
-          >
+          > 
             Buy
           </Link>
-
+          
         </div>
 
         <div className="relative rounded-lg overflow-x-auto overflow-y-hidden">
@@ -414,7 +393,7 @@ export default function Main() {
                 <th scope="col" className="px-6 py-3">
                   Quantity
                 </th>
-
+                
               </tr>
             </thead>
             <tbody>
@@ -464,25 +443,19 @@ export default function Main() {
                 <td className="px-6 py-4">
                   <p className="font-semibold py-1 px-2 ">Quantity:{qty}</p>
                 </td>
-
+                
               </tr>
             </tbody>
           </table>
         </div>
         <div className="flex flex-col items-center justify-center my-2 ">
           <Link
-            href={'/dashboard/Portfolio/createPortfolio'}
+            href={'/Portfolio/assests/buyassest?pid=${portfoliodata._id}'}
             className="text-md font-bold m-2 px-3 py-2 rounded bg-blue-700 text-white"
-          >
+          > 
             Buy
           </Link>
-          {role && role == "admin" ? <Link
-            href={'/Portfolio/PortfolioUpdate'}
-            className="text-md font-bold m-2 px-3 py-2 rounded bg-blue-700 text-white"
-          >
-            Update
-          </Link> : ""
-          }
+          
         </div>
       </div>
       {/* <div className="w-[100%] overflow-auto">

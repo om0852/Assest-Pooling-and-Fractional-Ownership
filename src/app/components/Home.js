@@ -79,52 +79,53 @@ const Home = () => {
 										</Link>
 									</div>
 								</div> */}
-                  <Link
-                    href={`/Portfolio/portfoliodetails?pid=${elem._id}`}
-                    key={index}
-                  >
-                    <div className="bg-white shadow-md rounded-lg max-w-sm m-2">
-                      <Link
-                        key={index}
-                        href={`/Portfolio/portfoliodetails?pid=${elem._id}`}
-                      >
-                        <h2 className="m-2 p-3 font-bold text-blue-600 text-3xl">{elem.PortfolioName}</h2>
-                      </Link>
-                      <div className="m-2 px-4 pb-4">
-                        <p>
-                          <span className="text-black font-medium text-lg tracking-tight ">
-                            {/* {(elem ? elem.overview : "").slice(0, 100) + "..."} */}
-                            Explore Edward Babcock's board "Tri color combinations" on Pinterest. See more ideas about color, color combinations, color inspiration.
-                          </span>
-                        </p>
 
-                        <div className="flex flex-wrap items-center justify-center my-2 mt-4">
-                          <span className="text-sm font-bold m-2 px-2 py-2 rounded bg-orange-700 text-white">
-                            Previous:$599000
-                          </span>
-                          <span className="text-sm font-bold m-2 px-2 py-2 rounded bg-green-700 text-white">
-                            Current:$599000
-                          </span>
-                          <span className="text-sm font-bold m-2 px-2 py-2 rounded bg-pink-700 text-white">
-                            Remaining:$5900000
-                          </span>
-                        </div>
-                        <div className="flex items-center justify-center my-2 mt-4">
-                          <Link
-                            onClick={() => {
-                              Cookies.set("price", `${elem.Price}`);
-                            }}
-                            href={`Portfolio/assests/buyassest?pid=${elem._id}`}
-                          >
-                            <p className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">
-                              Buy
-                            </p>
-                          </Link>
-                        </div>
+                  <div className="bg-white shadow-md rounded-lg max-w-sm m-2">
+                    <Link
+                      key={index}
+                      href={`/Portfolio/portfoliodetails?pid=${elem._id}`}
+                    >
+                      <h2 className="m-2 p-3 font-bold text-blue-600 text-3xl">
+                        {elem.PortfolioName}
+                      </h2>
+                    </Link>
+                    <div className="m-2 px-4 pb-4">
+                      <p>
+                        <span className="text-black font-medium text-lg tracking-tight ">
+                          {/* {(elem ? elem.overview : "").slice(0, 100) + "..."} */}
+                          Explore Edward Babcock's board "Tri color
+                          combinations" on Pinterest. See more ideas about
+                          color, color combinations, color inspiration.
+                        </span>
+                      </p>
+
+                      <div className="flex flex-wrap items-center justify-center my-2 mt-4">
+                        <span className="text-sm font-bold m-2 px-2 py-2 rounded bg-orange-700 text-white">
+                          Previous:{elem.PortfolioPrice && elem.PortfolioPrice[0].Price}
+                        </span>
+                        <span className="text-sm font-bold m-2 px-2 py-2 rounded bg-green-700 text-white">
+                          Current:{elem.PortfolioPrice && elem.PortfolioPrice[0].Price}
+                        </span>
+                        <span className="text-sm font-bold m-2 px-2 py-2 rounded bg-pink-700 text-white">
+                          Remaining:{Math.round(elem.RemainingPrice)}
+                        </span>
+                      </div>
+                      <div className="flex items-center justify-center my-2 mt-4">
+                        <Link
+                          onClick={() => {
+                            Cookies.set("price", `${elem.Price}`);
+                          }}
+                          href={`Portfolio/assests/buyassest?pid=${elem._id}`}
+                        >
+                          <p className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">
+                            Buy
+                          </p>
+                        </Link>
                       </div>
                     </div>
-                  </Link>
+                  </div>
                 </div>
+
               );
             }
           })}

@@ -3,7 +3,7 @@ import Link from "next/link";
 import react, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { jwtDecode } from "jwt-decode";
-// import "../../../env"
+
 
 const Page = () => {
   const [term, setterm] = useState("popular");
@@ -35,27 +35,20 @@ const Page = () => {
   }, []);
 
   const allportfoliodata = async () => {
-    try {
-
-      console.log(process.env.NEXT_PUBLIC_HOST)
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_HOST}api/portfolio/AllPortfolio`,
-        {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-
-        }
-      );
-      const response = await res.json();
-      console.log("completed");
-      setportfoliodata(response.error);
-    }
-    catch (error) {
-      console.log(error);
-    }
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_HOST}api/portfolio/AllPortfolio`,
+      {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: "",
+      }
+    );
+    const response = await res.json();
+    console.log("completed");
+    setportfoliodata(response.error);
   };
 
 
@@ -117,12 +110,18 @@ const Page = () => {
                               Remaining:{Math.round(elem.RemainingPrice)}
                             </span>
                           </div>
-                          <Link onClick={() => { Cookies.set("price", `${elem.Price}`) }} href={"/Portfolio/assests/buyassest?pid=" + elem._id} className="flex items-center justify-center my-2 mt-4">
-
-                            <span className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">
-                              Buy
-                            </span>
-                          </Link>
+                          <div className="flex items-center justify-center my-2 mt-4">
+                            <Link
+                              onClick={() => {
+                                Cookies.set("price", `${elem.Price}`);
+                              }}
+                              href={`Portfolio/assests/buyassest?pid=${elem._id}`}
+                            >
+                              <p className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">
+                                Buy
+                              </p>
+                            </Link>
+                          </div>
                         </div>
                       </div>
                     </div>

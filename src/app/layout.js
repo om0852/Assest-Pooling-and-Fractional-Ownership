@@ -29,8 +29,9 @@ export default function RootLayout({ children }) {
         theme="colored"
       />
         <Navbar/>
-        {children}</body>
+        {children}
         <Footer/>
+        </body>
     </html>
   )
 }

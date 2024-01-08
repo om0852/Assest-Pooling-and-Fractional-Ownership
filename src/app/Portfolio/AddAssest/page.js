@@ -46,7 +46,7 @@ const page = () => {
       setportfoliodata([data]);
       localStorage.setItem("assestlist", JSON.stringify([data]));
     }
-    router.push("/Portfolio/AddAssest/AssestList");
+    router.push("/Portfolio/addassest/assestlist");
 
   }
   useEffect(() => {
@@ -91,7 +91,7 @@ const page = () => {
                 <input onChange={(e) => onchange(e)} type="number" name="Assest_Price" id="Assest_Price" className="bg-white border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Enter Assest Price" required="" />
               </div>
 
-              <Link href="/Portfolio/AddAssest/AssestList" onClick={addAssest} type="submit" className="w-full text-white bg-blue-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">Add</Link>
+              <Link href="/Portfolio/addassest/assestlist" onClick={addAssest} type="submit" className="w-full text-white bg-blue-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">Add</Link>
 
             </form>
           </div>

@@ -30,7 +30,7 @@ export async function POST(req, res) {
 
     }
     console.log(portfoliodata)
-    const per = (parseFloat(BuyAmount) / parseFloat(PortfolioTotalPrice)) * 100;
+    const per = (BuyAmount / PortfolioTotalPrice) * 100;
     const data = {
       AssestId: pid,
       UserId: userData._id,
@@ -46,7 +46,7 @@ export async function POST(req, res) {
     };
     console.log(body)
     await Assests.create(data);
-    const update1 = await Portfolio.updateOne({ _id: pid }, { RemainingPrice: (parseFloat(portfoliodata.RemainingPrice) - parseFloat(BuyAmount)), PercentageRemaining: (parseFloat(portfoliodata.PercentageRemaining) - parseFloat(per)) });
+    const update1 = await Portfolio.updateOne({ _id: pid }, { RemainingPrice: (parseFloat(portfoliodata.RemainingPrice) - parseFloat(BuyAmount)) })
     console.log("assest added successfully");
     return NextResponse.json({ status: 200, error: "success" });
   } catch (error) {

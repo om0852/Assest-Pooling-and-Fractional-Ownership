@@ -11,7 +11,7 @@ const AssestSchema = new mongoose.Schema({
     PercentageOwn: { type: String, required: true },
     Transactionid: { type: String, required: true },
     Transactionamount: { type: String, required: true },
-    
+
 }, { timestamps: true })
 mongoose.models = {}
 

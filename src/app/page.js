@@ -7,20 +7,20 @@ export default function Main() {
   const router = useRouter();
   useEffect(() => {
     const metamasklogin = async () => {
-try{
+      try {
 
-  const accounts = await window.ethereum.request({
-    method: 'eth_requestAccounts',
-  });
-}catch(error){
-  alert("install metamask extension")
-}
+        const accounts = await window.ethereum.request({
+          method: 'eth_requestAccounts',
+        });
+      } catch (error) {
+        alert("install metamask extension")
+      }
     };
-    metamasklogin();
+    // metamasklogin();
   })
   useEffect(() => {
     if (!localStorage.getItem("token")) {
-      // router.push("/login")
+      router.push("/login")
     }
   }, [])
   return (

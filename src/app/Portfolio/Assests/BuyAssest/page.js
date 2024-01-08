@@ -179,7 +179,7 @@ const page = () => {
         const response = await res.json();
         console.log(response)
         if (response.status === 200) {
-            toast.success("Wallet Address Add Successfully", {
+            toast.success("Assest Buy Successfully", {
                 position: "top-center",
                 autoClose: 3000,
                 hideProgressBar: false,

@@ -3,10 +3,36 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { toast } from "react-toastify";
+import { jwtDecode } from "jwt-decode";
 import "react-toastify/dist/ReactToastify.css";
 
-const page = () => {
+const Page = () => {
   const router = useRouter();
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      let token = localStorage.getItem("token").toString();
+      const decoded = jwtDecode(token);
+      console.log(decoded);
+      // Check for expired token
+      var dateNow = new Date() / 1000;
+      if (dateNow > decoded.exp) {
+        alert("Your session has been expired.");
+        localStorage.removeItem("token");
+        router.push("/login");
+      } else {
+        if(decoded.role=="admin"){
+
+        }
+        if(decoded.role=="user"){
+          router.push('/');
+        }  
+      }
+    }else{
+      router.push('/login')
+    }
+  },[]);
+
   const [data, setdata] = useState({
     useremail: "",
     walletaddress: "",
@@ -22,7 +48,7 @@ const page = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await fetch(`http://localhost:3000/api/addwalletaddress`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/addwalletaddress`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -118,4 +144,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

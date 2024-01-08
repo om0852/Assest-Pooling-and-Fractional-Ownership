@@ -3,11 +3,14 @@ import React, { useState } from "react";
 import Chart from "chart.js";
 import Link from "next/link";
 import { jwtDecode } from "jwt-decode";
+import { useRouter } from "next/navigation";
+
 
 
 
 export default function Graph() {
     const [showlist, setshowlist] = useState(false)
+    const router=useRouter();
   React.useEffect(() => {
     var config = {
       type: "line",
@@ -152,7 +155,7 @@ export default function Graph() {
           <div className="w-full h-[60vh] ">
             <canvas id="line-chart" className=""></canvas>
           </div>
-          <Link href={'/dashboard/Portfolios'} className="w-fit text-purple-800 bg-white hover:bg-gray-500 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm mx-2 px-2 py-2.5 text-center ">View Portfolios</Link>
+          <Link href={'/dashboard/portfolios'} className="w-fit text-purple-800 bg-white hover:bg-gray-500 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm mx-2 px-2 py-2.5 text-center ">View Portfolios</Link>
         <div className="flex flex-wrap align-items-center m-2">
         <span className="text-white font-semibold text-lg mx-1 px-2 py-2.5 text-center ">Total Assets : 200</span>
         <span className="text-white font-semibold text-lg mx-1 px-2 py-2.5 text-center ">Sold : 100</span>

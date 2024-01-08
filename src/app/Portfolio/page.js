@@ -20,21 +20,14 @@ export default function Main() {
         router.push("/login");
       } else {
         fetchdata();
-
+        
       }
     }
-  }, []);
+  },[]);
 
   const [portfoliodata, setportfoliodata] = useState("");
   const fetchdata = async () => {
-
-    let url = window.location.href;
-    let domain = new URL(url).hostname;
-    let protocol = new URL(url).protocol;
-    let port = new URL(url).port ? `:${new URL(url).port}` : '';
-    let urlString = `${protocol}//${domain}${port}`;
-
-    const res = await fetch(`${urlString}/api/portfolio/`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}api/portfolio/`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -60,7 +53,7 @@ export default function Main() {
             <div className="w-[75%] ">
               <p className="text-lg font-bold">Asset Name</p>
             </div>
-            <div className="w-[18%] md:w-32text-center">
+            <div className="w-[18%] md:w-32 text-center mx-1">
               <p className="text-lg font-bold">Price</p>
             </div>
             <div className="w-[24%] text-center mx-1">
@@ -101,7 +94,7 @@ export default function Main() {
               })
             }
             <div className="flex rounded items-center border-b-2 border-gray-300 px-5 py-5">
-              <Link style={{ color: "green" }} href="/Portfolio/createPortfolio">Create New Portfolio</Link>
+              <Link style={{ color: "green" }} href="/Portfolio/createportfolio">Create New Portfolio</Link>
             </div>
 
           </div>
