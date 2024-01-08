@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const page = () => {
+const Page = () => {
   const router = useRouter();
   // const  id = router.query;
 
@@ -116,4 +116,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

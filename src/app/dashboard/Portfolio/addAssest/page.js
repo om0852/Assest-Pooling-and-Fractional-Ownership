@@ -4,8 +4,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
-const page = () => {
+const Page = () => {
   const router = useRouter();
   // const  id = router.query;
 
@@ -96,7 +95,7 @@ const page = () => {
       </div>
       <div style={{ width: "40%", height: "100vh", textAlign: "center" }}>
         Added Assest List
-       {
+        {
           portfoliodata && portfoliodata.map((data) => {
             <div className="assestlist" style={{
               display: "flex", width: "100%", height: "10vh", alignItems: "center",
@@ -106,11 +105,11 @@ const page = () => {
               <p>{data.Assest_Title}</p><button style={{ background: "red" }}>delete</button>
             </div>
           })
-        } 
+        }
       </div>
     </div >
 
   )
 }
 
-export default page
+export default Page

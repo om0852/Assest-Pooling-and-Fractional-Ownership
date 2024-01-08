@@ -10,38 +10,38 @@ export default function Main() {
   var amt = 0,
     qty = 0,
     ass = 0;
-  const [prices, setprices] = useState({prev:"",curr:"",rem:""})
-    const [data, setdata] = useState({
-      AType: "",
-      Assest_Title: "",
-      Assest_Price: "",
-      Assest_Quantity: "",
-      Assest_Description: "",
-    })
+  const [prices, setprices] = useState({ prev: "", curr: "", rem: "" })
+  const [data, setdata] = useState({
+    AType: "",
+    Assest_Title: "",
+    Assest_Price: "",
+    Assest_Quantity: "",
+    Assest_Description: "",
+  })
 
-    useEffect(() => {
-      if (localStorage.getItem("token")) {
-        let token = localStorage.getItem("token").toString();
-        const decoded = jwtDecode(token);
-        console.log(decoded);
-        // Check for expired token
-        var dateNow = new Date() / 1000;
-        if (dateNow > decoded.exp) {
-          alert("Your session has been expired.");
-          localStorage.removeItem("token");
-          router.push("/login");
-        } else {
-          if(decoded.role=="admin"){
-            fetchdata();
-          }
-          if(decoded.role=="user"){
-            router.push('/');
-          }
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      let token = localStorage.getItem("token").toString();
+      const decoded = jwtDecode(token);
+      console.log(decoded);
+      // Check for expired token
+      var dateNow = new Date() / 1000;
+      if (dateNow > decoded.exp) {
+        alert("Your session has been expired.");
+        localStorage.removeItem("token");
+        router.push("/login");
+      } else {
+        if (decoded.role == "admin") {
+          fetchdata();
+        }
+        if (decoded.role == "user") {
+          router.push('/');
         }
       }
-    },[]);
+    }
+  }, []);
 
-  
+
   const [portfoliodata, setportfoliodata] = useState("");
 
   const fetchdata = async () => {
@@ -64,36 +64,36 @@ export default function Main() {
     console.log("response.error");
     setportfoliodata(response.error);
     setprices(
-      { prev : response.error.PortfolioPrice[response.error.PortfolioPrice.length-2] && response.error.PortfolioPrice[response.error.PortfolioPrice.length-2].Price , curr : response.error.PortfolioPrice[response.error.PortfolioPrice.length-1] && response.error.PortfolioPrice[response.error.PortfolioPrice.length-1].Price , rem:response.error.RemainingPrice});
-      
-    };
+      { prev: response.error.PortfolioPrice[response.error.PortfolioPrice.length - 2] && response.error.PortfolioPrice[response.error.PortfolioPrice.length - 2].Price, curr: response.error.PortfolioPrice[response.error.PortfolioPrice.length - 1] && response.error.PortfolioPrice[response.error.PortfolioPrice.length - 1].Price, rem: response.error.RemainingPrice });
 
-// const addAssest=async()=>{
-//   let pid=portfoliodata._id;
-//     const res = await fetch(
-//       `http://localhost:3000/api/portfolio/Assest/createAssest`,
-//       {
-//         method: "POST",
-//         headers: {
-//           Accept: "application/json",
-//           "Content-Type": "application/json",
-//         },
-//         body: JSON.stringify({ pid: pid,data :data}),
-//       }
-//     );
-//     const response = await res.json();
-//     console.log(response);
-//     fetchdata();
-// }
+  };
+
+  // const addAssest=async()=>{
+  //   let pid=portfoliodata._id;
+  //     const res = await fetch(
+  //       `http://localhost:3000/api/portfolio/Assest/createAssest`,
+  //       {
+  //         method: "POST",
+  //         headers: {
+  //           Accept: "application/json",
+  //           "Content-Type": "application/json",
+  //         },
+  //         body: JSON.stringify({ pid: pid,data :data}),
+  //       }
+  //     );
+  //     const response = await res.json();
+  //     console.log(response);
+  //     fetchdata();
+  // }
 
 
-// const onchange = (e) => {
-//   e.preventDefault();
-//   let name = e.target.name;
-//   let val = e.target.value;
-//   setdata({ ...data, [name]: val });
-//   console.log(data)
-// };
+  // const onchange = (e) => {
+  //   e.preventDefault();
+  //   let name = e.target.name;
+  //   let val = e.target.value;
+  //   setdata({ ...data, [name]: val });
+  //   console.log(data)
+  // };
 
 
 
@@ -129,17 +129,17 @@ export default function Main() {
         <div className="flex flex-wrap items-center justify-center my-2 mt-4">
           <span className="text-md font-bold m-2 px-2 py-2 rounded bg-orange-700 text-white">
             Previous:
-             {
-             prices.prev ?
-             prices.prev:"Not Available"
-              }
+            {
+              prices.prev ?
+                prices.prev : "Not Available"
+            }
           </span>
           <span className="text-md font-bold m-2 px-2 py-2 rounded bg-green-700 text-white">
             Current:
             {
-           prices.curr ?
-           prices.curr:"Not Available"
-              }
+              prices.curr ?
+                prices.curr : "Not Available"
+            }
           </span>
           <span className="text-md font-bold m-2 px-2 py-2 rounded bg-pink-700 text-white">
             Remaining:{Math.round(portfoliodata.RemainingPrice)}
@@ -149,10 +149,10 @@ export default function Main() {
           <Link
             href={'/dashboard/Portfolio/createportfolio'}
             className="text-md font-bold m-2 px-3 py-2 rounded bg-blue-700 text-white"
-          > 
+          >
             Create New Portfolio
           </Link>
-          
+
         </div>
 
         <div className="relative rounded-lg overflow-x-auto overflow-y-hidden">
@@ -171,7 +171,7 @@ export default function Main() {
                 <th scope="col" className="px-6 py-3">
                   Quantity
                 </th>
-                
+
               </tr>
             </thead>
             <tbody>
@@ -181,7 +181,7 @@ export default function Main() {
                   qty = qty + parseInt(data.Assest_Quantity);
                   ass = index + 1;
                   return (
-                    <tr className="bg-white border-b ">
+                    <tr key={index} className="bg-white border-b ">
                       <td
                         scope="row"
                         className="px-6 py-4  text-gray-900 whitespace-nowrap "
@@ -221,7 +221,7 @@ export default function Main() {
                 <td className="px-6 py-4">
                   <p className="font-semibold py-1 px-2 ">Quantity:{qty}</p>
                 </td>
-                
+
               </tr>
             </tbody>
           </table>

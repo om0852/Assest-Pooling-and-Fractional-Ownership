@@ -5,10 +5,10 @@ import { jwtDecode } from "jwt-decode";
 import { useRouter } from "next/navigation";
 
 
-const page = () => {
+const Page = () => {
   const [prices, setprices] = useState({ prev: "", curr: "", rem: "" });
   const [portfoliodata, setportfoliodata] = useState([]);
-  const router=useRouter();
+  const router = useRouter();
   // useEffect(() => {
   //   allportfoliodata();
   // }, []);
@@ -26,7 +26,7 @@ const page = () => {
       }
     );
     const response = await res.json()
-    setportfoliodata(response.error); 
+    setportfoliodata(response.error);
   };
 
   useEffect(() => {
@@ -41,15 +41,15 @@ const page = () => {
         localStorage.removeItem("token");
         router.push("/login");
       } else {
-        if(decoded.role=="admin"){
+        if (decoded.role == "admin") {
           allportfoliodata();
         }
-        if(decoded.role=="user"){
+        if (decoded.role == "user") {
           router.push('/');
-        }  
+        }
       }
     }
-  },[]);
+  }, []);
 
   return (
     <div>
@@ -72,7 +72,7 @@ const page = () => {
                 console.log(elem);
                 if (index < 6) {
                   return (
-                    <div>
+                    <div key={index}>
                       {/* <div className="card" style={{ width: "18rem", color: "white", border: "1px solid red" }}>
 									<div className="card-body">
 										<h5 className="card-title"><Link key={index} href={`/Portfolio/PortfolioDetails?pid=${elem._id}`}>{elem.PortfolioName}</Link>
@@ -100,8 +100,8 @@ const page = () => {
                             <p>
                               <span className="text-black font-medium text-lg tracking-tight ">
                                 {/* {(elem ? elem.overview : "").slice(0, 100) + "..."} */}
-                                Explore Edward Babcock's board "Tri color
-                                combinations" on Pinterest. See more ideas about
+                                Explore Edward Babcock&apos;s board &quot;Tri color
+                                combinations&quot; on Pinterest. See more ideas about
                                 color, color combinations, color inspiration.
                               </span>
                             </p>
@@ -109,11 +109,11 @@ const page = () => {
                             <div className="flex flex-wrap items-center justify-center my-2 mt-4">
                               <span className="text-sm font-bold m-2 px-2 py-2 rounded bg-orange-700 text-white">
                                 Previous:
-                                {elem.PortfolioPrice[elem.PortfolioPrice.length-2] ? elem.PortfolioPrice[elem.PortfolioPrice.length-2].Price:"N/A"}
+                                {elem.PortfolioPrice[elem.PortfolioPrice.length - 2] ? elem.PortfolioPrice[elem.PortfolioPrice.length - 2].Price : "N/A"}
                               </span>
                               <span className="text-sm font-bold m-2 px-2 py-2 rounded bg-green-700 text-white">
                                 Current:
-                                {elem.PortfolioPrice[elem.PortfolioPrice.length-1] ? elem.PortfolioPrice[elem.PortfolioPrice.length-1].Price:"N/A"}
+                                {elem.PortfolioPrice[elem.PortfolioPrice.length - 1] ? elem.PortfolioPrice[elem.PortfolioPrice.length - 1].Price : "N/A"}
                               </span>
                               <span className="text-sm font-bold m-2 px-2 py-2 rounded bg-pink-700 text-white">
                                 Remaining:{Math.round(elem.RemainingPrice)}
@@ -138,4 +138,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

@@ -8,7 +8,7 @@ import Cookies from "js-cookie";
 import ASPOS from "./APFOS_Contract.json";
 import Web3 from "web3";
 
-const page = () => {
+const Page = () => {
     const [myContract, setMyContract] = useState(null);
     const [transactionHash, setTransactionHash] = useState(null);
     const [web3, setweb3] = useState(null);
@@ -89,34 +89,36 @@ const page = () => {
     };
     const BuyAssest = async (e) => {
         e.preventDefault();
-        if(data.BuyAmount>1 && data.BuyAmount<=200){try {
-            console.log(web3);
-            const receiverAddress = "0xaca8Dd3EC734Db2847c016356F682e5CB7Fe7783";
-            let p;
+        if (data.BuyAmount > 1 && data.BuyAmount <= 200) {
             try {
-                p = await fetchEthereumPrice();
+                console.log(web3);
+                const receiverAddress = "0xaca8Dd3EC734Db2847c016356F682e5CB7Fe7783";
+                let p;
+                try {
+                    p = await fetchEthereumPrice();
+                }
+                catch (error) {
+                    return alert("check internet connection,try again");
+                }
+                const amountInEther = (parseFloat(data.BuyAmount) / parseFloat(p));
+                console.log(amountInEther)
+
+                const result = await myContract.methods.sendToUser(receiverAddress).send({
+                    from: sender,
+                    value: web3.utils.toWei(amountInEther.toString(), 'ether'),
+                });
+                setTransactionHash(result.transactionHash);
+                console.log(result);
+
+
+                await handleSubmit(e, result, amountInEther);
             }
             catch (error) {
-                return alert("check internet connection,try again");
+                console.log(error)
+                clearInterval();
+                return alert("invalid attempt,try again");
             }
-            const amountInEther = (parseFloat(data.BuyAmount) / parseFloat(p));
-            console.log(amountInEther)
-
-            const result = await myContract.methods.sendToUser(receiverAddress).send({
-                from: sender,
-                value: web3.utils.toWei(amountInEther.toString(), 'ether'),
-            });
-            setTransactionHash(result.transactionHash);
-            console.log(result);
-
-
-            await handleSubmit(e, result, amountInEther);
-        }
-        catch (error) {
-            console.log(error)
-            clearInterval();
-            return alert("invalid attempt,try again");
-        }}else{
+        } else {
             toast.error(`Invalid Amount [${1}-${200}]`, {
                 position: "top-center",
                 autoClose: 3000,
@@ -126,7 +128,7 @@ const page = () => {
                 draggable: true,
                 progress: undefined,
                 theme: "colored",
-              });
+            });
         }
     }
 
@@ -258,7 +260,7 @@ const page = () => {
                         </div>
 
                         <button
-                            onClick={(e)=>BuyAssest(e)}
+                            onClick={(e) => BuyAssest(e)}
                             type="submit"
                             className="w-full text-white bg-blue-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
                         >
@@ -271,4 +273,4 @@ const page = () => {
     );
 };
 
-export default page;
+export default Page;

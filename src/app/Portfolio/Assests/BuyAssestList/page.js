@@ -596,7 +596,7 @@ export default function Main() {
             <tbody>
               {portfoliodata &&
                 portfoliodata.map((data) => (
-                  <tr className="bg-white border-b ">
+                  <tr key={data._id} className="bg-white border-b ">
                     <td
                       scope="row"
                       className="px-6 py-4  text-gray-900 whitespace-nowrap "

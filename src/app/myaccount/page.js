@@ -1,7 +1,7 @@
 'use client';
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import jwt_decode from "jwt-decode";
+import * as jwt_decode from "jwt-decode";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 var jwt = require('jsonwebtoken');
@@ -10,111 +10,108 @@ var jwt = require('jsonwebtoken');
 const Myaccount = () => {
   const router = useRouter();
   const [user, setuser] = useState({
-    name:"",
-    email:"",
-    address:"",
-    phone:"",
-    pincode:"",
-    password:"",
-    cpassword:"",
-    exp:"",
+    name: "",
+    email: "",
+    address: "",
+    phone: "",
+    pincode: "",
+    password: "",
+    cpassword: "",
+    exp: "",
   })
   useEffect(() => {
     if (localStorage.getItem('token')) {
       let decoded = jwt_decode(localStorage.getItem('token'));
-      setuser({name:decoded.name,email:decoded.email,phone:decoded.phone,address:decoded.address,pincode:decoded.pincode,exp:decoded.exp})
-      if(decoded.exp < Math.floor(Date.now()/1000))
-      {
+      setuser({ name: decoded.name, email: decoded.email, phone: decoded.phone, address: decoded.address, pincode: decoded.pincode, exp: decoded.exp })
+      if (decoded.exp < Math.floor(Date.now() / 1000)) {
         localStorage.removeItem('token')
         console.log('expired')
         router.push("/login")
       }
-     }
-    else{
+    }
+    else {
       router.push("/")
     }
   }, []);
 
-  const handleChange = (e)=>{
-      let name=e.target.name;
-      let value=e.target.value;
-      setuser({...user,[name]:value});
+  const handleChange = (e) => {
+    let name = e.target.name;
+    let value = e.target.value;
+    setuser({ ...user, [name]: value });
   }
-  const handleSubmit = async (e)=>{
+  const handleSubmit = async (e) => {
     e.preventDefault();
     let decoded = jwt_decode(localStorage.getItem('token'));
-      setuser({name:decoded.name,email:decoded.email,phone:decoded.phone,address:decoded.address,pincode:decoded.pincode,exp:decoded.exp})
-      if(decoded.exp < Math.floor(Date.now()/1000))
-      {
-        localStorage.removeItem('token')
-        router.push("/login")
-        console.log('expired')
-      }
-      else{
-    const res=await fetch(`${process.env.NEXT_PUBLIC_HOST}api/updateUser`,{
-      method:"POST",
-      headers:{
-        Accept:"Application/json",
-        "Content-Type":"Application/json" 
-      },
-      body: JSON.stringify(user)
-    })
- 
-    const response=await res.json();
-    if(response.status===200)
-    {
+    setuser({ name: decoded.name, email: decoded.email, phone: decoded.phone, address: decoded.address, pincode: decoded.pincode, exp: decoded.exp })
+    if (decoded.exp < Math.floor(Date.now() / 1000)) {
       localStorage.removeItem('token')
-      localStorage.setItem('token',response.token)
-      toast.success("Details saved Successful", {
-        position: "top-center",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: false,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
-    }else if(response.status===201) {
-      toast.error("Comfirm password does not match", {
-        position: "top-center",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
-    }else if(response.status===202) {
-      toast.error("Please fill all the details", {
-        position: "top-center",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
-    }else{
-      toast.error("Failed to Save.Try again..", {
-        position: "top-center",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,  
-        progress: undefined,
-        theme: "colored",
-      });
+      router.push("/login")
+      console.log('expired')
     }
-  }
+    else {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}api/updateUser`, {
+        method: "POST",
+        headers: {
+          Accept: "Application/json",
+          "Content-Type": "Application/json"
+        },
+        body: JSON.stringify(user)
+      })
+
+      const response = await res.json();
+      if (response.status === 200) {
+        localStorage.removeItem('token')
+        localStorage.setItem('token', response.token)
+        toast.success("Details saved Successful", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      } else if (response.status === 201) {
+        toast.error("Comfirm password does not match", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      } else if (response.status === 202) {
+        toast.error("Please fill all the details", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      } else {
+        toast.error("Failed to Save.Try again..", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      }
+    }
   }
 
   return (
     <>
-    <ToastContainer
+      <ToastContainer
         position="top-center"
         autoClose={3000}
         hideProgressBar={false}
@@ -156,9 +153,9 @@ const Myaccount = () => {
                 Name
               </label>
               <div className="mt-2.5">
-                <input 
-                onChange={handleChange}
-                value={user.name}
+                <input
+                  onChange={handleChange}
+                  value={user.name}
                   type="text"
                   name="first-name"
                   id="first-name"
@@ -177,8 +174,8 @@ const Myaccount = () => {
               </label>
               <div className="mt-2.5">
                 <input
-                onChange={handleChange}
-                value={user.email}
+                  onChange={handleChange}
+                  value={user.email}
                   type="email"
                   name="email"
                   id="email"
@@ -198,8 +195,8 @@ const Myaccount = () => {
               </label>
               <div className="mt-2.5">
                 <input
-                onChange={handleChange}
-                value={user.address}
+                  onChange={handleChange}
+                  value={user.address}
                   type="text"
                   name="address"
                   id="address"
@@ -218,8 +215,8 @@ const Myaccount = () => {
               </label>
               <div className="mt-2.5">
                 <input
-                onChange={handleChange}
-                value={user.phone}
+                  onChange={handleChange}
+                  value={user.phone}
                   type="number"
                   name="phone"
                   id="phone"
@@ -238,8 +235,8 @@ const Myaccount = () => {
               </label>
               <div className="mt-2.5">
                 <input
-                onChange={handleChange}
-                value={user.pincode}
+                  onChange={handleChange}
+                  value={user.pincode}
                   type="number"
                   name="pincode"
                   id="pincode"
@@ -252,7 +249,7 @@ const Myaccount = () => {
           </div>
           <div className="py-4">
             <h3 className="text-3xl font-bold text-gray-900 sm:text-xl">
-             Change Password
+              Change Password
             </h3>
           </div>
           <div>
@@ -264,11 +261,11 @@ const Myaccount = () => {
             </label>
             <div className="mt-2.5">
               <input
-              onChange={handleChange}
-              value={user.password || ""}
+                onChange={handleChange}
+                value={user.password || ""}
                 type="password"
                 name="password"
-                id="password"   
+                id="password"
                 autoComplete="off"
                 required="true"
                 className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pink-600 sm:text-sm sm:leading-6"
@@ -284,8 +281,8 @@ const Myaccount = () => {
             </label>
             <div className="mt-2.5">
               <input
-              onChange={handleChange}
-              value={user.cpassword || ""}
+                onChange={handleChange}
+                value={user.cpassword || ""}
                 type="password"
                 name="cpassword"
                 id="cpassword"

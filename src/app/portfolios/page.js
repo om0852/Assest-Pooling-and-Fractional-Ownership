@@ -68,7 +68,7 @@ const Page = () => {
                 if (index < 6) {
                   console.log(elem);
                   return (
-                    <div>
+                    <div key={index}>
                       {/* <div className="card" style={{ width: "18rem", color: "white", border: "1px solid red" }}>
 									<div className="card-body">
 										<h5 className="card-title"><Link key={index} href={`/Portfolio/portfoliodetails?pid=${elem._id}`}>{elem.PortfolioName}</Link>
@@ -93,8 +93,8 @@ const Page = () => {
                           <p>
                             <span className="text-black font-medium text-lg tracking-tight ">
                               {/* {(elem ? elem.overview : "").slice(0, 100) + "..."} */}
-                              Explore Edward Babcock's board "Tri color
-                              combinations" on Pinterest. See more ideas about
+                              Explore Edward Babcock&apos;s board &apos;Tri color
+                              combinations&apos; on Pinterest. See more ideas about
                               color, color combinations, color inspiration.
                             </span>
                           </p>

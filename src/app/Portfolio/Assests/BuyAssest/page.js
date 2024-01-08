@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Cookies from "js-cookie";
 import Web3 from "web3";
 
-const page = () => {
+const Page = () => {
     const [myContract, setMyContract] = useState(null);
     const [transactionHash, setTransactionHash] = useState(null);
     const [web3, setweb3] = useState(null);
@@ -403,4 +403,4 @@ const page = () => {
     );
 };
 
-export default page;
+export default Page;

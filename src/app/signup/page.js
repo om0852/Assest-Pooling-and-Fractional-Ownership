@@ -8,7 +8,7 @@ import { jwtDecode } from "jwt-decode";
 
 
 
-const page = () => {
+const Page = () => {
   const router = useRouter();
 
   useEffect(() => {
@@ -34,17 +34,17 @@ const page = () => {
           progress: undefined,
           theme: "colored",
         });
-        if(decoded.role=="admin"){
+        if (decoded.role == "admin") {
           router.push('/dashboard');
         }
-        if(decoded.role=="user"){
+        if (decoded.role == "user") {
           router.push('/');
         }
       }
-    }else{
+    } else {
       router.push("/signup");
     }
-  },[]);
+  }, []);
 
   const [active, setactive] = useState("user");
   const [data, setdata] = useState({
@@ -70,33 +70,46 @@ const page = () => {
       data.name &&
       data.phone &&
       data.password &&
-      data.cpassword ) {
-      if(data.password.length>=8){if (data.password === data.cpassword) {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}api/signup`, {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-        });
-        const response = await res.json();
-        console.log(response.message)
-        if (response.status === 200) {
-          toast.success("Registration Successful", {
-            position: "top-center",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "colored",
+      data.cpassword) {
+      if (data.password.length >= 8) {
+        if (data.password === data.cpassword) {
+          const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}api/signup`, {
+            method: "POST",
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
           });
-          
+          const response = await res.json();
+          console.log(response.message)
+          if (response.status === 200) {
+            toast.success("Registration Successful", {
+              position: "top-center",
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+            });
+
             router.push("/login");
+          } else {
+            toast.error(response.message, {
+              position: "top-center",
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+            });
+          }
         } else {
-          toast.error(response.message, {
+          toast.error("Confirm Password Not Match", {
             position: "top-center",
             autoClose: 3000,
             hideProgressBar: false,
@@ -108,17 +121,6 @@ const page = () => {
           });
         }
       } else {
-        toast.error("Confirm Password Not Match", {
-          position: "top-center",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        });
-      }}else{
         toast.success("Password must be 8 Atleast characters", {
           position: "top-center",
           autoClose: 3000,
@@ -259,7 +261,7 @@ const page = () => {
             </div>
 
             <button
-              onClick={(e)=>handleSubmit(e)}
+              onClick={(e) => handleSubmit(e)}
               type="submit"
               className="w-full text-white bg-blue-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
             >
@@ -281,4 +283,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
