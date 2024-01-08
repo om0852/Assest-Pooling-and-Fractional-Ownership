@@ -5,7 +5,7 @@ import Link from "next/link";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Cookies from "js-cookie";
-import ASPOS from "./APFOS_Contract.json";
+// import ASPOS from "./APFOS_Contract.json";
 import Web3 from "web3";
 
 const page = () => {
@@ -53,7 +53,113 @@ const page = () => {
             console.log(accounts);
             setsender(accounts[0]); // Use the first account in the array
             const contractAddress = "0x930BC5ec6339AbC9343de0b5c1b5C1b4163670c8";
-            const myContractInstance = new web3c.eth.Contract(ASPOS, contractAddress);
+            const myContractInstance = new web3c.eth.Contract([
+                {
+                    "inputs": [],
+                    "stateMutability": "nonpayable",
+                    "type": "constructor"
+                },
+                {
+                    "inputs": [
+                        {
+                            "internalType": "string",
+                            "name": "",
+                            "type": "string"
+                        }
+                    ],
+                    "name": "balances",
+                    "outputs": [
+                        {
+                            "internalType": "uint256",
+                            "name": "",
+                            "type": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "inputs": [],
+                    "name": "contractBalance",
+                    "outputs": [
+                        {
+                            "internalType": "uint256",
+                            "name": "",
+                            "type": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "inputs": [
+                        {
+                            "internalType": "string",
+                            "name": "id",
+                            "type": "string"
+                        }
+                    ],
+                    "name": "deposit",
+                    "outputs": [],
+                    "stateMutability": "payable",
+                    "type": "function"
+                },
+                {
+                    "inputs": [
+                        {
+                            "internalType": "string",
+                            "name": "id",
+                            "type": "string"
+                        }
+                    ],
+                    "name": "getBalance",
+                    "outputs": [
+                        {
+                            "internalType": "uint256",
+                            "name": "",
+                            "type": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "inputs": [],
+                    "name": "owner",
+                    "outputs": [
+                        {
+                            "internalType": "address",
+                            "name": "",
+                            "type": "address"
+                        }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "inputs": [
+                        {
+                            "internalType": "string",
+                            "name": "id",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "uint256",
+                            "name": "_amount",
+                            "type": "uint256"
+                        },
+                        {
+                            "internalType": "address payable",
+                            "name": "_receiver",
+                            "type": "address"
+                        }
+                    ],
+                    "name": "withdraw",
+                    "outputs": [],
+                    "stateMutability": "payable",
+                    "type": "function"
+                }
+            ], contractAddress);
             console.log(myContractInstance)
             setMyContract(myContractInstance);
 
