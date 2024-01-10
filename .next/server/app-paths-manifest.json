@@ -2,5 +2,7 @@
   "/page": "app/page.js",
   "/portfolios/page": "app/portfolios/page.js",
   "/Portfolio/assests/buyassest/page": "app/Portfolio/assests/buyassest/page.js",
-  "/api/portfolio/portfoliodetails/route": "app/api/portfolio/portfoliodetails/route.js"
+  "/Portfolio/assests/buyassestlist/page": "app/Portfolio/assests/buyassestlist/page.js",
+  "/api/portfolio/AllPortfolio/route": "app/api/portfolio/AllPortfolio/route.js",
+  "/api/portfolio/Assest/BuyAssestList/route": "app/api/portfolio/Assest/BuyAssestList/route.js"
 }
