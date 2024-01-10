@@ -1,4 +1,4 @@
-// File: D:\Assest-Pooling-and-Fractional-Ownershi\src\app\api\portfolio\AllPortfolio\route.js
+// File: /workspaces/Assest-Pooling-and-Fractional-Ownership/src/app/api/portfolio/AllPortfolio/route.js
 import * as entry from '../../../../../../src/app/api/portfolio/AllPortfolio/route.js'
 import type { NextRequest } from 'next/server.js'
 

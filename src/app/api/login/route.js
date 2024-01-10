@@ -5,7 +5,6 @@ var CryptoJS = require("crypto-js");
 var jwt = require('jsonwebtoken');
 import {cookies} from 'next/headers'
 
-
 export async function POST(req, res) {
   try {
     

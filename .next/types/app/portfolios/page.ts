@@ -1,4 +1,4 @@
-// File: D:\Assest-Pooling-and-Fractional-Ownershi\src\app\portfolios\page.js
+// File: /workspaces/Assest-Pooling-and-Fractional-Ownership/src/app/portfolios/page.js
 import * as entry from '../../../../src/app/portfolios/page.js'
 import type { ResolvingMetadata } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
