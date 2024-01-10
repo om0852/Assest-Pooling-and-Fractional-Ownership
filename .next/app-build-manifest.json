@@ -12,27 +12,11 @@
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
-    "/Portfolio/assests/buyassestlist/page": [
+    "/login/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/Portfolio/assests/buyassestlist/page.css",
-      "static/chunks/app/Portfolio/assests/buyassestlist/page.js"
-    ],
-    "/Portfolio/assests/sellassests/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/Portfolio/assests/sellassests/page.css",
-      "static/chunks/app/Portfolio/assests/sellassests/page.js"
-    ],
-    "/portfolios/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/portfolios/page.js"
-    ],
-    "/not-found": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/not-found.js"
+      "static/css/app/login/page.css",
+      "static/chunks/app/login/page.js"
     ]
   }
 }
