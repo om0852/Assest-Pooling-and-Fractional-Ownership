@@ -40,7 +40,7 @@ const Home = () => {
   const allportfoliodata = async () => {
     // alert("calling ")
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_HOST}api/portfolio/AllPortfolio`,
+      `${process.env.NEXT_PUBLIC_HOST}api/portfolio/TopPortfolio`,
       {
         method: "POST",
         headers: {
@@ -51,6 +51,7 @@ const Home = () => {
       }
     );
     const response = await res.json();
+    console.log(response.error)
     console.log("completed");
     setportfoliodata(response.error);
   };

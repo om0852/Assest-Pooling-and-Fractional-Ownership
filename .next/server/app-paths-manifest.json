@@ -1,8 +1,6 @@
 {
   "/not-found": "app/not-found.js",
   "/page": "app/page.js",
-  "/portfolios/page": "app/portfolios/page.js",
-  "/Portfolio/assests/buyassest/page": "app/Portfolio/assests/buyassest/page.js",
-  "/Portfolio/assests/buyassestlist/page": "app/Portfolio/assests/buyassestlist/page.js",
-  "/Portfolio/assests/sellassests/page": "app/Portfolio/assests/sellassests/page.js"
+  "/Portfolio/assests/sellassests/page": "app/Portfolio/assests/sellassests/page.js",
+  "/api/portfolio/TopPortfolio/route": "app/api/portfolio/TopPortfolio/route.js"
 }

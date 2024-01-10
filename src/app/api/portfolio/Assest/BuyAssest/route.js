@@ -46,7 +46,7 @@ export async function POST(req, res) {
     };
     console.log(body)
     await Assests.create(data);
-    const update1 = await Portfolio.updateOne({ _id: pid }, { RemainingPrice: (parseFloat(portfoliodata.RemainingPrice) - parseFloat(BuyAmount)) })
+    const update1 = await Portfolio.updateOne({ _id: pid }, { RemainingPrice: (parseFloat(portfoliodata.RemainingPrice) - parseFloat(BuyAmount)) ,BuyCount:portfoliodata.BuyCount+1})
     console.log("assest added successfully");
     return NextResponse.json({ status: 200, error: "success" });
   } catch (error) {
