@@ -242,7 +242,7 @@ export default function Main() {
       });
       // Use the first account in the array
       const contractAddress = "0x930BC5ec6339AbC9343de0b5c1b5C1b4163670c8";
-      const myContractInstanc = new web3c.eth.Contract([
+      const myContractInstance = new web3c.eth.Contract([
         {
           "inputs": [],
           "stateMutability": "nonpayable",
@@ -644,6 +644,7 @@ export default function Main() {
             </tbody>
           </table>
         </div>
+        <Link href="/Portfolio/assests/sellassests">Sell Assest List</Link>
       </div>
     </div>
   );
