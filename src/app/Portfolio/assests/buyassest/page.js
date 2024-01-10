@@ -193,86 +193,96 @@ const Page = () => {
         });
     };
     const BuyAssest = async (e) => {
-        if(!sender){
+        // e.preventdefault();
+        if (!sender) {
             const accounts = await window.ethereum.request({
                 method: 'eth_requestAccounts',
             });
 
         }
-        const queryString = window.location.search;
-        const urlParams = new URLSearchParams(queryString);
-        let portfolioid = urlParams.get('pid'); // value1
+        try {
 
-        const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/portfolio/portfoliodetails`, {
-            method: "POST",
-            headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                pid: portfolioid,
-            }),
-        });
-        const response = await res.json();
-        e.preventDefault();
-        alert(response.error.RemainingPrice);
-        if (data.BuyAmount > 1 && data.BuyAmount<=response.error.RemainingPrice) {
-            try {
-                const queryString = window.location.search;
-                const urlParams = new URLSearchParams(queryString);
-                let pid = urlParams.get('pid'); // value1
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            let portfolioid = urlParams.get('pid'); // value1
 
-                console.log(web3);
-                const receiverAddress = "0xaca8Dd3EC734Db2847c016356F682e5CB7Fe7783";
-                let p;
+            const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/portfolio/portfoliodetails`, {
+                method: "POST",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    pid: portfolioid,
+                }),
+            });
+            const response = await res.json();
+            // e.preventDefault();
+            // alert(response.error.RemainingPrice);
+            if (response.error == null) {
+                return alert("Inavlid Assest Purchase");
+            }
+            if (data.BuyAmount > 1 && data.BuyAmount <= response.error.RemainingPrice) {
                 try {
-                    p = await fetchEthereumPrice();
-                    console.log(p);
-                }
-                catch (error) {
-                    return alert("check internet connection,try again");
-                }
-                const amountInEther = (parseFloat(data.BuyAmount) / parseFloat(p));
-                console.log(amountInEther)
-                const gasEstimation = await myContract.methods
-                    .deposit(pid)
-                    .estimateGas({
+                    const queryString = window.location.search;
+                    const urlParams = new URLSearchParams(queryString);
+                    let pid = urlParams.get('pid'); // value1
+
+                    console.log(web3);
+                    const receiverAddress = "0xaca8Dd3EC734Db2847c016356F682e5CB7Fe7783";
+                    let p;
+                    try {
+                        p = await fetchEthereumPrice();
+                        console.log(p);
+                    }
+                    catch (error) {
+                        return alert("check internet connection,try again");
+                    }
+                    const amountInEther = (parseFloat(data.BuyAmount) / parseFloat(p));
+                    console.log(amountInEther)
+                    const gasEstimation = await myContract.methods
+                        .deposit(pid)
+                        .estimateGas({
+                            from: sender,
+                            value: web3.utils.toWei(amountInEther.toString(), 'ether'),
+                        });
+
+                    console.log('Gas Estimation:', gasEstimation);
+
+
+                    const result = await myContract.methods.deposit(pid).send({
                         from: sender,
                         value: web3.utils.toWei(amountInEther.toString(), 'ether'),
+                        gas: gasEstimation
                     });
 
-                console.log('Gas Estimation:', gasEstimation);
+                    console.log(result);
+
+                    setTransactionHash(result.transactionHash);
 
 
-                const result = await myContract.methods.deposit(pid).send({
-                    from: sender,
-                    value: web3.utils.toWei(amountInEther.toString(), 'ether'),
-                    gas: gasEstimation
+                    await handleSubmit(e, result, amountInEther);
+                }
+                catch (error) {
+                    console.log(error)
+                    return alert("invalid attempt,try again");
+                }
+            } else {
+                toast.error(`Enter Amount Between [${1}-${response.error.RemainingPrice}]`, {
+                    position: "top-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
                 });
-
-                console.log(result);
-
-                setTransactionHash(result.transactionHash);
-
-
-                await handleSubmit(e, result, amountInEther);
+                return;
             }
-            catch (error) {
-                console.log(error)
-                clearInterval();
-                return alert("invalid attempt,try again");
-            }
-        } else {
-            toast.error(`Enter Amount Between [${1}-${response.error.RemainingPrice}]`, {
-                position: "top-center",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-            });
+        }
+        catch (error) {
+            alert(error.message);
         }
     }
 

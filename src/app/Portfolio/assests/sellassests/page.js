@@ -60,12 +60,14 @@ export default function Main() {
                       scope="row"
                       className="px-6 py-4  text-gray-900 whitespace-nowrap "
                     >
+
                       <p className="text-lg font-semibold">
                         {data.AssestTitle}
                       </p>
                       <p className="text-gray-500">
                         Lorem ipsum dolor sit amet
                       </p>
+
                     </td>
                     <td className="px-6 py-4">{data.OrginalBuyPrice}</td>
                     <td className="px-6 py-4">
@@ -73,7 +75,7 @@ export default function Main() {
                     </td>
 
                     <td className="px-6 py-4">
- {data.SellPrice}                    
+                      {data.SellPrice}
                     </td>
                   </tr>
                 ))}
