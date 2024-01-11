@@ -1,9 +1,7 @@
 {
-  "/not-found": "app/not-found.js",
+  "/login/page": "app/login/page.js",
   "/dashboard/page": "app/dashboard/page.js",
-  "/dashboard/users/page": "app/dashboard/users/page.js",
   "/dashboard/portfolios/page": "app/dashboard/portfolios/page.js",
   "/dashboard/Portfolio/portfolios/page": "app/dashboard/Portfolio/portfolios/page.js",
-  "/dashboard/Portfolio/updatePortfolio/page": "app/dashboard/Portfolio/updatePortfolio/page.js",
-  "/api/portfolio/portfoliodetails/route": "app/api/portfolio/portfoliodetails/route.js"
+  "/dashboard/Portfolio/createportfolio/page": "app/dashboard/Portfolio/createportfolio/page.js"
 }

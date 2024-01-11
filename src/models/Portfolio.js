@@ -7,6 +7,7 @@ const PortfolioSchema = new mongoose.Schema({
     Assests: { type: Array },
     PortfolioPrice: { type: Array },
     RemainingPrice: { type: String },
+    PercentageRemaining: { type: Number },
     BuyCount:{type:Number}
 }, { timestamps: true })
 mongoose.models = {};
