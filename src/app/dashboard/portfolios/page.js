@@ -83,10 +83,7 @@ const Page = () => {
 										</Link>
 									</div>
 								</div> */}
-                      <Link
-                        href={`/dashboard/Portfolio/portfoliodetails?pid=${elem._id}`}
-                        key={index}
-                      >
+                       
                         <div className="bg-white shadow-md rounded-lg max-w-sm m-2">
                           <Link
                             key={index}
@@ -119,14 +116,23 @@ const Page = () => {
                                 Remaining:{Math.round(elem.RemainingPrice)}
                               </span>
                             </div>
-                            <div className="flex items-center justify-center my-2 mt-4">
+                            <Link href={`/dashboard/Portfolio/userList?pid=${elem._id}`} className="flex items-center justify-center my-2 mt-4">
                               <span className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">
                                 View
                               </span>
-                            </div>
+                            </Link>
+                            <Link href={`/dashboard/Portfolio/updatePortfolio?pid=${elem._id}`} className="flex items-center justify-center my-2 mt-4">
+                              <span className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">
+                                Update
+                              </span>
+                            </Link>
+                            {/* <div className="flex items-center justify-center my-2 mt-4">
+                              <span className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">
+                                Investor List
+                              </span>
+                            </div> */}
                           </div>
                         </div>
-                      </Link>
                     </div>
                   );
                 }

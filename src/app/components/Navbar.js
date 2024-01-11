@@ -441,9 +441,9 @@ const Navbar = () => {
                     ? "text-blue-500 font-bold"
                     : "text-gray-400"
                 }`}
-                href={"/dashboard/Portfolio/createportfolio"}
+                href={"/dashboard/Portfolio/portfolios"}
               >
-                Create Portfolio
+                Portfolios
               </Link>
               <li className="text-gray-300">|</li>
               <Link
@@ -454,7 +454,7 @@ const Navbar = () => {
                 }`}
                 href={"/dashboard/portfolios"}
               >
-                Portfolio
+               Your Portfolio
               </Link>
               <li className="text-gray-300">|</li>
               <Link

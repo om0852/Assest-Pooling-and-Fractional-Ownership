@@ -68,55 +68,6 @@ export default function Main() {
 
   };
 
-  // const addAssest=async()=>{
-  //   let pid=portfoliodata._id;
-  //     const res = await fetch(
-  //       `http://localhost:3000/api/portfolio/Assest/createAssest`,
-  //       {
-  //         method: "POST",
-  //         headers: {
-  //           Accept: "application/json",
-  //           "Content-Type": "application/json",
-  //         },
-  //         body: JSON.stringify({ pid: pid,data :data}),
-  //       }
-  //     );
-  //     const response = await res.json();
-  //     console.log(response);
-  //     fetchdata();
-  // }
-
-
-  // const onchange = (e) => {
-  //   e.preventDefault();
-  //   let name = e.target.name;
-  //   let val = e.target.value;
-  //   setdata({ ...data, [name]: val });
-  //   console.log(data)
-  // };
-
-
-
-  // const removeAssest=async(atitle)=>{
-  //   let pid=portfoliodata._id;
-  //   let assest_title=atitle;
-  //   const res = await fetch(
-  //     `http://localhost:3000/api/portfolio/Assest/deleteAssest`,
-  //     {
-  //       method: "POST",
-  //       headers: {
-  //         Accept: "application/json",
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({ pid: pid,Assest_Title:assest_title }),
-  //     }
-  //   );
-  //   const response = await res.json();
-  //   console.log(response);
-  // }
-  // useEffect(() => {
-  //   fetchdata();
-  // }, []);
   return (
     <div className=" w-[100%] h-fit rounded p-2 pb-4 md:px-16">
 
