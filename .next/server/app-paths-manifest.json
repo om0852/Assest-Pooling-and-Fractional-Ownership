@@ -1,7 +1,7 @@
 {
-  "/login/page": "app/login/page.js",
-  "/dashboard/page": "app/dashboard/page.js",
+  "/page": "app/page.js",
   "/dashboard/portfolios/page": "app/dashboard/portfolios/page.js",
-  "/dashboard/Portfolio/portfolios/page": "app/dashboard/Portfolio/portfolios/page.js",
-  "/dashboard/Portfolio/createportfolio/page": "app/dashboard/Portfolio/createportfolio/page.js"
+  "/dashboard/Portfolio/createportfolio/page": "app/dashboard/Portfolio/createportfolio/page.js",
+  "/Portfolio/assests/buyassest/page": "app/Portfolio/assests/buyassest/page.js",
+  "/Portfolio/assests/buyassestlist/page": "app/Portfolio/assests/buyassestlist/page.js"
 }
