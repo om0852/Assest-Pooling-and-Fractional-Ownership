@@ -50,12 +50,57 @@ const Page = () => {
   const handleChange = (index, e) => {
     const updatedAssets = [...assetData];
     updatedAssets[index][e.target.name] = e.target.value;
-    setAssetData(updatedAssets);
+    setAssetData(updatedAssets); // Fix the typo here
   };
 
-  const handleSubmit = () => {
-    // You can access updated asset values from the state variable `assetData`
-    console.log(assetData);
+
+  const handleSubmit = async () => {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    let pid = urlParams.get("pid"); // value1
+    let arr = []
+    for (let i = 0; i < assetData.length; i++) {
+      arr.push(parseFloat(assetData[i].price));
+    }
+    console.log(arr);
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_HOST}api/portfolio/updatePortfolio`,
+      {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ updatedprice: arr, id: pid }),
+      }
+    );
+
+    const response = await res.json()
+    if (response.status == 200) {
+      toast.success("Portfolio Updated Successfully", {
+        position: "top-center",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+
+    } else {
+      toast.error(response.message, {
+        position: "top-center",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }
+    console.log(response);
     // Add your logic to update the values in the backend
   };
 

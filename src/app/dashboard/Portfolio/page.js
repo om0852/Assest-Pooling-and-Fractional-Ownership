@@ -11,6 +11,10 @@ export default function Main() {
 
   const [portfoliodata, setportfoliodata] = useState("");
   const fetchdata = async () => {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    let pid = urlParams.get("pid"); // value1
+
     const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}api/portfolio`, {
       method: "POST",
       headers: {
@@ -39,10 +43,10 @@ export default function Main() {
         router.push("/login");
       } else {
         fetchdata();
-       
+
       }
     }
-  },[]);
+  }, []);
   return (
     <div className="w-full h-screen rounded p-2 md:px-16">
       <div className="flex justify-center items-center my-2 mb-4">
