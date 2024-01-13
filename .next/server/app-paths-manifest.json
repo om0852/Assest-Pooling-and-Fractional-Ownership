@@ -1,7 +1,8 @@
 {
   "/page": "app/page.js",
+  "/login/page": "app/login/page.js",
+  "/dashboard/page": "app/dashboard/page.js",
   "/dashboard/portfolios/page": "app/dashboard/portfolios/page.js",
-  "/dashboard/Portfolio/createportfolio/page": "app/dashboard/Portfolio/createportfolio/page.js",
-  "/Portfolio/assests/buyassest/page": "app/Portfolio/assests/buyassest/page.js",
-  "/Portfolio/assests/buyassestlist/page": "app/Portfolio/assests/buyassestlist/page.js"
+  "/api/portfolio/graphdata/route": "app/api/portfolio/graphdata/route.js",
+  "/dashboard/Portfolio/createportfolio/page": "app/dashboard/Portfolio/createportfolio/page.js"
 }
