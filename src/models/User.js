@@ -9,6 +9,8 @@ const UserSchema = new mongoose.Schema({
     organization: { type: String, default: "" },
     metamaskaddress: { type: String, default: "" },
     phone: { type: String, default: "" },
+    pincode: { type: Number },
+    pic: { type: String },
     role: { type: String, default: "admin" },
 }, { timestamps: true })
 

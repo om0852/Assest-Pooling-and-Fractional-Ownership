@@ -1,209 +1,375 @@
-import Link from 'next/link'
-import React from 'react'
+'use client';
+import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import jwt_decode from "jwt-decode";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import defaultimage from "../../images/defaultprofile.jpg"
+var jwt = require('jsonwebtoken');
 
 
-const Profile = () => {
-  return (
-<div class="mx-0 md:mx-8 bg-transparent h-auto">
- <div class="w-full h-fit text-white bg-main-color">
-        <div 
-            class="h-fit flex flex-col max-w-screen-xl px-4 mx-auto items-center justify-center ">
-            <div class="p-4 flex flex-row items-center justify-center">
-                <a href="#"
-                    class="text-lg font-semibold tracking-widest uppercase rounded-lg focus:outline-none focus:shadow-outline">example
-                    profile</a>
-            </div>
-            
-        </div>
-    </div>
-    <div class="h-fit container mx-auto my-2 px-5 py-2">
-        <div class="h-fit md:flex no-wrap md:-mx-2 ">
-            <div class="h-fit w-full md:w-3/12 ">
-                <div class="bg-white p-3 border-t-4 border-green-400">
-                    <div class="image overflow-hidden">
-                        <img class="h-auto w-full mx-auto"
-                            src="https://lavinephotography.com.au/wp-content/uploads/2017/01/PROFILE-Photography-112.jpg"
-                            alt=""/>
-                    </div>
-                    <h1 class="text-gray-900 font-bold text-xl leading-8 my-1">Jane Doe</h1>
-                    <h3 class="text-gray-600 font-lg text-semibold leading-6">Owner at Her Company Inc.</h3>
-                    <p class="text-sm text-gray-500 hover:text-gray-600 leading-6">Lorem ipsum dolor sit amet
-                        consectetur adipisicing elit.
-                        Reprehenderit, eligendi dolorum sequi illum qui unde aspernatur non deserunt</p>
-                    <ul
-                        class="bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
-                        <li class="flex items-center py-3">
-                            <span>Status</span>
-                            <span class="ml-auto"><span
-                                    class="bg-green-500 py-1 px-2 rounded text-white text-sm">Active</span></span>
-                        </li>
-                        <li class="flex items-center py-3">
-                            <span>Member since</span>
-                            <span class="ml-auto">Nov 07, 2016</span>
-                        </li>
-                    </ul>
-                </div>
-                <div class="h-fit bg-white p-3 hover:shadow">
-                    <div class="flex items-center space-x-3 font-semibold text-gray-900 text-xl leading-8">
-                        <span class="text-green-500">
-                            <svg class="h-5 fill-current" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                            </svg>
-                        </span>
-                        <span>Similar Profiles</span>
-                    </div>
-                    <div class="grid grid-cols-3">
-                        <div class="text-center my-2">
-                            <img class="h-16 w-16 rounded-full mx-auto"
-                                src="https://cdn.australianageingagenda.com.au/wp-content/uploads/2015/06/28085920/Phil-Beckett-2-e1435107243361.jpg"
-                                alt=""/>
-                            <a href="#" class="text-main-color">Kojstantin</a>
-                        </div>
-                        <div class="text-center my-2">
-                            <img class="h-16 w-16 rounded-full mx-auto"
-                                src="https://avatars2.githubusercontent.com/u/24622175?s=60&amp;v=4"
-                                alt=""/>
-                            <a href="#" class="text-main-color">James</a>
-                        </div>
-                        <div class="text-center my-2">
-                            <img class="h-16 w-16 rounded-full mx-auto"
-                                src="https://lavinephotography.com.au/wp-content/uploads/2017/01/PROFILE-Photography-112.jpg"
-                                alt=""/>
-                            <a href="#" class="text-main-color">Natie</a>
-                        </div>
-                        <div class="text-center my-2">
-                            <img class="h-16 w-16 rounded-full mx-auto"
-                                src="https://bucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com/public/images/f04b52da-12f2-449f-b90c-5e4d5e2b1469_361x361.png"
-                                alt=""/>
-                            <a href="#" class="text-main-color">Casey</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="h-fit w-full md:w-9/12 mx-0 my-2 md:mx-2 ">
-                <div class="bg-white p-3 shadow-sm rounded-sm">
-                    <div class="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
-                        <span clas="text-green-500">
-                            <svg class="h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                            </svg>
-                        </span>
-                        <span class="tracking-wide">About</span>
-                    </div>
-                    <div class="text-gray-700">
-                        <div class="grid md:grid-cols-2 text-sm">
-                            <div class="grid grid-cols-2">
-                                <div class="px-4 py-2 font-semibold">First Name</div>
-                                <div class="px-4 py-2">Jane</div>
-                            </div>
-                            <div class="grid grid-cols-2">
-                                <div class="px-4 py-2 font-semibold">Last Name</div>
-                                <div class="px-4 py-2">Doe</div>
-                            </div>
-                            <div class="grid grid-cols-2">
-                                <div class="px-4 py-2 font-semibold">Gender</div>
-                                <div class="px-4 py-2">Female</div>
-                            </div>
-                            <div class="grid grid-cols-2">
-                                <div class="px-4 py-2 font-semibold">Contact No.</div>
-                                <div class="px-4 py-2">+11 998001001</div>
-                            </div>
-                            <div class="grid grid-cols-2">
-                                <div class="px-4 py-2 font-semibold">Current Address</div>
-                                <div class="px-4 py-2">Beech Creek, PA, Pennsylvania</div>
-                            </div>
-                            <div class="grid grid-cols-2">
-                                <div class="px-4 py-2 font-semibold">Permanant Address</div>
-                                <div class="px-4 py-2">Arlington Heights, IL, Illinois</div>
-                            </div>
-                            <div class="grid grid-cols-2">
-                                <div class="px-4 py-2 font-semibold">Email.</div>
-                                <div class="px-4 py-2">
-                                    <a class="text-blue-800" href="mailto:jane@example.com">jane@example.com</a>
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-2">
-                                <div class="px-4 py-2 font-semibold">Birthday</div>
-                                <div class="px-4 py-2">Feb 06, 1998</div>
-                            </div>
-                        </div>
-                    </div>
-                    <button
-                        class="block w-full text-blue-800 text-sm font-semibold rounded-lg hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:bg-gray-100 hover:shadow-xs p-3 my-4">Show
-                        Full Information</button>
-                </div>
+const profile = () => {
+    const router = useRouter();
+    const [UserData, setUserData] = useState(null);
+    const [message, setmessage] = useState("");
+    const [img, setimg] = useState("");
 
-                <div class="my-4"></div>
+    const [user, setuser] = useState({
+        name: "",
+        email: "",
+        address: "",
+        waddress: "",
+        phone: "",
+        pincode: "",
+    })
+    function isValidMetamaskAddress(address) {
+        // Define the pattern for a valid Metamask address
+        const addressPattern = /^(0x)?[0-9a-fA-F]{40}$/;
 
-                <div class="h-fit bg-white p-3 shadow-sm rounded-sm">
+        // Test if the address matches the pattern
+        return addressPattern.test(address);
+    }
 
-                    <div class="grid grid-cols-2">
+
+
+    const userData = async () => {
+        setimg(defaultimage.src);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}api/user/profile`, {
+            method: "POST",
+            headers: {
+                Accept: "Application/json",
+                "Content-Type": "Application/json"
+            },
+            body: JSON.stringify({ Email: localStorage.getItem("APFOS_useremail") })
+        })
+
+        const response = await res.json();
+        setuser({ name: response.error.name, email: response.error.email, phone: response.error.phone, waddress: response.error.metamaskaddress })
+        console.log(response.error);
+        setUserData(response.error);
+    }
+    const handlePic = async (e) => {
+        const filedata = e.target.files[0];
+        console.log(e.target.files[0])
+        const data = new FormData();
+        data.append("file", filedata);
+        data.append("upload_preset", "gsceswka");
+        data.append("cloud_name", "dge7wv4zo");
+
+        await fetch("https://api.cloudinary.com/v1_1/dge7wv4zo/image/upload", {
+            method: "post",
+            body: data
+        })
+            .then((res) => {
+                res.json().then((data) => {
+                    console.log(data);
+                    setimg(data.url);
+                })
+            }).catch((error) => {
+                console.log(error);
+            })
+    }
+    const isFormValid = () => {
+        // Add validation logic for each field
+        if (!user.name || !user.email || !user.address || !user.phone || !user.pincode || !user.waddress) {
+            console.log(user);
+            toast.error("Please fill in all the fields!", {
+                position: "top-center",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
+            return false;
+        }
+
+
+        return true;
+    }
+    useEffect(() => {
+        userData();
+        // if (localStorage.getItem('token')) {
+        //   let decoded = jwt_decode(localStorage.getItem('token'));
+        //   setuser({name:decoded.name,email:decoded.email,phone:decoded.phone,address:decoded.address,pincode:decoded.pincode,exp:decoded.exp})
+        //   if(decoded.exp < Math.floor(Date.now()/1000))
+        //   {
+        //     localStorage.removeItem('token')
+        //     console.log('expired')
+        //     router.push("/login")
+        //   }
+        //  }
+        // else{
+        //   router.push("/")
+        // }
+    }, []);
+
+    const handleChange = (e) => {
+        let name = e.target.name;
+        let value = e.target.value;
+        if (name == "waddress") {
+            if (isValidMetamaskAddress(value)) {
+                setmessage("");
+            } else {
+                console.log("Invalid Metamask address!");
+                setmessage("Invalid Metamask address!");
+            }
+        }
+        setuser({ ...user, [name]: value });
+    }
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        if (!isFormValid()) {
+            return false;
+        }
+        else {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}api/user/updateProfile`, {
+                method: "POST",
+                headers: {
+                    Accept: "Application/json",
+                    "Content-Type": "Application/json"
+                },
+                body: JSON.stringify({ user, pic: img })
+            })
+
+            const response = await res.json();
+            if (response.status === 200) {
+                localStorage.removeItem('token')
+                localStorage.setItem('token', response.token)
+                toast.success("Details saved Successful", {
+                    position: "top-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                });
+            } else if (response.status === 201) {
+                toast.error("Comfirm password does not match", {
+                    position: "top-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                });
+            } else if (response.status === 202) {
+                toast.error("Please fill all the details", {
+                    position: "top-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                });
+            } else {
+                toast.error("Failed to Save.Try again..", {
+                    position: "top-center",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                });
+            }
+        }
+    }
+
+    return (
+        <>
+            <ToastContainer
+                position="top-center"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="colored"
+            />
+            <input
+                type="file"
+                onChange={handlePic}
+                id="pic"
+                style={{ display: "none" }}
+                accept="image/*"  // This line restricts file selection to only image files
+            />            <label htmlFor="pic">
+                <img
+                    style={{
+                        background: "white",
+                        width: "30vh",
+                        height: "30vh",
+                        margin: "auto",
+                        left: "40%",
+                        position: "relative",
+                        textAlign: "center",
+                        borderRadius: "50%",  // Added border-radius to make it circular
+                    }}
+                    className="inline-block"
+                    src={img}
+                    alt=""
+                />
+
+            </label>
+
+            <div className="isolate bg-white p-6 lg:px-8 min-h-screen">
+                <form method="POST" className="mx-auto max-w-xl ">
+                    <div className="py-4">
+                        <h3 className="text-3xl font-bold text-gray-900 sm:text-xl">
+                            Personal Info:
+                        </h3>
+                    </div>
+                    <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
                         <div>
-                            <div class="flex items-center space-x-2 font-semibold text-gray-900 leading-8 mb-3">
-                                <span clas="text-green-500">
-                                    <svg class="h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                        stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                                    </svg>
-                                </span>
-                                <span class="tracking-wide">Experience</span>
+                            <label
+                                htmlFor="name"
+                                className="block text-sm font-semibold leading-6 text-gray-900"
+                            >
+                                Name
+                            </label>
+                            <div className="mt-2.5">
+                                <input
+                                    onChange={handleChange}
+                                    value={user.name}
+                                    type="text"
+                                    name="name"
+                                    id="name"
+                                    autoComplete="off"
+                                    required="true"
+                                    className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pink-600 sm:text-sm sm:leading-6"
+                                />
                             </div>
-                            <ul class="list-inside space-y-2">
-                                <li>
-                                    <div class="text-teal-600">Owner at Her Company Inc.</div>
-                                    <div class="text-gray-500 text-xs">March 2020 - Now</div>
-                                </li>
-                                <li>
-                                    <div class="text-teal-600">Owner at Her Company Inc.</div>
-                                    <div class="text-gray-500 text-xs">March 2020 - Now</div>
-                                </li>
-                                <li>
-                                    <div class="text-teal-600">Owner at Her Company Inc.</div>
-                                    <div class="text-gray-500 text-xs">March 2020 - Now</div>
-                                </li>
-                                <li>
-                                    <div class="text-teal-600">Owner at Her Company Inc.</div>
-                                    <div class="text-gray-500 text-xs">March 2020 - Now</div>
-                                </li>
-                            </ul>
                         </div>
                         <div>
-                            <div class="flex items-center space-x-2 font-semibold text-gray-900 leading-8 mb-3">
-                                <span clas="text-green-500">
-                                    <svg class="h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                        stroke="currentColor">
-                                        <path fill="#fff" d="M12 14l9-5-9-5-9 5 9 5z" />
-                                        <path fill="#fff"
-                                            d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
-                                    </svg>
-                                </span>
-                                <span class="tracking-wide">Education</span>
+                            <label
+                                htmlFor="last-name"
+                                className="block text-sm font-semibold leading-6 text-gray-900"
+                            >
+                                Email (cannot be changed)
+                            </label>
+                            <div className="mt-2.5">
+                                <input
+                                    onChange={handleChange}
+                                    value={user.email}
+                                    type="email"
+                                    name="email"
+                                    id="email"
+                                    required="true"
+                                    disabled={true}
+                                    autoComplete="off"
+                                    className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pink-600 sm:text-sm sm:leading-6"
+                                />
                             </div>
-                            <ul class="list-inside space-y-2">
-                                <li>
-                                    <div class="text-teal-600">Masters Degree in Oxford</div>
-                                    <div class="text-gray-500 text-xs">March 2020 - Now</div>
-                                </li>
-                                <li>
-                                    <div class="text-teal-600">Bachelors Degreen in LPU</div>
-                                    <div class="text-gray-500 text-xs">March 2020 - Now</div>
-                                </li>
-                            </ul>
+                        </div>
+                        <div className="sm:col-span-2">
+                            <label
+                                htmlFor="company"
+                                className="block text-sm font-semibold leading-6 text-gray-900"
+                            >
+                                Address
+                            </label>
+                            <div className="mt-2.5">
+                                <input
+                                    onChange={handleChange}
+                                    value={user.address}
+                                    type="text"
+                                    name="address"
+                                    id="address"
+                                    autoComplete="off"
+                                    required="true"
+                                    className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pink-600 sm:text-sm sm:leading-6"
+                                />
+                            </div>
+                        </div>
+                        <div>
+                            <label
+                                htmlFor="phone"
+                                className="block text-sm font-semibold leading-6 text-gray-900"
+                            >
+                                Phone No.
+                            </label>
+                            <div className="mt-2.5">
+                                <input
+                                    onChange={handleChange}
+                                    value={user.phone}
+                                    type="number"
+                                    name="phone"
+                                    id="phone"
+                                    autoComplete="off"
+                                    required="true"
+                                    className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pink-600 sm:text-sm sm:leading-6"
+                                />
+                            </div>
+                        </div>
+                        <div>
+                            <label
+                                htmlFor="pincode"
+                                className="block text-sm font-semibold leading-6 text-gray-900"
+                            >
+                                Pincode
+                            </label>
+                            <div className="mt-2.5">
+                                <input
+                                    onChange={handleChange}
+                                    value={user.pincode}
+                                    type="number"
+                                    name="pincode"
+                                    id="pincode"
+                                    autoComplete="off"
+                                    required="true"
+                                    className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pink-600 sm:text-sm sm:leading-6"
+                                />
+                            </div>
+                        </div>
+                        <div className="sm:col-span-2">
+                            <label
+                                htmlFor="company"
+                                className="block text-sm font-semibold leading-6 text-gray-900"
+                            >
+                                Wallet Address
+                            </label>
+                            <div className="mt-2.5">
+                                <input
+                                    onChange={handleChange}
+                                    value={user.waddress}
+                                    type="text"
+                                    name="waddress"
+                                    id="waddress"
+                                    autoComplete="off"
+                                    required="true"
+                                    className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-pink-600 sm:text-sm sm:leading-6"
+                                />
+                                <h2 style={{ color: "red" }}>{message}</h2>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-  )
-}
 
-export default Profile
+                    <div className="mt-10">
+                        <button
+                            onClick={handleSubmit}
+                            type="submit"
+                            className="block w-full rounded-md bg-pink-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-pink-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink-600"
+                        >
+                            Save
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </>
+    );
+};
+
+export default profile;
