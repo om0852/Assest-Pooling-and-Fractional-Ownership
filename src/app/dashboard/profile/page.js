@@ -1,7 +1,7 @@
 'use client';
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import jwt_decode from "jwt-decode";
+import { jwt_decode } from "jwt-decode";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import defaultimage from "../../images/defaultprofile.jpg"
@@ -44,7 +44,8 @@ const profile = () => {
         })
 
         const response = await res.json();
-        setuser({ name: response.error.name, email: response.error.email, phone: response.error.phone, waddress: response.error.metamaskaddress })
+        setuser({ name: response.error.name, email: response.error.email, phone: response.error.phone, waddress: response.error.metamaskaddress,address:response.error.address,pincode:response.error.pincode })
+        setimg(response.error.pic)
         console.log(response.error);
         setUserData(response.error);
     }
@@ -92,15 +93,14 @@ const profile = () => {
     useEffect(() => {
         userData();
         // if (localStorage.getItem('token')) {
-        //   let decoded = jwt_decode(localStorage.getItem('token'));
-        //   setuser({name:decoded.name,email:decoded.email,phone:decoded.phone,address:decoded.address,pincode:decoded.pincode,exp:decoded.exp})
-        //   if(decoded.exp < Math.floor(Date.now()/1000))
-        //   {
-        //     localStorage.removeItem('token')
-        //     console.log('expired')
-        //     router.push("/login")
-        //   }
-        //  }
+        //     let decoded = jwt_decode(localStorage.getItem('token'));
+
+        //     if (decoded.exp < Math.floor(Date.now() / 1000)) {
+        //         localStorage.removeItem('token')
+        //         console.log('expired')
+        //         router.push("/login")
+        //     }
+        // }
         // else{
         //   router.push("/")
         // }
@@ -137,8 +137,6 @@ const profile = () => {
 
             const response = await res.json();
             if (response.status === 200) {
-                localStorage.removeItem('token')
-                localStorage.setItem('token', response.token)
                 toast.success("Details saved Successful", {
                     position: "top-center",
                     autoClose: 3000,

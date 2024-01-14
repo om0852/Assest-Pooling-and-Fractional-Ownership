@@ -101,8 +101,8 @@ const Navbar = () => {
               <li className="text-gray-300">|</li>
               <Link
                 className={`text-lg  hover:text-blue-500 hover:font-bold ${location === "/portfolios"
-                    ? "text-blue-500 font-bold"
-                    : "text-gray-400"
+                  ? "text-blue-500 font-bold"
+                  : "text-gray-400"
                   }`}
                 href={"/portfolios"}
               >
@@ -111,8 +111,8 @@ const Navbar = () => {
               <li className="text-gray-300">|</li>
               <Link
                 className={`text-lg  hover:text-blue-500 hover:font-bold ${location === "/Portfolio/assests/buyassestlist"
-                    ? "text-blue-500 font-bold"
-                    : "text-gray-400"
+                  ? "text-blue-500 font-bold"
+                  : "text-gray-400"
                   }`}
                 href={"/Portfolio/assests/buyassestlist"}
               >
@@ -121,8 +121,8 @@ const Navbar = () => {
               <li className="text-gray-300">|</li>
               <Link
                 className={`text-lg  hover:text-blue-500 hover:font-bold ${location === "/about"
-                    ? "text-blue-500 font-bold"
-                    : "text-gray-400"
+                  ? "text-blue-500 font-bold"
+                  : "text-gray-400"
                   }`}
                 href={"/about"}
               >
@@ -131,8 +131,8 @@ const Navbar = () => {
               <li className="text-gray-300">|</li>
               <Link
                 className={`text-lg  hover:text-blue-500 hover:font-bold ${location === "/contact"
-                    ? "text-blue-500 font-bold"
-                    : "text-gray-400"
+                  ? "text-blue-500 font-bold"
+                  : "text-gray-400"
                   }`}
                 href={"/contact"}
               >
@@ -420,8 +420,8 @@ const Navbar = () => {
             <ul className="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6">
               <Link
                 className={`text-lg  hover:text-blue-500 hover:font-bold  ${location === "/dashboard"
-                    ? "text-blue-500 font-bold"
-                    : "text-gray-400"
+                  ? "text-blue-500 font-bold"
+                  : "text-gray-400"
                   }`}
                 href={"/dashboard"}
               >
@@ -430,8 +430,8 @@ const Navbar = () => {
               <li className="text-gray-300">|</li>
               <Link
                 className={`text-lg  hover:text-blue-500 hover:font-bold ${location === "/dashboard/Portfolio/createportfolio"
-                    ? "text-blue-500 font-bold"
-                    : "text-gray-400"
+                  ? "text-blue-500 font-bold"
+                  : "text-gray-400"
                   }`}
                 href={"/dashboard/Portfolio/portfolios"}
               >
@@ -440,8 +440,8 @@ const Navbar = () => {
               <li className="text-gray-300">|</li>
               <Link
                 className={`text-lg  hover:text-blue-500 hover:font-bold ${location === "/dashboard/portfolios"
-                    ? "text-blue-500 font-bold"
-                    : "text-gray-400"
+                  ? "text-blue-500 font-bold"
+                  : "text-gray-400"
                   }`}
                 href={"/dashboard/portfolios"}
               >
@@ -450,8 +450,8 @@ const Navbar = () => {
               <li className="text-gray-300">|</li>
               <Link
                 className={`text-lg  hover:text-blue-500 hover:font-bold ${location === "/dashboard/users"
-                    ? "text-blue-500 font-bold"
-                    : "text-gray-400"
+                  ? "text-blue-500 font-bold"
+                  : "text-gray-400"
                   }`}
                 href={"/dashboard/users"}
               >
@@ -460,8 +460,8 @@ const Navbar = () => {
               <li className="text-gray-300">|</li>
               <Link
                 className={`text-lg  hover:text-blue-500 hover:font-bold ${location === "/dashboard/profile"
-                    ? "text-blue-500 font-bold"
-                    : "text-gray-400"
+                  ? "text-blue-500 font-bold"
+                  : "text-gray-400"
                   }`}
                 href={"/dashboard/profile"}
               >
