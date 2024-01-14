@@ -66,7 +66,7 @@ export async function POST(req, res) {
             }
         }
 
-        return NextResponse.json({ status: 200, currentYear: newArray });
+        return NextResponse.json({ status: 200, currentYear: newArray ,portfoliodata:portfoliodata});
     } catch (error) {
         console.log(error);
         return NextResponse.json({ status: 500, error: "Internal Server Error" });

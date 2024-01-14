@@ -1,8 +1,10 @@
 {
   "/not-found": "app/not-found.js",
-  "/page": "app/page.js",
   "/login/page": "app/login/page.js",
   "/dashboard/page": "app/dashboard/page.js",
   "/dashboard/profile/page": "app/dashboard/profile/page.js",
-  "/api/user/profile/route": "app/api/user/profile/route.js"
+  "/dashboard/portfolios/page": "app/dashboard/portfolios/page.js",
+  "/Portfolio/assests/buyassestlist/page": "app/Portfolio/assests/buyassestlist/page.js",
+  "/api/user/profile/route": "app/api/user/profile/route.js",
+  "/api/portfolio/graphdata/route": "app/api/portfolio/graphdata/route.js"
 }

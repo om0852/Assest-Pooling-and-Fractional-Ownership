@@ -40,7 +40,7 @@ const Page = () => {
         });
         if (decoded.role == "user") { router.push('/') }
         if (decoded.role == "admin") {
-          router.push('/dashboard')
+          router.push('/dashboard/portfolios')
         }
       }
 

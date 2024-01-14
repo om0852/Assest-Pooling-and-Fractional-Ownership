@@ -14,6 +14,7 @@ const Navbar = () => {
   const [role, setrole] = useState("user");
   const [profile, setprofile] = useState(false);
   const [loggedin, setloggedin] = useState(null);
+  const [user, setuser] = useState(null)
   let change = true;
 
   const logout = () => {
@@ -29,7 +30,19 @@ const Navbar = () => {
       setrole(null)
     }
   }
+  const userData = async () => {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}api/user/profile`, {
+      method: "POST",
+      headers: {
+        Accept: "Application/json",
+        "Content-Type": "Application/json"
+      },
+      body: JSON.stringify({ Email: localStorage.getItem("APFOS_useremail") })
+    })
 
+    const response = await res.json();
+    setuser({ name: response.error.name, email: response.error.email, phone: response.error.phone, waddress: response.error.metamaskaddress, address: response.error.address, pincode: response.error.pincode, pic: response.error.pic });
+  }
   useEffect(() => {
     if (localStorage.getItem("token")) {
       let token = localStorage.getItem("token").toString();
@@ -59,6 +72,7 @@ const Navbar = () => {
     //   change=!change;
     // }
     // },[setrole,loggedin]);
+    userData();
   }, [change, loggedin, setloggedin, role, setrole, logout]);
 
 
@@ -175,16 +189,14 @@ const Navbar = () => {
                         <div class=" photo-wrapper p-2">
                           <img
                             class="w-32 h-32 rounded-full mx-auto"
-                            src="https://www.gravatar.com/avatar/2acfb745ecf9d4dccb3364752d17f65f?s=260&d=mp"
-                            alt="John Doe"
+                            src={user.pic}
                           />
                         </div>
                         <div class="p-2">
                           <h3 class="text-center text-xl text-gray-900 font-medium leading-8">
-                            Joh Doe
+                            {user.name}
                           </h3>
                           <div class="text-center text-gray-400 text-xs font-semibold">
-                            <p>Web Developer</p>
                           </div>
                           <table class="text-xs my-3">
                             <tbody>
@@ -193,31 +205,31 @@ const Navbar = () => {
                                   Address
                                 </td>
                                 <td class="px-2 py-2">
-                                  Chatakpur-3, Dhangadhi Kailali
-                                </td>
+                                  {user.address}                                </td>
                               </tr>
                               <tr>
                                 <td class="px-2 py-2 text-gray-500 font-semibold">
                                   Phone
                                 </td>
-                                <td class="px-2 py-2">+977 9955221114</td>
+                                <td class="px-2 py-2">{user.phone}</td>
                               </tr>
                               <tr>
                                 <td class="px-2 py-2 text-gray-500 font-semibold">
                                   Email
                                 </td>
-                                <td class="px-2 py-2">john@exmaple.com</td>
+                                <td class="px-2 py-2">{user.email}</td>
                               </tr>
                             </tbody>
                           </table>
 
                           <div class="text-center my-3">
                             <a
-                              class="text-xs text-indigo-500 italic hover:underline hover:text-indigo-600 font-medium"
-                              href="#"
+                              className="text-xs text-indigo-500 italic hover:underline hover:text-indigo-600 font-medium"
+                              href="/dashboard/profile"
                             >
                               View Profile
                             </a>
+
                           </div>
                         </div>
                       </div>
@@ -418,7 +430,7 @@ const Navbar = () => {
               </button>
             </div>
             <ul className="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6">
-              <Link
+              {/* <Link
                 className={`text-lg  hover:text-blue-500 hover:font-bold  ${location === "/dashboard"
                   ? "text-blue-500 font-bold"
                   : "text-gray-400"
@@ -426,7 +438,7 @@ const Navbar = () => {
                 href={"/dashboard"}
               >
                 Dashboard
-              </Link>
+              </Link> */}
               <li className="text-gray-300">|</li>
               <Link
                 className={`text-lg  hover:text-blue-500 hover:font-bold ${location === "/dashboard/Portfolio/createportfolio"
@@ -588,12 +600,12 @@ const Navbar = () => {
                 <div>
                   <ul>
                     <li className="mb-1">
-                      <Link
+                      {/* <Link
                         className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded"
                         href={"/dashboard"}
                       >
                         Dashboard
-                      </Link>
+                      </Link> */}
                     </li>
                     <li className="mb-1">
                       <Link

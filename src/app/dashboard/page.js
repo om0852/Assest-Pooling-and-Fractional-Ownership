@@ -13,6 +13,8 @@ export default function Graph() {
   const router = useRouter();
   const [priceData, setpriceData] = useState([]);
   const [dateData, setdateData] = useState([]);
+  const [portfoliodata, setportfoliodata] = useState([]);
+  const [totalAssest, settotalAssest] = useState(0);
 
   React.useEffect(() => {
     async function fetchdata() {
@@ -33,6 +35,8 @@ export default function Graph() {
         }
       );
       const response = await res.json()
+      setportfoliodata(response.portfoliodata);
+      settotalAssest(response.portfoliodata.Assests.length)
       console.log(response.currentYear);
       let arr = []
       let date = []
@@ -40,7 +44,7 @@ export default function Graph() {
 
         for (let i = 0; i < response.currentYear.length; i++) {
           arr.push(response.currentYear[i].price);
-          date.push(response.currentYear[i].date)
+          date.push(new Date(response.currentYear[i].date).getDate() + "-" + new Date(response.currentYear[i].date).getMonth() + 1);
           setdateData(priceData.push(response.currentYear[i].date));
         }
       }
@@ -58,13 +62,7 @@ export default function Graph() {
               data: arr,
               fill: false,
             },
-            {
-              label: new Date().getFullYear() - 1,
-              fill: false,
-              backgroundColor: "#ed64a6",
-              borderColor: "#ed64a6",
-              data: [40, 68, 86, 74, 56],
-            },
+
           ],
         },
         options: {
@@ -184,9 +182,9 @@ export default function Graph() {
           </div>
           <Link href={'/dashboard/portfolios'} className="w-fit text-purple-800 bg-white hover:bg-gray-500 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm mx-2 px-2 py-2.5 text-center ">View Portfolios</Link>
           <div className="flex flex-wrap align-items-center m-2">
-            <span className="text-white font-semibold text-lg mx-1 px-2 py-2.5 text-center ">Total Assets : 200</span>
-            <span className="text-white font-semibold text-lg mx-1 px-2 py-2.5 text-center ">Sold : 100</span>
-            <span className="text-white font-semibold text-lg mx-1 px-2 py-2.5 text-center ">Available : 100</span>
+            <span className="text-white font-semibold text-lg mx-1 px-2 py-2.5 text-center ">Total Assets :{portfoliodata && totalAssest} </span>
+            <span className="text-white font-semibold text-lg mx-1 px-2 py-2.5 text-center ">Sold : {portfoliodata && parseFloat(portfoliodata.Price) - parseFloat(portfoliodata.RemainingPrice)}</span>
+            <span className="text-white font-semibold text-lg mx-1 px-2 py-2.5 text-center ">Available : {portfoliodata.RemainingPrice}</span>
           </div>
         </div>
       </div>
