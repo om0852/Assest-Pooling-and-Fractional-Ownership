@@ -10,28 +10,9 @@ const Page = () => {
   const router = useRouter();
 
   useEffect(() => {
-    if (localStorage.getItem("token")) {
-      let token = localStorage.getItem("token").toString();
-      const decoded = jwtDecode(token);
-      console.log(decoded);
-      // Check for expired token
-      var dateNow = new Date() / 1000;
-      if (dateNow > decoded.exp) {
-        alert("Your session has been expired.");
-        localStorage.removeItem("token");
-        router.push("/login");
-      } else {
-        if(decoded.role=="admin"){
 
-        }
-        if(decoded.role=="user"){
-          router.push('/');
-        }  
-      }
-    }else{
-      router.push('/login')
-    }
-  },[]);
+  }, []);
+
 
   const [data, setdata] = useState({
     useremail: "",
@@ -40,12 +21,30 @@ const Page = () => {
   const onchange = (e) => {
     let APFOS_useremail = localStorage.getItem("APFOS_useremail");
     let val = e.target.value;
-    setdata({
-      useremail:APFOS_useremail,
-      walletaddress: val,
-    });
-  };
+    if (validateMetaMaskAddress(val)) {
+      setdata({
+        useremail: APFOS_useremail,
+        walletaddress: val,
+      });
+    } else {
+      toast.error("Invalid MetaMask Wallet Address", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }
 
+  };
+  const validateMetaMaskAddress = (address) => {
+    // Regular expression to validate MetaMask wallet address format
+    const regex = /^0x[a-fA-F0-9]{40}$/;
+    return regex.test(address);
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/addwalletaddress`, {
@@ -68,7 +67,7 @@ const Page = () => {
         progress: undefined,
         theme: "colored",
       });
-      router.push("/login");
+      router.push("/");
     } else if (response.status === 201) {
       toast.error("Invalid Format", {
         position: "top-center",

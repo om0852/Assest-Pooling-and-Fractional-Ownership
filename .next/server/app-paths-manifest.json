@@ -1,10 +1,14 @@
 {
-  "/not-found": "app/not-found.js",
-  "/login/page": "app/login/page.js",
-  "/dashboard/page": "app/dashboard/page.js",
-  "/dashboard/profile/page": "app/dashboard/profile/page.js",
+  "/page": "app/page.js",
+  "/about/page": "app/about/page.js",
+  "/portfolios/page": "app/portfolios/page.js",
   "/dashboard/portfolios/page": "app/dashboard/portfolios/page.js",
-  "/Portfolio/assests/buyassestlist/page": "app/Portfolio/assests/buyassestlist/page.js",
   "/api/user/profile/route": "app/api/user/profile/route.js",
-  "/api/portfolio/graphdata/route": "app/api/portfolio/graphdata/route.js"
+  "/dashboard/Portfolio/createportfolio/page": "app/dashboard/Portfolio/createportfolio/page.js",
+  "/dashboard/Portfolio/userList/page": "app/dashboard/Portfolio/userList/page.js",
+  "/api/portfolio/orgPortfolio/route": "app/api/portfolio/orgPortfolio/route.js",
+  "/api/portfolio/AllPortfolio/route": "app/api/portfolio/AllPortfolio/route.js",
+  "/api/portfolio/TopPortfolio/route": "app/api/portfolio/TopPortfolio/route.js",
+  "/Portfolio/assests/buyassest/page": "app/Portfolio/assests/buyassest/page.js",
+  "/api/portfolio/portfoliodetails/route": "app/api/portfolio/portfoliodetails/route.js"
 }

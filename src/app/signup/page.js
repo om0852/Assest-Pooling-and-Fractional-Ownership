@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { jwtDecode } from "jwt-decode";
+import defaultpic from "../images/defaultprofile.jpg"
 
 
 
@@ -53,6 +54,7 @@ const Page = () => {
     phone: "",
     password: "",
     cpassword: "",
+    pic: defaultpic.src
   });
 
   const onchange = (e) => {

@@ -184,7 +184,7 @@ export default function Graph() {
           <div className="flex flex-wrap align-items-center m-2">
             <span className="text-white font-semibold text-lg mx-1 px-2 py-2.5 text-center ">Total Assets :{portfoliodata && totalAssest} </span>
             <span className="text-white font-semibold text-lg mx-1 px-2 py-2.5 text-center ">Sold : {portfoliodata && parseFloat(portfoliodata.Price) - parseFloat(portfoliodata.RemainingPrice)}</span>
-            <span className="text-white font-semibold text-lg mx-1 px-2 py-2.5 text-center ">Available : {portfoliodata.RemainingPrice}</span>
+            <span className="text-white font-semibold text-lg mx-1 px-2 py-2.5 text-center ">Available : {portfoliodata && portfoliodata.RemainingPrice}</span>
           </div>
         </div>
       </div>

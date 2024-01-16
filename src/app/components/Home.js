@@ -30,7 +30,7 @@ const Home = () => {
           allportfoliodata();
         }
         if (decoded.role == "admin") {
-          router.push('/dashboard');
+          router.push('/dashboard/portfolios');
         }
       }
     }

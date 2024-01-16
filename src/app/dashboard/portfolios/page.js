@@ -15,17 +15,18 @@ const Page = () => {
   const allportfoliodata = async () => {
     // alert("calling ")
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_HOST}api/portfolio/AllPortfolio`,
+      `${process.env.NEXT_PUBLIC_HOST}api/portfolio/orgPortfolio`,
       {
         method: "POST",
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
-        body: "",
+        body:JSON.stringify({ email: localStorage.getItem("APFOS_useremail") }),
       }
     );
     const response = await res.json()
+    console.log(response.error);
     setportfoliodata(response.error);
   };
 

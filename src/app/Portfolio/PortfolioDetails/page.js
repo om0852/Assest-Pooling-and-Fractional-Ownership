@@ -255,7 +255,7 @@ export default function Main() {
           fetchdata();
         }
         if (decoded.role == "admin") {
-          router.push('/dashboard');
+          router.push('/dashboard/portfolios');
         }
       }
     } else {
