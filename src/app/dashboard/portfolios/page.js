@@ -83,7 +83,6 @@ const Page = () => {
 										</Link>
 									</div>
 								</div> */}
-
                       <div className="bg-white shadow-md rounded-lg max-w-sm m-2">
                         <Link
                           key={index}

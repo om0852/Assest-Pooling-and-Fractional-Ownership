@@ -220,7 +220,7 @@ const Page = () => {
             // e.preventDefault();
             // alert(response.error.RemainingPrice);
             if (response.error == null) {
-                return alert("Inavlid Assest Purchase");
+                return alert("Inavlid Asset Purchase");
             }
             if (data.BuyAmount > 1 && data.BuyAmount <= response.error.RemainingPrice) {
                 try {
@@ -315,7 +315,7 @@ const Page = () => {
         const response = await res.json();
         console.log(response)
         if (response.status === 200) {
-            toast.success("Assest Buy Successfully", {
+            toast.success("Asset Buy Successfully", {
                 position: "top-center",
                 autoClose: 3000,
                 hideProgressBar: false,

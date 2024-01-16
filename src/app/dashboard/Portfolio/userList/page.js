@@ -13,7 +13,7 @@ export default function Main() {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     let pid = urlParams.get('pid'); // value1
-  
+
     const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}api/portfolio/UserList`, {
       method: "POST",
       headers: {
@@ -90,7 +90,7 @@ export default function Main() {
                   {portfoliodata && portfoliodata.forEach(element => {
                     total += parseFloat(element.OrginalBuyPrice);
                   })}
-                  <p className="text-lg font-semibold">Total Assests Sell Price:{total}</p>
+                  <p className="text-lg font-semibold">Total Assets Sell Price:{total}</p>
                 </td>
 
                 <td className="px-6 py-4"></td>

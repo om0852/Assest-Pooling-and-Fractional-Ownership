@@ -61,29 +61,29 @@ const Page = () => {
         <div className="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 ">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">
-              Add Assest
+              Add Asset
             </h1>
             <form className="space-y-4 md:space-y-6" method="POST">
               <div>
-                <label htmlFor="Assest_Title" className="block mb-2 text-sm font-medium text-gray-900 ">Assest Name</label>
+                <label htmlFor="Assest_Title" className="block mb-2 text-sm font-medium text-gray-900 ">Asset Name</label>
                 <input onChange={(e) => onchange(e)} type="text" name="Assest_Title" id="Assest_Title" className="bg-white border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Enter Assest Name" required="" />
               </div>
-              <label htmlFor="AType" className="block mb-2 text-sm font-medium text-gray-900 ">Assest Type</label>
+              <label htmlFor="AType" className="block mb-2 text-sm font-medium text-gray-900 ">Asset Type</label>
               <select onChange={(e) => onchange(e)} type="text" name="AType" id="AType" className="bg-white border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
                 <option value="Stock" selected>Stock</option>
                 <option value="Cryptocurrency">Cryptocurrency</option>
-                <option value="Painting Assest">Painting Assest</option>
+                <option value="Painting Assest">Painting Asset</option>
               </select>
               <div>
-                <label htmlFor="Assest_Quantity" className="block mb-2 text-sm font-medium text-gray-900 ">Assest Quantity</label>
+                <label htmlFor="Assest_Quantity" className="block mb-2 text-sm font-medium text-gray-900 ">Asset Quantity</label>
                 <input onChange={(e) => onchange(e)} type="number" name="Assest_Quantity" id="Assest_Quatity" className="bg-white border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Enter Assest Quantity" required="" />
               </div>
               <div>
-                <label htmlFor="Assest_Description" className="block mb-2 text-sm font-medium text-gray-900 ">Assest Description</label>
+                <label htmlFor="Assest_Description" className="block mb-2 text-sm font-medium text-gray-900 ">Asset Description</label>
                 <input onChange={(e) => onchange(e)} type="text" name="Assest_Description" id="Assest_Description" className="bg-white border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Enter Assest Description" required="" />
               </div>
               <div>
-                <label htmlFor="Assest_Price" className="block mb-2 text-sm font-medium text-gray-900 ">Assest Price</label>
+                <label htmlFor="Assest_Price" className="block mb-2 text-sm font-medium text-gray-900 ">Asset Price</label>
                 <input onChange={(e) => onchange(e)} type="number" name="Assest_Price" id="Assest_Price" className="bg-white border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Enter Assest Price" required="" />
               </div>
 
@@ -94,7 +94,7 @@ const Page = () => {
         </div>
       </div>
       <div style={{ width: "40%", height: "100vh", textAlign: "center" }}>
-        Added Assest List
+        Added Asset List
         {
           portfoliodata && portfoliodata.map((data) => {
             <div className="assestlist" style={{

@@ -402,7 +402,7 @@ export default function Main() {
       });
       const response = await res.json();
       if (response.status == 200) {
-        toast.success("Assest Sell Successfully", {
+        toast.success("Asset Sell Successfully", {
           position: "top-center",
           autoClose: 3000,
           hideProgressBar: false,
