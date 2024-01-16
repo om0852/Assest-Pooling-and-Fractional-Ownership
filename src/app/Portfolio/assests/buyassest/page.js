@@ -51,7 +51,7 @@ const Page = () => {
 
             console.log(accounts);
             setsender(accounts[0]); // Use the first account in the array
-            const contractAddress = "0x930BC5ec6339AbC9343de0b5c1b5C1b4163670c8";
+            const contractAddress = "0x4C2E31D9a55D82380d7E9C7779dd232AFBDA2d52";
             const myContractInstance = new web3c.eth.Contract([
                 {
                     "inputs": [],
@@ -193,7 +193,7 @@ const Page = () => {
         });
     };
     const BuyAssest = async (e) => {
-        // e.preventdefault();
+        e.preventDefault();
         if (!sender) {
             const accounts = await window.ethereum.request({
                 method: 'eth_requestAccounts',
@@ -220,9 +220,10 @@ const Page = () => {
             // e.preventDefault();
             // alert(response.error.RemainingPrice);
             if (response.error == null) {
-                return alert("Inavlid Asset Purchase");
+                return alert("Invalid Asset Purchase");
             }
-            if (data.BuyAmount > 1 && data.BuyAmount <= response.error.RemainingPrice) {
+            // alert(data.BuyAmount < parseFloat(response.error.RemainingPrice))
+            if (data.BuyAmount >= 1 && data.BuyAmount <= parseFloat(response.error.RemainingPrice)) {
                 try {
                     const queryString = window.location.search;
                     const urlParams = new URLSearchParams(queryString);
@@ -253,7 +254,7 @@ const Page = () => {
                     const result = await myContract.methods.deposit(pid).send({
                         from: sender,
                         value: web3.utils.toWei(amountInEther.toString(), 'ether'),
-                        gas: gasEstimation
+                        gas: 100000
                     });
 
                     console.log(result);

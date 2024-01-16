@@ -65,7 +65,6 @@ export default function Main() {
                         {data.AssestTitle}
                       </p>
                       <p className="text-gray-500">
-                        Lorem ipsum dolor sit amet
                       </p>
 
                     </td>

@@ -1,14 +1,10 @@
 {
+  "/not-found": "app/not-found.js",
   "/page": "app/page.js",
-  "/about/page": "app/about/page.js",
-  "/portfolios/page": "app/portfolios/page.js",
-  "/dashboard/portfolios/page": "app/dashboard/portfolios/page.js",
   "/api/user/profile/route": "app/api/user/profile/route.js",
-  "/dashboard/Portfolio/createportfolio/page": "app/dashboard/Portfolio/createportfolio/page.js",
+  "/Portfolio/assests/buyassestlist/page": "app/Portfolio/assests/buyassestlist/page.js",
   "/dashboard/Portfolio/userList/page": "app/dashboard/Portfolio/userList/page.js",
-  "/api/portfolio/orgPortfolio/route": "app/api/portfolio/orgPortfolio/route.js",
-  "/api/portfolio/AllPortfolio/route": "app/api/portfolio/AllPortfolio/route.js",
-  "/api/portfolio/TopPortfolio/route": "app/api/portfolio/TopPortfolio/route.js",
   "/Portfolio/assests/buyassest/page": "app/Portfolio/assests/buyassest/page.js",
-  "/api/portfolio/portfoliodetails/route": "app/api/portfolio/portfoliodetails/route.js"
+  "/Portfolio/assests/sellassests/page": "app/Portfolio/assests/sellassests/page.js",
+  "/api/portfolio/Assest/SellAssestList/route": "app/api/portfolio/Assest/SellAssestList/route.js"
 }

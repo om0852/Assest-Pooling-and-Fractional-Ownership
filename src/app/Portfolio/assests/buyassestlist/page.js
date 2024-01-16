@@ -66,7 +66,7 @@ export default function Main() {
         method: "eth_requestAccounts",
       });
       // Use the first account in the array
-      const contractAddress = "0x930BC5ec6339AbC9343de0b5c1b5C1b4163670c8";
+      const contractAddress = "0x4C2E31D9a55D82380d7E9C7779dd232AFBDA2d52";
       const myContractInstance = new web3c.eth.Contract([
         {
           "inputs": [],
@@ -199,7 +199,7 @@ export default function Main() {
         method: "eth_requestAccounts",
       });
       const sender = accounts[0];
-      console.log(Deletedata._id);
+      // console.log(Deletedata._id);
       const result = await myContract.methods
         .withdraw(
           Deletedata.AssestId,
@@ -208,8 +208,7 @@ export default function Main() {
         )
         .send({
           from: sender,
-          gas: 200000,
-          gasPrice: web3.utils.toWei("40", "gwei"),
+          gas: 90000,
         });
 
       console.log(result);
@@ -429,7 +428,6 @@ export default function Main() {
                         {data.AssestTitle}
                       </p>
                       <p className="text-gray-500">
-                        Lorem ipsum dolor sit amet
                       </p>
                     </td>
                     <td className="px-6 py-4">{data.OrginalBuyPrice}</td>
