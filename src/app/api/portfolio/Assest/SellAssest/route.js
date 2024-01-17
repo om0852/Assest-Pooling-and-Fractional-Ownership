@@ -19,7 +19,7 @@ export async function POST(req, res) {
         const deleteAssestdata = await Assests.deleteOne({ _id: id });
         const data = await SellAssest.create({
             AssestId: AssestData.AssestId,
-            UserId: AssestData.AssestId,
+            UserId: AssestData.UserId,
             AssestTitle: AssestData.AssestTitle,
             AssestTotalPrice: AssestData.AssestTotalPrice,
             OrginalBuyPrice: AssestData.OrginalBuyPrice,

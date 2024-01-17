@@ -12,6 +12,7 @@ export default function Main() {
   const router = useRouter();
 
   const [myContract, setMyContract] = useState(null);
+  const [userdata, setuserdata] = useState(null)
   const [web3, setweb3] = useState(null);
   const [portfoliodata, setportfoliodata] = useState("");
   const [DeleteCartState, setDeleteCartState] = useState(false);
@@ -183,6 +184,17 @@ export default function Main() {
   };
   const handleWithdraw = async () => {
     try {
+      let APFOS_useremail = localStorage.getItem("APFOS_useremail");
+      const res1 = await fetch(`${process.env.NEXT_PUBLIC_HOST}api/user/profile`, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ Email: APFOS_useremail }),
+      });
+      let response1 = await res1.json();
+      // alert(response1.error.metamaskaddress)
       let p;
       try {
         p = await fetchEthereumPrice();
@@ -204,7 +216,7 @@ export default function Main() {
         .withdraw(
           Deletedata.AssestId,
           parseInt(amountInEther),
-          "0xaca8Dd3EC734Db2847c016356F682e5CB7Fe7783"
+          response1.error.metamaskaddress
         )
         .send({
           from: sender,
@@ -467,8 +479,13 @@ export default function Main() {
             </tbody>
           </table>
         </div>
-        <Link href="/Portfolio/assests/sellassests">Sell Assest List</Link>
-      </div>
+        <Link
+          href={`/Portfolio/assests/sellassests`}
+        >
+          <p className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">
+            Sell Asset List
+          </p>
+        </Link>      </div>
     </div>
   );
 }
