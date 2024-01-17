@@ -368,12 +368,7 @@ export default function Main() {
           </span>
         </div>
         <div className="flex flex-col items-center justify-center my-2 ">
-          <Link
-            href={`/Portfolio/assests/buyassest?pid=${portfoliodata._id}`}
-            className="text-md font-bold m-2 px-3 py-2 rounded bg-blue-700 text-white"
-          >
-            Buy
-          </Link>
+
 
         </div>
 
@@ -399,7 +394,7 @@ export default function Main() {
             <tbody>
               {portfoliodata.Assests &&
                 portfoliodata.Assests.map((data, index) => {
-                  amt = amt + parseInt(data.Assest_Price);
+                  amt = amt + parseInt(data.Assest_Price * data.Assest_Quantity);
                   qty = qty + parseInt(data.Assest_Quantity);
                   ass = index + 1;
                   return (
@@ -450,6 +445,9 @@ export default function Main() {
         </div>
         <div className="flex flex-col items-center justify-center my-2 ">
           <Link
+            onClick={() => {
+              Cookies.set("price", `${portfoliodata.RemainingPrice}`);
+            }}
             href={`/Portfolio/assests/buyassest?pid=${portfoliodata._id}`}
             className="text-md font-bold m-2 px-3 py-2 rounded bg-blue-700 text-white"
           >
@@ -457,6 +455,11 @@ export default function Main() {
           </Link>
 
         </div>
+        <Link href={`/dashboard?pid=${portfoliodata._id}`} className="flex items-center justify-center my-2 mt-4">
+          <span className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">
+            Graph
+          </span>
+        </Link>
       </div>
       {/* <div className="w-[100%] overflow-auto">
         <div className="max-h-[70vh] w-[50rem] md:w-full md:p-3 bg-white rounded  p-4 md:px-2 overflow-y-scroll">

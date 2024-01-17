@@ -156,7 +156,7 @@ export default function Graph() {
             // fetchdata();
           }
           if (decoded.role == "user") {
-            router.push('/');
+            // router.push('/');
           }
         }
       }

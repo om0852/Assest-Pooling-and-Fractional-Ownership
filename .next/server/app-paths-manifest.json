@@ -1,9 +1,11 @@
 {
-  "/page": "app/page.js",
-  "/portfolios/page": "app/portfolios/page.js",
-  "/dashboard/profile/page": "app/dashboard/profile/page.js",
+  "/dashboard/page": "app/dashboard/page.js",
+  "/about/page": "app/about/page.js",
+  "/Portfolio/portfoliodetails/page": "app/Portfolio/portfoliodetails/page.js",
   "/dashboard/portfolios/page": "app/dashboard/portfolios/page.js",
+  "/api/about/route": "app/api/about/route.js",
   "/api/user/profile/route": "app/api/user/profile/route.js",
+  "/dashboard/Portfolio/updatePortfolio/page": "app/dashboard/Portfolio/updatePortfolio/page.js",
   "/Portfolio/assests/buyassestlist/page": "app/Portfolio/assests/buyassestlist/page.js",
-  "/api/portfolio/orgPortfolio/route": "app/api/portfolio/orgPortfolio/route.js"
+  "/api/portfolio/Assest/BuyAssestList/route": "app/api/portfolio/Assest/BuyAssestList/route.js"
 }
