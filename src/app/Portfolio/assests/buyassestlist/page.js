@@ -265,8 +265,7 @@ export default function Main() {
       }
       // await handleSubmit(e, result, amountInEther);
     } catch (error) {
-      console.log(error);
-      return alert("invalid attempt,try again");
+      return alert("Invalid Attempt\n reason:-\n 1.Check Metamask Is Installed \n 2.Check Metamask Address \n 3.Transaction is Cancelled");
     }
   };
   useEffect(() => {

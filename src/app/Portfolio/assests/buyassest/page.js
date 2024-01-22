@@ -222,6 +222,7 @@ const Page = () => {
             if (response.error == null) {
                 return alert("Invalid Asset Purchase");
             }
+
             // alert(data.BuyAmount < parseFloat(response.error.RemainingPrice))
             if (data.BuyAmount >= 1 && data.BuyAmount <= parseFloat(response.error.RemainingPrice)) {
                 try {
@@ -230,7 +231,7 @@ const Page = () => {
                     let pid = urlParams.get('pid'); // value1
 
                     console.log(web3);
-                    const receiverAddress = "0xaca8Dd3EC734Db2847c016356F682e5CB7Fe7783";
+
                     let p;
                     try {
                         p = await fetchEthereumPrice();
@@ -266,7 +267,7 @@ const Page = () => {
                 }
                 catch (error) {
                     console.log(error)
-                    return alert("invalid attempt,try again");
+                    return alert("Invalid Attempt\n reason:-\n 1.Check Metamask Is Installed \n 2.Check Metamask Address \n 3.Transaction is Cancelled");
                 }
             } else {
                 toast.error(`Enter Amount Between [${1}-${response.error.RemainingPrice}]`, {
