@@ -128,7 +128,7 @@ export default function Main() {
             <tbody>
               {portfoliodata.Assests &&
                 portfoliodata.Assests.map((data, index) => {
-                  amt = amt + parseInt(data.Assest_Price);
+                  amt = amt + parseFloat(data.Assest_Price) * parseInt(data.Assest_Quantity);
                   qty = qty + parseInt(data.Assest_Quantity);
                   ass = index + 1;
                   return (

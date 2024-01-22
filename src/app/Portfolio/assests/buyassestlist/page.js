@@ -179,7 +179,7 @@ export default function Main() {
       setMyContract(myContractInstance);
     } catch (error) {
       console.log(error);
-      alert("connect to network");
+      // alert("connect to network");
     }
   };
   const handleWithdraw = async () => {

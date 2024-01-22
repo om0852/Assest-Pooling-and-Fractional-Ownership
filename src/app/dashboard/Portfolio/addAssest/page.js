@@ -55,7 +55,7 @@ const Page = () => {
     <div style={{
       display: "flex", width: "100%", height: "100%", justifyContent: "space-around", color: "white"
     }}>
-      < div style={{ width: "60%" }} className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0" >
+      < div style={{ width: "60%" }} className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-wrap lg:py-0" >
         <div className="mb-6 md:mb-0 flex flex-row justify-center my-2">
         </div>
         <div className="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 ">
