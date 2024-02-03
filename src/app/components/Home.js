@@ -20,8 +20,6 @@ const Home = () => {
       let Dollarprice = (await fetch("https://api.exchangerate-api.com/v4/latest/USD"));
       let price = await Dollarprice.json()
       setDollarPrice(price.rates["INR"])
-
-
     }
     dollarconverter()
     if (localStorage.getItem("token")) {
@@ -116,11 +114,11 @@ const Home = () => {
                         </span>
                         <span className="text-sm font-bold m-2 px-2 py-2 rounded bg-green-700 text-white">
                           Current:₹{elem.PortfolioPrice && elem.PortfolioPrice[0].Price}
-                          |${elem.PortfolioPrice && elem.PortfolioPrice[0].Price / dollarPrice}
+                          |${elem.PortfolioPrice && (elem.PortfolioPrice[0].Price / dollarPrice).toFixed(2)}
                         </span>
                         <span className="text-sm font-bold m-2 px-2 py-2 rounded bg-pink-700 text-white">
                           Remaining:₹{Math.round(elem.RemainingPrice)}
-                          |${Math.round(elem.RemainingPrice) / dollarPrice}
+                          |${((elem.RemainingPrice) / dollarPrice).toFixed(2)}
                         </span>
                       </div>
                       <div className="flex items-center justify-center my-2 mt-4">

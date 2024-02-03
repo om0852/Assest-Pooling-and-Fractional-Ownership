@@ -22,10 +22,16 @@
       "static/chunks/main-app.js",
       "static/chunks/app/dashboard/page.js"
     ],
-    "/not-found": [
+    "/portfolios/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/not-found.js"
+      "static/chunks/app/portfolios/page.js"
+    ],
+    "/Portfolio/assests/buyassestlist/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/Portfolio/assests/buyassestlist/page.css",
+      "static/chunks/app/Portfolio/assests/buyassestlist/page.js"
     ]
   }
 }

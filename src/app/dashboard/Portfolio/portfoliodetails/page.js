@@ -10,6 +10,8 @@ export default function Main() {
   var amt = 0,
     qty = 0,
     ass = 0;
+  const [dollarPrice, setDollarPrice] = useState(0);
+
   const [prices, setprices] = useState({ prev: "", curr: "", rem: "" })
   const [data, setdata] = useState({
     AType: "",
@@ -20,6 +22,12 @@ export default function Main() {
   })
 
   useEffect(() => {
+    async function dollarconverter() {
+      let Dollarprice = (await fetch("https://api.exchangerate-api.com/v4/latest/USD"));
+      let price = await Dollarprice.json()
+      setDollarPrice(price.rates["INR"])
+    }
+    dollarconverter()
     if (localStorage.getItem("token")) {
       let token = localStorage.getItem("token").toString();
       const decoded = jwtDecode(token);
