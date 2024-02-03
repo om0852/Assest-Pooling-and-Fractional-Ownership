@@ -224,7 +224,7 @@ import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { jwtDecode } from "jwt-decode";
-
+import Ethconverter from "@/app/EThconvert";
 
 export default function Main() {
   const [dollarPrice, setDollarPrice] = useState(0);
@@ -241,7 +241,9 @@ export default function Main() {
     Assest_Description: "",
   })
 
+
   useEffect(() => {
+    Ethconverter();
     async function dollarconverter() {
       let Dollarprice = (await fetch("https://api.exchangerate-api.com/v4/latest/USD"));
       let price = await Dollarprice.json()
@@ -358,21 +360,30 @@ export default function Main() {
       <div className=" shadow-md rounded md:overflow-hidden overflow-scroll">
         <div className="flex flex-wrap items-center justify-center my-2 mt-4">
           <span className="text-md font-bold m-2 px-2 py-2 rounded bg-orange-700 text-white">
-            Previous:
+            Previous:₹
             {
               prices.prev ?
                 prices.prev : "Not Available"
             }
+            |${
+              prices.prev ?
+                (prices.prev / dollarPrice).toFixed(2) : "Not Available"
+            }
           </span>
           <span className="text-md font-bold m-2 px-2 py-2 rounded bg-green-700 text-white">
-            Current:
+            Current:₹
             {
               prices.curr ?
                 prices.curr : "Not Available"
             }
+            |${
+              prices.curr ?
+                (prices.curr / dollarPrice).toFixed(2) : "Not Available"
+            }
           </span>
           <span className="text-md font-bold m-2 px-2 py-2 rounded bg-pink-700 text-white">
-            Remaining:{Math.round(portfoliodata.RemainingPrice)}
+            Remaining:₹{Math.round(portfoliodata.RemainingPrice)}
+            |${(portfoliodata.RemainingPrice / dollarPrice).toFixed(2)}
           </span>
         </div>
         <div className="flex flex-col items-center justify-center my-2 ">
@@ -425,7 +436,7 @@ export default function Main() {
                         {data.AType}
                       </td>
 
-                      <td className="px-6 py-4">₹{data.Assest_Price}</td>
+                      <td className="px-6 py-4">₹{data.Assest_Price}|${(data.Assest_Price / dollarPrice).toFixed(2)}</td>
                       <td className="px-6 py-4 text-center">
                         <p className="w-16 border rounded-md py-1 px-2 focus:outline-none">
                           {data.Assest_Quantity}
