@@ -417,7 +417,7 @@ export default function Main() {
                         {data.AType}
                       </td>
 
-                      <td className="px-6 py-4">{data.Assest_Price}</td>
+                      <td className="px-6 py-4">₹{data.Assest_Price}</td>
                       <td className="px-6 py-4 text-center">
                         <p className="w-16 border rounded-md py-1 px-2 focus:outline-none">
                           {data.Assest_Quantity}
@@ -433,7 +433,7 @@ export default function Main() {
                 </td>
                 <td className="px-6 py-4"></td>
                 <td className="px-6 py-4">
-                  <p className="text-lg font-semibold">Price:{amt}</p>
+                  <p className="text-lg font-semibold">Price:₹{amt}</p>
                 </td>
                 <td className="px-6 py-4">
                   <p className="font-semibold py-1 px-2 ">Quantity:{qty}</p>

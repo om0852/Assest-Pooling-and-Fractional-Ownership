@@ -1,4 +1,4 @@
-// File: D:\bluechipart\Assest-Pooling-and-Fractional-Ownership\src\app\api\portfolio\portfoliodetails\route.js
+// File: D:\Project\Assest-Pooling-and-Fractional-Ownership\src\app\api\portfolio\portfoliodetails\route.js
 import * as entry from '../../../../../../src/app/api/portfolio/portfoliodetails/route.js'
 import type { NextRequest } from 'next/server.js'
 

@@ -22,7 +22,7 @@ const Page = () => {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
-        body:JSON.stringify({ email: localStorage.getItem("APFOS_useremail") }),
+        body: JSON.stringify({ email: localStorage.getItem("APFOS_useremail") }),
       }
     );
     const response = await res.json()
@@ -105,15 +105,15 @@ const Page = () => {
 
                           <div className="flex flex-wrap items-center justify-center my-2 mt-4">
                             <span className="text-sm font-bold m-2 px-2 py-2 rounded bg-orange-700 text-white">
-                              Previous:
+                              Previous:₹
                               {elem.PortfolioPrice[elem.PortfolioPrice.length - 2] ? elem.PortfolioPrice[elem.PortfolioPrice.length - 2].Price : "N/A"}
                             </span>
                             <span className="text-sm font-bold m-2 px-2 py-2 rounded bg-green-700 text-white">
-                              Current:
+                              Current:₹
                               {elem.PortfolioPrice[elem.PortfolioPrice.length - 1] ? elem.PortfolioPrice[elem.PortfolioPrice.length - 1].Price : "N/A"}
                             </span>
                             <span className="text-sm font-bold m-2 px-2 py-2 rounded bg-pink-700 text-white">
-                              Remaining:{Math.round(elem.RemainingPrice)}
+                              Remaining:₹{Math.round(elem.RemainingPrice)}
                             </span>
                           </div>
                           <Link href={`/dashboard/Portfolio/userList?pid=${elem._id}`} className="flex items-center justify-center my-2 mt-4">

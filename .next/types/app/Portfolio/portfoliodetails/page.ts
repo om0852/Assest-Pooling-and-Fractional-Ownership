@@ -1,4 +1,4 @@
-// File: D:\bluechipart\Assest-Pooling-and-Fractional-Ownership\src\app\Portfolio\portfoliodetails\page.js
+// File: D:\Project\Assest-Pooling-and-Fractional-Ownership\src\app\Portfolio\portfoliodetails\page.js
 import * as entry from '../../../../../src/app/Portfolio/portfoliodetails/page.js'
 import type { ResolvingMetadata } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

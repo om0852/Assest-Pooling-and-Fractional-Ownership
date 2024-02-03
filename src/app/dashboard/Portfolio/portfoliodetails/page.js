@@ -79,21 +79,21 @@ export default function Main() {
       <div className=" shadow-md rounded md:overflow-hidden overflow-scroll">
         <div className="flex flex-wrap items-center justify-center my-2 mt-4">
           <span className="text-md font-bold m-2 px-2 py-2 rounded bg-orange-700 text-white">
-            Previous:
+            Previous:₹
             {
               prices.prev ?
-                prices.prev : "Not Available"
+                prices.prev : "0"
             }
           </span>
           <span className="text-md font-bold m-2 px-2 py-2 rounded bg-green-700 text-white">
-            Current:
+            Current:₹
             {
               prices.curr ?
-                prices.curr : "Not Available"
+                prices.curr : "0"
             }
           </span>
           <span className="text-md font-bold m-2 px-2 py-2 rounded bg-pink-700 text-white">
-            Remaining:{Math.round(portfoliodata.RemainingPrice)}
+            Remaining:₹{Math.round(portfoliodata.RemainingPrice)}
           </span>
         </div>
         <div className="flex flex-col items-center justify-center my-2 ">
