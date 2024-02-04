@@ -4,6 +4,7 @@ import react, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { jwtDecode } from "jwt-decode";
 import Cookies from "js-cookie";
+import Ethconverter from "@/app/EThconvert";
 
 
 const Page = () => {
@@ -14,6 +15,7 @@ const Page = () => {
   const router = useRouter();
 
   useEffect(() => {
+    Ethconverter();
     async function dollarconverter() {
       let Dollarprice = (await fetch("https://api.exchangerate-api.com/v4/latest/USD"));
       let price = await Dollarprice.json()

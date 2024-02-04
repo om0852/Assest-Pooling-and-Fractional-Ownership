@@ -1,6 +1,7 @@
 
 
 "use client";
+import Ethconverter from "@/app/EThconvert";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 
@@ -27,6 +28,7 @@ export default function Main() {
   };
 
   useEffect(() => {
+    Ethconverter();
     fetchdata();
   }, []);
   return (

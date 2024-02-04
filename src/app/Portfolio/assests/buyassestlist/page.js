@@ -7,6 +7,7 @@ import Link from "next/link";
 import { toast } from "react-toastify";
 import "../../../../css/BuyAssestList.css";
 import Web3 from "web3";
+import Ethconverter from "@/app/EThconvert";
 
 export default function Main() {
   const router = useRouter();
@@ -37,6 +38,7 @@ export default function Main() {
     setDeleteCartState(true);
   };
   useEffect(() => {
+    Ethconverter();
     async function dollarconverter() {
       let Dollarprice = (await fetch("https://api.exchangerate-api.com/v4/latest/USD"));
       let price = await Dollarprice.json()
@@ -400,7 +402,6 @@ export default function Main() {
                   </svg>
                 </span>
                 <p class="block font-sans text-base antialiased font-normal leading-relaxed text-inherit">
-                  Life time technical support
                 </p>
               </li>
             </ul>

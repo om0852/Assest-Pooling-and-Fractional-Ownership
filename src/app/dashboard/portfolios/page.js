@@ -3,6 +3,7 @@ import Link from "next/link";
 import react, { useState, useEffect } from "react";
 import { jwtDecode } from "jwt-decode";
 import { useRouter } from "next/navigation";
+import Ethconverter from "@/app/EThconvert";
 
 
 const Page = () => {
@@ -33,6 +34,7 @@ const Page = () => {
   };
 
   useEffect(() => {
+    Ethconverter();
     async function dollarconverter() {
       let Dollarprice = (await fetch("https://api.exchangerate-api.com/v4/latest/USD"));
       let price = await Dollarprice.json()
