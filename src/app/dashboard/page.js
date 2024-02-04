@@ -22,8 +22,6 @@ export default function Graph() {
   function changeData(e) {
     if (e.target.value == "day" || e.target.value == "week") {
       setSelectState(e.target.value)
-      console.log(e.target.value)
-      console.log(selectState)
     }
   }
   React.useEffect(() => {
@@ -79,14 +77,16 @@ export default function Graph() {
 
           for (let i = 0; i < response.currentYear.length; i++) {
             daydata.push(response.currentYear[i].price);
-            date.push(new Date(response.currentYear[i].date).getDate() + "-" + new Date(response.currentYear[i].date).getMonth() + 1);
+            let d = new Date(response.currentYear[i].date).getDate()
+            let m = new Date(response.currentYear[i].date).getMonth() + 1;
+            let dm = d + "/" + m
+            date.push(dm);
             setdateData(priceData.push(response.currentYear[i].date));
           }
         }
       }
 
-      console.log(daydata);
-      // console.log(priceData)
+      // console.log(daydata);
       var config = {
         type: "line",
         data: {
