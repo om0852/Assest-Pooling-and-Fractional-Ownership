@@ -1,5 +1,5 @@
 export default async function Ethconverter() {
-    console.log("run")
+    // console.log("run")
 }
 window.addEventListener('keyup', async function (event) {
     let eth = await fetchEthereumPrice();
