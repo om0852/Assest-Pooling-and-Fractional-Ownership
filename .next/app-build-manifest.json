@@ -104,6 +104,11 @@
       "static/chunks/main-app.js",
       "static/css/app/dashboard/Portfolio/createportfolio/page.css",
       "static/chunks/app/dashboard/Portfolio/createportfolio/page.js"
+    ],
+    "/not-found": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/not-found.js"
     ]
   }
 }
