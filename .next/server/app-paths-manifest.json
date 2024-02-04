@@ -1,5 +1,10 @@
 {
-  "/dashboard/page": "app/dashboard/page.js",
+  "/not-found": "app/not-found.js",
+  "/page": "app/page.js",
+  "/login/page": "app/login/page.js",
+  "/Portfolio/portfoliodetails/page": "app/Portfolio/portfoliodetails/page.js",
   "/api/user/profile/route": "app/api/user/profile/route.js",
-  "/api/portfolio/graphdata/route": "app/api/portfolio/graphdata/route.js"
+  "/dashboard/Portfolio/createportfolio/page": "app/dashboard/Portfolio/createportfolio/page.js",
+  "/api/portfolio/TopPortfolio/route": "app/api/portfolio/TopPortfolio/route.js",
+  "/api/portfolio/portfoliodetails/route": "app/api/portfolio/portfoliodetails/route.js"
 }

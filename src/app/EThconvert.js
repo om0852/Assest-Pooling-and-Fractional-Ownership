@@ -1,33 +1,35 @@
 export default async function Ethconverter() {
+    console.log("run")
+}
+window.addEventListener('keyup', async function (event) {
     let eth = await fetchEthereumPrice();
-    window.addEventListener('keyup', async function (event) {
-        // Check if Ctrl key and T key are pressed
-        // Regular expression for checking the format ₹100 or $100
-        if (event.ctrlKey && event.key === 'q') {
-            // Get the selected text
-            var selectedText = getSelectedText();
-            if ((selectedText[0] == "$" || selectedText[0] == "₹") && selectedText.length > 0) {
-                var amount = selectedText.slice(1); // Using slice to remove the dollar or rupees sign
+    // Check if Ctrl key and T key are pressed
+    // Regular expression for checking the format ₹100 or $100
+    if (event.ctrlKey && event.key === 'q') {
+        // Get the selected text
+        var selectedText = getSelectedText();
+        if ((selectedText[0] == "$" || selectedText[0] == "₹") && selectedText.length > 0) {
+            var amount = selectedText.slice(1); // Using slice to remove the dollar or rupees sign
 
-                if (selectedText[0] == "$") {
-                    let dollar = await dollarconverter();
-                    return alert("Eth:-  " + ((amount * dollar) / eth).toFixed(6));
+            if (selectedText[0] == "$") {
+                let dollar = await dollarconverter();
+                return alert("Eth:-  " + ((amount * dollar) / eth).toFixed(6));
 
-                }
-                else if (selectedText[0] == "₹") {
-                    return alert("Eth:-  " + ((amount) / eth).toFixed(6));
-                }
-                else {
-                    return;
-                }
+            }
+            else if (selectedText[0] == "₹") {
+                return alert("Eth:-  " + ((amount) / eth).toFixed(6));
             }
             else {
+                return;
             }
-
         }
-    });
+        else {
+        }
 
-}
+    }
+});
+
+
 function getSelectedText() {
     // Get the selected text
     var selectedText = '';
