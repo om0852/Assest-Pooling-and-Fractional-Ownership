@@ -63,8 +63,10 @@ export default function Graph() {
           for (let i = 0; i < response.currentYear.length; i++) {
             let day = new Date(response.currentYear[i].date).getDay()
             if (day == 0) {
-              date.push(new Date(response.currentYear[i].date).getDate() + "-" + new Date(response.currentYear[i].date).getMonth() + 1);
-              daydata.push({ date: response.currentYear[i].date, price: total / count })
+              let d = new Date(response.currentYear[i].date).getDate()
+              let m = new Date(response.currentYear[i].date).getMonth() + 1;
+              let dm = d + "/" + m
+              date.push(dm); daydata.push({ date: response.currentYear[i].date, price: total / count })
               total = 0;
             }
             else {
