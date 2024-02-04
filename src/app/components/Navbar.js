@@ -460,23 +460,23 @@ const Navbar = () => {
               </Link>
               <li className="text-gray-300">|</li>
               <Link
-                className={`text-lg  hover:text-blue-500 hover:font-bold ${location === "/dashboard/users"
+                className={`text-lg  hover:text-blue-500 hover:font-bold ${location === "/about"
                   ? "text-blue-500 font-bold"
                   : "text-gray-400"
                   }`}
-                href={"/dashboard/users"}
+                href={"/about"}
               >
-                Users
+                About
               </Link>
               <li className="text-gray-300">|</li>
               <Link
-                className={`text-lg  hover:text-blue-500 hover:font-bold ${location === "/dashboard/profile"
+                className={`text-lg  hover:text-blue-500 hover:font-bold ${location === "/contact"
                   ? "text-blue-500 font-bold"
                   : "text-gray-400"
                   }`}
-                href={"/dashboard/profile"}
+                href={"/contact"}
               >
-                Profile
+                Contact
               </Link>
             </ul>
             {!loggedin ? (
@@ -623,17 +623,17 @@ const Navbar = () => {
                     <li className="mb-1">
                       <Link
                         className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded"
-                        href={"/dashboard/users"}
+                        href={"/about"}
                       >
-                        Users
+                        About
                       </Link>
                     </li>
                     <li className="mb-1">
                       <Link
                         className="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded"
-                        href={"/dashboard/profile"}
+                        href={"/contact"}
                       >
-                        Profile
+                        Contact
                       </Link>
                     </li>
                   </ul>

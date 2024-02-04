@@ -23,7 +23,6 @@ export default function Main() {
   })
 
   useEffect(() => {
-    Ethconverter()
     async function dollarconverter() {
       let Dollarprice = (await fetch("https://api.exchangerate-api.com/v4/latest/USD"));
       let price = await Dollarprice.json()
@@ -79,7 +78,7 @@ export default function Main() {
   };
 
   return (
-    <div className=" w-[100%] h-fit rounded p-2 pb-4 md:px-16">
+    <div onLoad={Ethconverter} className=" w-[100%] h-fit rounded p-2 pb-4 md:px-16">
 
       <div className="flex justify-center items-center my-2 mb-4">
         <span className="text-white text-lg font-bold">
@@ -92,19 +91,25 @@ export default function Main() {
             Previous:₹
             {
               prices.prev ?
-                prices.prev : "0"
+                prices.prev : "Not Available"
+            }
+            |${
+              prices.prev ?
+                (prices.prev / dollarPrice).toFixed(2) : "Not Available"
             }
           </span>
           <span className="text-md font-bold m-2 px-2 py-2 rounded bg-green-700 text-white">
             Current:₹
             {
               prices.curr ?
-                prices.curr : "0"
+                prices.curr : "Not Available"
+            }
+            |${
+              prices.curr ?
+                (prices.curr / dollarPrice).toFixed(2) : "Not Available"
             }
           </span>
-          <span className="text-md font-bold m-2 px-2 py-2 rounded bg-pink-700 text-white">
-            Remaining:₹{Math.round(portfoliodata.RemainingPrice)}
-          </span>
+
         </div>
         <div className="flex flex-col items-center justify-center my-2 ">
           <Link
@@ -138,7 +143,7 @@ export default function Main() {
             <tbody>
               {portfoliodata.Assests &&
                 portfoliodata.Assests.map((data, index) => {
-                  amt = amt + parseFloat(data.Assest_Price) * parseInt(data.Assest_Quantity);
+                  amt = amt + parseInt(data.Assest_Price * data.Assest_Quantity);
                   qty = qty + parseInt(data.Assest_Quantity);
                   ass = index + 1;
                   return (
@@ -161,7 +166,7 @@ export default function Main() {
                         {data.AType}
                       </td>
 
-                      <td className="px-6 py-4">{data.Assest_Price}</td>
+                      <td className="px-6 py-4">₹{data.Assest_Price}|${(data.Assest_Price / dollarPrice).toFixed(2)}</td>
                       <td className="px-6 py-4 text-center">
                         <p className="w-16 border rounded-md py-1 px-2 focus:outline-none">
                           {data.Assest_Quantity}
@@ -177,7 +182,7 @@ export default function Main() {
                 </td>
                 <td className="px-6 py-4"></td>
                 <td className="px-6 py-4">
-                  <p className="text-lg font-semibold">Price:{amt}</p>
+                  <p className="text-lg font-semibold">Price:₹{amt}|${(amt / dollarPrice).toFixed(2)}</p>
                 </td>
                 <td className="px-6 py-4">
                   <p className="font-semibold py-1 px-2 ">Quantity:{qty}</p>

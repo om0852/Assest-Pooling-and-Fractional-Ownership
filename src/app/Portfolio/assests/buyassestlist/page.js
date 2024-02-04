@@ -483,7 +483,7 @@ export default function Main() {
                   {portfoliodata && portfoliodata.forEach(element => {
                     total += parseFloat(element.OrginalBuyPrice);
                   })}
-                  <p className="text-lg font-semibold">Total Assests Price:₹{total}|{(total / dollarPrice).toFixed(2)}</p>
+                  <p className="text-lg font-semibold">Total Assests Price:₹{total}|${(total / dollarPrice).toFixed(2)}</p>
                 </td>
 
                 <td className="px-6 py-4"></td>

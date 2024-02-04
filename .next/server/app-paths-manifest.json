@@ -1,11 +1,12 @@
 {
-  "/page": "app/page.js",
-  "/portfolios/page": "app/portfolios/page.js",
+  "/dashboard/page": "app/dashboard/page.js",
+  "/dashboard/portfolios/page": "app/dashboard/portfolios/page.js",
+  "/dashboard/profile/page": "app/dashboard/profile/page.js",
   "/Portfolio/assests/buyassestlist/page": "app/Portfolio/assests/buyassestlist/page.js",
-  "/Portfolio/assests/sellassests/page": "app/Portfolio/assests/sellassests/page.js",
   "/api/user/profile/route": "app/api/user/profile/route.js",
-  "/Portfolio/assests/buyassest/page": "app/Portfolio/assests/buyassest/page.js",
-  "/api/portfolio/Assest/BuyAssestList/route": "app/api/portfolio/Assest/BuyAssestList/route.js",
-  "/api/portfolio/Assest/SellAssestList/route": "app/api/portfolio/Assest/SellAssestList/route.js",
-  "/api/portfolio/Assest/SellAssest/route": "app/api/portfolio/Assest/SellAssest/route.js"
+  "/dashboard/Portfolio/portfolios/page": "app/dashboard/Portfolio/portfolios/page.js",
+  "/api/portfolio/AllPortfolio/route": "app/api/portfolio/AllPortfolio/route.js",
+  "/api/portfolio/orgPortfolio/route": "app/api/portfolio/orgPortfolio/route.js",
+  "/dashboard/Portfolio/portfoliodetails/page": "app/dashboard/Portfolio/portfoliodetails/page.js",
+  "/api/portfolio/portfoliodetails/route": "app/api/portfolio/portfoliodetails/route.js"
 }

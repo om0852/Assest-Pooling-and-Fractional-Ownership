@@ -101,14 +101,7 @@ const Page = () => {
                           </h2>
                         </Link>
                         <div className="m-2 px-4 pb-4">
-                          <p>
-                            <span className="text-black font-medium text-lg tracking-tight ">
-                              {/* {(elem ? elem.overview : "").slice(0, 100) + "..."} */}
-                              Explore Edward Babcock&apos;s board &apos;Tri color
-                              combinations&apos; on Pinterest. See more ideas about
-                              color, color combinations, color inspiration.
-                            </span>
-                          </p>
+
 
                           <div className="flex flex-wrap items-center justify-center my-2 mt-4">
                             <span className="text-sm font-bold m-2 px-2 py-2 rounded bg-orange-700 text-white">
@@ -124,6 +117,11 @@ const Page = () => {
                               |${((elem.RemainingPrice) / dollarPrice).toFixed(2)}
                             </span>
                           </div>
+                          <Link href={`/dashboard?pid=${elem._id}`} className="flex items-center justify-center my-2 mt-4">
+                            <span className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">
+                              Graph
+                            </span>
+                          </Link>
                         </div>
                       </div>
                     </div>

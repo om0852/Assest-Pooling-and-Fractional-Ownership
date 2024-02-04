@@ -104,14 +104,7 @@ const Page = () => {
                           </h2>
                         </Link>
                         <div className="m-2 px-4 pb-4">
-                          <p>
-                            <span className="text-black font-medium text-lg tracking-tight ">
-                              {/* {(elem ? elem.overview : "").slice(0, 100) + "..."} */}
-                              Explore Edward Babcock&apos;s board &quot;Tri color
-                              combinations&quot; on Pinterest. See more ideas about
-                              color, color combinations, color inspiration.
-                            </span>
-                          </p>
+
 
                           <div className="flex flex-wrap items-center justify-center my-2 mt-4">
                             <span className="text-sm font-bold m-2 px-2 py-2 rounded bg-orange-700 text-white">

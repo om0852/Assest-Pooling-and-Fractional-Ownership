@@ -4,6 +4,7 @@ import Chart from "chart.js";
 import Link from "next/link";
 import { jwtDecode } from "jwt-decode";
 import { useRouter } from "next/navigation";
+import Ethconverter from "../EThconvert";
 
 
 
@@ -11,6 +12,7 @@ import { useRouter } from "next/navigation";
 export default function Graph() {
   const [showlist, setshowlist] = useState(false)
   const router = useRouter();
+  const [dollarPrice, setDollarPrice] = useState(0);
   const [priceData, setpriceData] = useState([]);
   const [selectState, setSelectState] = useState("day");
   const [dateData, setdateData] = useState([]);
@@ -27,7 +29,13 @@ export default function Graph() {
   React.useEffect(() => {
 
     async function fetchdata() {
-
+      Ethconverter();
+      async function dollarconverter() {
+        let Dollarprice = (await fetch("https://api.exchangerate-api.com/v4/latest/USD"));
+        let price = await Dollarprice.json()
+        setDollarPrice(price.rates["INR"])
+      }
+      dollarconverter()
       const queryString = window.location.search;
       const urlParams = new URLSearchParams(queryString);
       let pid = urlParams.get("pid"); // value1
@@ -210,15 +218,14 @@ export default function Graph() {
             <canvas id="line-chart" className=""></canvas>
           </div>
           <select onChange={changeData}>
-            <option value="">select from below</option>
             <option value="day">day</option>
             <option value="week">week</option>
           </select>
           <Link href={'/dashboard/portfolios'} className="w-fit text-purple-800 bg-white hover:bg-gray-500 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm mx-2 px-2 py-2.5 text-center ">View Portfolios</Link>
           <div className="flex flex-wrap align-items-center m-2">
             <span className="text-white font-semibold text-lg mx-1 px-2 py-2.5 text-center ">Total Assets :{portfoliodata && totalAssest} </span>
-            <span className="text-white font-semibold text-lg mx-1 px-2 py-2.5 text-center ">Sold : ₹{portfoliodata && parseFloat(portfoliodata.Price) - parseFloat(portfoliodata.RemainingPrice)}</span>
-            <span className="text-white font-semibold text-lg mx-1 px-2 py-2.5 text-center ">Available : ₹{portfoliodata && portfoliodata.RemainingPrice}</span>
+            <span className="text-white font-semibold text-lg mx-1 px-2 py-2.5 text-center ">Sold : ₹{portfoliodata && parseFloat(portfoliodata.Price) - parseFloat(portfoliodata.RemainingPrice)}|${portfoliodata && (parseFloat(portfoliodata.Price) - parseFloat(portfoliodata.RemainingPrice) / dollarPrice).toFixed(2)}</span>
+            <span className="text-white font-semibold text-lg mx-1 px-2 py-2.5 text-center ">Available : ₹{portfoliodata && portfoliodata.RemainingPrice}|${portfoliodata && (portfoliodata.RemainingPrice / dollarPrice).toFixed(2)}</span>
           </div>
         </div>
       </div>

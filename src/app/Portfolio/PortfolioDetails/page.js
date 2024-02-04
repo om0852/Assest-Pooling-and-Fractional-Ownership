@@ -452,7 +452,7 @@ export default function Main() {
                 </td>
                 <td className="px-6 py-4"></td>
                 <td className="px-6 py-4">
-                  <p className="text-lg font-semibold">Price:₹{amt}</p>
+                  <p className="text-lg font-semibold">Price:₹{amt}|{(amt / dollarPrice).toFixed(2)}</p>
                 </td>
                 <td className="px-6 py-4">
                   <p className="font-semibold py-1 px-2 ">Quantity:{qty}</p>
