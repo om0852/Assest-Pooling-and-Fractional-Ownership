@@ -58,6 +58,7 @@ export default function Graph() {
       let total = 0;
       let count = 0;
       if (response.currentYear && Array.isArray(response.currentYear)) {
+        daydata.length = 0
         if (selectState == "week") {
 
           for (let i = 0; i < response.currentYear.length; i++) {
@@ -66,8 +67,11 @@ export default function Graph() {
               let d = new Date(response.currentYear[i].date).getDate()
               let m = new Date(response.currentYear[i].date).getMonth() + 1;
               let dm = d + "/" + m
-              date.push(dm); daydata.push({ date: response.currentYear[i].date, price: total / count })
+              date.push(dm);
+              console.log(total)
+              daydata.push(parseInt(total / count))
               total = 0;
+              count = 0
             }
             else {
               count++;
@@ -88,7 +92,8 @@ export default function Graph() {
         }
       }
 
-      // console.log(daydata);
+      console.log(daydata);
+      console.log(date);
       var config = {
         type: "line",
         data: {
