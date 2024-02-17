@@ -11,9 +11,9 @@ export async function POST(req, res) {
         const { email } = body;
         await connectDB();
         const userdetails = await User.findOne({ email: email });
-        console.log(userdetails)
+        // console.log(userdetails)
         const portfoliodata = await Portfolio.find({ userId: userdetails._id });
-        console.log(portfoliodata);
+        // console.log(portfoliodata);
         return NextResponse.json({ status: 200, error: portfoliodata });
     } catch (error) {
         console.log(error);

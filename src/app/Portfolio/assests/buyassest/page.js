@@ -60,7 +60,7 @@ const Page = () => {
             setMyContract(myContractInstance);
 
         } catch (error) {
-            alert("connect to network")
+            // alert("connect to network")
         }
     }
     const [data, setdata] = useState({
@@ -132,13 +132,12 @@ const Page = () => {
                     let p;
                     try {
                         p = await fetchEthereumPrice();
-                        console.log(p);
+                        // alert(p);
                     }
                     catch (error) {
                         return alert("check internet connection,try again");
                     }
                     const amountInEther = (parseFloat(data.BuyAmount) / parseFloat(p));
-                    console.log(amountInEther)
                     const gasEstimation = await myContract.methods
                         .deposit(pid)
                         .estimateGas({

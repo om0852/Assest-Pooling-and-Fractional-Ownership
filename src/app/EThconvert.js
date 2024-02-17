@@ -33,7 +33,7 @@ function EthConverter() {
     });
 
 }
-EthConverter();
+// EthConverter();
 function getSelectedText() {
     // Get the selected text
     var selectedText = '';

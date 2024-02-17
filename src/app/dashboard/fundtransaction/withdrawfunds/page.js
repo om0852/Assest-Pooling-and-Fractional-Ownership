@@ -13,31 +13,36 @@ const Page = () => {
     const [myContract, setMyContract] = useState(null);
     const [transactionHash, setTransactionHash] = useState(null);
     const [web3, setweb3] = useState(null);
-    const [cPortfolioPrice, setCPortfolioPrice] = useState(0);
+    const [cPortfolioPrice, setPortfolioPrice] = useState(0);
     const [sender, setsender] = useState(null);
     const router = useRouter();
     let price = Cookies.get("price");
     const portfolioOwnerChecker = async () => {
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        let portfolioid = urlParams.get('pid'); // value1
 
-        const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/portfolio/portfoliodetails`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/portfolio/ownerChecker`, {
             method: "POST",
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
+                email: localStorage.getItem("APFOS_useremail"),
                 pid: portfolioid,
             }),
         });
         const response = await res.json();
-    }
-    useEffect(() => {
-        if (window.ethereum) {
-            window.ethereum.on('accountsChanged', handleAccountsChanged);
+        if (!response.error == "admin") {
+            router.push("/");
         }
 
-        if (!price) {
-            router.push("/")
+    }
+    useEffect(() => {
+        portfolioOwnerChecker();
+        if (window.ethereum) {
+            window.ethereum.on('accountsChanged', handleAccountsChanged);
         }
         setContract();
         fetchEthereumPrice();
@@ -132,53 +137,75 @@ const Page = () => {
             if (response.error == null) {
                 return alert("Invalid Asset Purchase");
             }
+            let p;
+            let getContractbalanace = await myContract.methods.getBalance(portfolioid).call();
+            try {
+                p = await fetchEthereumPrice();
+                console.log(p);
+            }
+            catch (error) {
+                return alert("check internet connection,try again");
+            }
+            getContractbalanace = Number((getContractbalanace));
+            console.log(getContractbalanace)
+            getContractbalanace = (getContractbalanace / Math.pow(10, 18))
+            console.log(getContractbalanace)
+            let diff = ((response.error.Price - (response.error.RemainingPrice)) / 100) * 80;
+            let transferAmount = ((response.error.Price - (response.error.RemainingPrice)) / 100) * 20;
 
-
-            // alert(data.BuyAmount < parseFloat(response.error.RemainingPrice))
-            if (data.BuyAmount >= 1 && data.BuyAmount <= parseFloat(response.error.RemainingPrice)) {
-                try {
-                    const queryString = window.location.search;
-                    const urlParams = new URLSearchParams(queryString);
-                    let pid = urlParams.get('pid'); // value1
-
-                    console.log(web3);
-
-                    let p;
+            console.log("diff" + diff);
+            const remamountInEther = (parseFloat(diff) / parseFloat(p));
+            transferAmount = (parseFloat(transferAmount) / parseFloat(p));
+            const enteramount = data.BuyAmount / parseFloat(p);
+            console.log("dififeth" + remamountInEther);
+            if ((getContractbalanace) > remamountInEther) {
+                if (transferAmount > enteramount) {
                     try {
-                        p = await fetchEthereumPrice();
-                        console.log(p);
+                        let APFOS_useremail = localStorage.getItem("APFOS_useremail");
+                        const res1 = await fetch(`${process.env.NEXT_PUBLIC_HOST}api/user/profile`, {
+                            method: "POST",
+                            headers: {
+                                Accept: "application/json",
+                                "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify({ Email: APFOS_useremail }),
+                        });
+                        let response1 = await res1.json();
+
+                        const queryString = window.location.search;
+                        const urlParams = new URLSearchParams(queryString);
+                        let pid = urlParams.get('pid'); // value1
+                        const amountInEther =
+                            (parseFloat(data.BuyAmount) / parseFloat(p)) *
+                            1000000000000000000;
+                        console.log(amountInEther);
+
+                        const accounts = await window.ethereum.request({
+                            method: "eth_requestAccounts",
+                        });
+                        const sender = accounts[0];
+                        // console.log(Deletedata._id);
+                        const result = await myContract.methods
+                            .withdraw(
+                                response.error._id,
+                                parseInt(amountInEther),
+                                response1.error.metamaskaddress
+                            )
+                            .send({
+                                from: sender,
+                                gas: 90000,
+                            });
+
+                        alert(result);
                     }
                     catch (error) {
-                        return alert("check internet connection,try again");
+                        console.log(error)
+                        return alert("Invalid Attempt\n reason:-\n 1.Check Metamask Is Installed \n 2.Check Metamask Address \n 3.Transaction is Cancelled");
                     }
-                    const amountInEther = (parseFloat(data.BuyAmount) / parseFloat(p));
-                    console.log(amountInEther)
-                    const gasEstimation = await myContract.methods
-                        .deposit(pid)
-                        .estimateGas({
-                            from: sender,
-                            value: web3.utils.toWei(amountInEther.toString(), 'ether'),
-                        });
 
-                    console.log('Gas Estimation:', gasEstimation);
-
-
-                    const result = await myContract.methods.deposit(pid).send({
-                        from: sender,
-                        value: web3.utils.toWei(amountInEther.toString(), 'ether'),
-                        gas: 100000
-                    });
-
-                    console.log(result);
-
-                    setTransactionHash(result.transactionHash);
-
-
-                    await handleSubmit(e, result, amountInEther);
                 }
-                catch (error) {
-                    console.log(error)
-                    return alert("Invalid Attempt\n reason:-\n 1.Check Metamask Is Installed \n 2.Check Metamask Address \n 3.Transaction is Cancelled");
+                else {
+                    alert("insuffiecent balanace")
                 }
             } else {
                 toast.error(`Enter Amount Between [${1}-${response.error.RemainingPrice}]`, {

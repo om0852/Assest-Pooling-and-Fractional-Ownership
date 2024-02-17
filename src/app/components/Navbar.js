@@ -73,10 +73,12 @@ const Navbar = () => {
     //   change=!change;
     // }
     // },[setrole,loggedin]);
-    userData();
   }, [change, loggedin, setloggedin, role, setrole, logout]);
 
+  useEffect(() => {
+    userData();
 
+  }, [])
 
   return (
     <>
