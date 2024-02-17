@@ -7,6 +7,7 @@ import Link from "next/link";
 import { toast } from "react-toastify";
 import "../../../../css/BuyAssestList.css";
 import Web3 from "web3";
+import AFPOS from "../buyassest/APFOS_Contract.json"
 import Ethconverter from "@/app/EThconvert";
 
 export default function Main() {
@@ -76,114 +77,8 @@ export default function Main() {
         method: "eth_requestAccounts",
       });
       // Use the first account in the array
-      const contractAddress = "0x4C2E31D9a55D82380d7E9C7779dd232AFBDA2d52";
-      const myContractInstance = new web3c.eth.Contract([
-        {
-          "inputs": [],
-          "stateMutability": "nonpayable",
-          "type": "constructor"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "string",
-              "name": "",
-              "type": "string"
-            }
-          ],
-          "name": "balances",
-          "outputs": [
-            {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [],
-          "name": "contractBalance",
-          "outputs": [
-            {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "string",
-              "name": "id",
-              "type": "string"
-            }
-          ],
-          "name": "deposit",
-          "outputs": [],
-          "stateMutability": "payable",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "string",
-              "name": "id",
-              "type": "string"
-            }
-          ],
-          "name": "getBalance",
-          "outputs": [
-            {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [],
-          "name": "owner",
-          "outputs": [
-            {
-              "internalType": "address",
-              "name": "",
-              "type": "address"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "string",
-              "name": "id",
-              "type": "string"
-            },
-            {
-              "internalType": "uint256",
-              "name": "_amount",
-              "type": "uint256"
-            },
-            {
-              "internalType": "address payable",
-              "name": "_receiver",
-              "type": "address"
-            }
-          ],
-          "name": "withdraw",
-          "outputs": [],
-          "stateMutability": "payable",
-          "type": "function"
-        }
-      ], contractAddress);
+      const contractAddress = "0xB35753cE63e2125850519AC6fAE0548C4874D465";
+      const myContractInstance = new web3c.eth.Contract(AFPOS, contractAddress);
       console.log(myContractInstance);
       setMyContract(myContractInstance);
     } catch (error) {

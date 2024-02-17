@@ -1,6 +1,1 @@
-{
-  "/not-found": "app/not-found.js",
-  "/dashboard/page": "app/dashboard/page.js",
-  "/api/user/profile/route": "app/api/user/profile/route.js",
-  "/api/portfolio/graphdata/route": "app/api/portfolio/graphdata/route.js"
-}
+{}

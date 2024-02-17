@@ -6,17 +6,31 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Cookies from "js-cookie";
 import Web3 from "web3";
-import APFOS from "../buyassest/APFOS_Contract.json"
+import APFOS from "../../../Portfolio/assests/buyassest/APFOS_Contract.json"
 import Ethconverter from "@/app/EThconvert";
 
 const Page = () => {
     const [myContract, setMyContract] = useState(null);
     const [transactionHash, setTransactionHash] = useState(null);
     const [web3, setweb3] = useState(null);
-    const [UserPrice, setUserPrice] = useState(0);
+    const [cPortfolioPrice, setCPortfolioPrice] = useState(0);
     const [sender, setsender] = useState(null);
     const router = useRouter();
     let price = Cookies.get("price");
+    const portfolioOwnerChecker = async () => {
+
+        const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/portfolio/portfoliodetails`, {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                pid: portfolioid,
+            }),
+        });
+        const response = await res.json();
+    }
     useEffect(() => {
         if (window.ethereum) {
             window.ethereum.on('accountsChanged', handleAccountsChanged);
@@ -51,10 +65,9 @@ const Page = () => {
             const accounts = await window.ethereum.request({
                 method: 'eth_requestAccounts',
             });
-
             console.log(accounts);
             setsender(accounts[0]); // Use the first account in the array
-            const contractAddress = "0xaca8Dd3EC734Db2847c016356F682e5CB7Fe7783";
+            const contractAddress = "0xB35753cE63e2125850519AC6fAE0548C4874D465";
             const myContractInstance = new web3c.eth.Contract(APFOS, contractAddress);
             console.log(myContractInstance)
             setMyContract(myContractInstance);
@@ -119,6 +132,7 @@ const Page = () => {
             if (response.error == null) {
                 return alert("Invalid Asset Purchase");
             }
+
 
             // alert(data.BuyAmount < parseFloat(response.error.RemainingPrice))
             if (data.BuyAmount >= 1 && data.BuyAmount <= parseFloat(response.error.RemainingPrice)) {
