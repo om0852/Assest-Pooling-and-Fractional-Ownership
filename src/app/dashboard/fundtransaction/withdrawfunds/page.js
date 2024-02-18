@@ -45,7 +45,7 @@ const Page = () => {
             window.ethereum.on('accountsChanged', handleAccountsChanged);
         }
         setContract();
-        fetchEthereumPrice();
+        // fetchEthereumPrice();
         Ethconverter();
     }, [])
     const handleAccountsChanged = async (accounts) => {
@@ -132,13 +132,25 @@ const Page = () => {
                 }),
             });
             const response = await res.json();
+            const res1 = await fetch(`${process.env.NEXT_PUBLIC_HOST}api/portfolio/funddetail`, {
+                method: "POST",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ pid: portfolioid }),
+            });
+            let response1 = await res1.json();
+
             // e.preventDefault();
             // alert(response.error.RemainingPrice);
             if (response.error == null) {
                 return alert("Invalid Asset Purchase");
             }
+
             let p;
             let getContractbalanace = await myContract.methods.getBalance(portfolioid).call();
+            console.log(getContractbalanace)
             try {
                 p = await fetchEthereumPrice();
                 console.log(p);
@@ -146,20 +158,48 @@ const Page = () => {
             catch (error) {
                 return alert("check internet connection,try again");
             }
+            let diff;
+            let transferAmount;
+            let remamountInEther;
+            let enteramount;
+            let tA;
+            let extraAmount = 0;
+            // getContractbalanace = parseInt((getContractbalanace).toString().slice(0, -1));
             getContractbalanace = Number((getContractbalanace));
-            console.log(getContractbalanace)
             getContractbalanace = (getContractbalanace / Math.pow(10, 18))
-            console.log(getContractbalanace)
-            let diff = ((response.error.Price - (response.error.RemainingPrice)) / 100) * 80;
-            let transferAmount = ((response.error.Price - (response.error.RemainingPrice)) / 100) * 20;
 
-            console.log("diff" + diff);
-            const remamountInEther = (parseFloat(diff) / parseFloat(p));
-            transferAmount = (parseFloat(transferAmount) / parseFloat(p));
-            const enteramount = data.BuyAmount / parseFloat(p);
-            console.log("dififeth" + remamountInEther);
+
+            if (response1.error == "Not Found") {
+
+                console.log(getContractbalanace)
+                // console.log(getContractbalanace)
+                diff = ((response.error.Price - (response.error.RemainingPrice)) / 100) * 80;
+                transferAmount = ((response.error.Price - (response.error.RemainingPrice)) / 100) * 20;
+
+                console.log("diff" + diff);
+                remamountInEther = (parseFloat(diff) / parseFloat(p));
+                transferAmount = (parseFloat(transferAmount) / parseFloat(p));
+                enteramount = data.BuyAmount / parseFloat(p);
+                console.log("dififeth" + remamountInEther);
+            }
+            else {
+
+                // getContractbalanace = Number((getContractbalanace));
+                console.log(getContractbalanace)
+                // getContractbalanace = (getContractbalanace / Math.pow(10, 18))
+                console.log(getContractbalanace)
+                diff = ((response.error.Price - (response.error.RemainingPrice)) / 100) * 80;
+                transferAmount = ((response.error.Price - (response.error.RemainingPrice)) / 100) * 20;
+                console.log("diff" + diff);
+                remamountInEther = (parseFloat(diff) / parseFloat(p));
+                transferAmount = (parseFloat(transferAmount) / parseFloat(p));
+                enteramount = data.BuyAmount / parseFloat(p);
+                extraAmount = response1.error.TotalAmount / parseFloat(p);
+                alert(extraAmount);
+                console.log("dififeth" + remamountInEther);
+            }
             if ((getContractbalanace) > remamountInEther) {
-                if (transferAmount > enteramount) {
+                if (transferAmount > (enteramount + extraAmount)) {
                     try {
                         let APFOS_useremail = localStorage.getItem("APFOS_useremail");
                         const res1 = await fetch(`${process.env.NEXT_PUBLIC_HOST}api/user/profile`, {
@@ -195,8 +235,23 @@ const Page = () => {
                                 from: sender,
                                 gas: 90000,
                             });
+                        const withdrawfunds = await fetch(`${process.env.NEXT_PUBLIC_HOST}api/portfolio/fundwithdraw`, {
+                            method: "POST",
+                            headers: {
+                                Accept: "application/json",
+                                "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify({ pid: portfolioid, transactionHash: "456789", Amount: data.BuyAmount }),
+                        });
+                        let withdrawfunds1 = await withdrawfunds.json();
+                        if (withdrawfunds1.status == 200) {
+                            alert(result);
 
-                        alert(result);
+                        }
+                        else {
+                            falied
+                        }
+
                     }
                     catch (error) {
                         console.log(error)
@@ -208,7 +263,7 @@ const Page = () => {
                     alert("insuffiecent balanace")
                 }
             } else {
-                toast.error(`Enter Amount Between [${1}-${response.error.RemainingPrice}]`, {
+                toast.error(`Enter Amount Between [${1}-${tA + extraAmount}]`, {
                     position: "top-center",
                     autoClose: 3000,
                     hideProgressBar: false,
@@ -222,6 +277,7 @@ const Page = () => {
             }
         }
         catch (error) {
+            console.log(error)
             alert(error.message);
         }
     }

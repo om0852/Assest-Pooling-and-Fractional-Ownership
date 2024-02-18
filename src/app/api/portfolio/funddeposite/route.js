@@ -9,7 +9,7 @@ export async function POST(req, res) {
         const { pid, transactionHash, Amount } = body;
         await connectDB();
         const data = { transactionHash, date: new Date(), Amount, Method: "deposite" }
-        const FundData = await orgTransfer.findOne({ PortfolioId: "56789" });
+        const FundData = await orgTransfer.findOne({ PortfolioId: pid });
         console.log(FundData)
         if (FundData == null) {
             await orgTransfer.create({

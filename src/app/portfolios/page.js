@@ -76,7 +76,7 @@ const Page = () => {
             </div>
             {portfoliodata &&
               portfoliodata.map((elem, index) => {
-                if (index < 6) {
+                if (index < 100) {
                   console.log(elem);
                   return (
                     <div key={index}>

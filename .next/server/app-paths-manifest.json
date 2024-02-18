@@ -1,4 +1,11 @@
 {
-  "/api/portfolio/fundwithdraw/route": "app/api/portfolio/fundwithdraw/route.js",
-  "/api/portfolio/funddeposite/route": "app/api/portfolio/funddeposite/route.js"
+  "/not-found": "app/not-found.js",
+  "/page": "app/page.js",
+  "/portfolios/page": "app/portfolios/page.js",
+  "/Portfolio/assests/buyassest/page": "app/Portfolio/assests/buyassest/page.js",
+  "/dashboard/fundtransaction/withdrawfunds/page": "app/dashboard/fundtransaction/withdrawfunds/page.js",
+  "/api/portfolio/portfoliodetails/route": "app/api/portfolio/portfoliodetails/route.js",
+  "/Portfolio/assests/buyassestlist/page": "app/Portfolio/assests/buyassestlist/page.js",
+  "/api/portfolio/funddetail/route": "app/api/portfolio/funddetail/route.js",
+  "/api/user/profile/route": "app/api/user/profile/route.js"
 }

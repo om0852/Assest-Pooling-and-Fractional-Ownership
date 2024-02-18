@@ -54,7 +54,7 @@ const Page = () => {
 
             console.log(accounts);
             setsender(accounts[0]); // Use the first account in the array
-            const contractAddress = "0xaca8Dd3EC734Db2847c016356F682e5CB7Fe7783";
+            const contractAddress = "0xB35753cE63e2125850519AC6fAE0548C4874D465";
             const myContractInstance = new web3c.eth.Contract(APFOS, contractAddress);
             console.log(myContractInstance)
             setMyContract(myContractInstance);
