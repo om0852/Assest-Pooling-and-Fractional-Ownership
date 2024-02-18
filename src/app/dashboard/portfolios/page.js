@@ -140,6 +140,11 @@ const Page = () => {
                               Withdraw
                             </span>
                           </Link>
+                          <Link href={`/dashboard/fundtransaction/addfunds?pid=${elem._id}`} className="flex items-center justify-center my-2 mt-4">
+                            <span className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">
+                              Deposite
+                            </span>
+                          </Link>
                           {/* <div className="flex items-center justify-center my-2 mt-4">
                               <span className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">
                                 Investor List

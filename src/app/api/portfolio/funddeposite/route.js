@@ -20,7 +20,7 @@ export async function POST(req, res) {
         }
         else {
             FundData.Transaction.push(data)
-            await orgTransfer.updateOne({ portfolioId: pid, Transaction: FundData.Transaction, TotalAmount: (parseFloat(FundData.TotalAmount) - parseFloat(Amount)) })
+            await orgTransfer.updateOne({ PortfolioId: pid }, { Transaction: FundData.Transaction, TotalAmount: (parseFloat(FundData.TotalAmount) - parseFloat(Amount)) })
         }
         return NextResponse.json({ status: 200, error: "successfully" });
     } catch (error) {

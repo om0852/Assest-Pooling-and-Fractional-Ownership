@@ -241,7 +241,7 @@ const Page = () => {
                                 Accept: "application/json",
                                 "Content-Type": "application/json",
                             },
-                            body: JSON.stringify({ pid: portfolioid, transactionHash: "456789", Amount: data.BuyAmount }),
+                            body: JSON.stringify({ pid: pid, transactionHash: "456789", Amount: data.BuyAmount }),
                         });
                         let withdrawfunds1 = await withdrawfunds.json();
                         if (withdrawfunds1.status == 200) {

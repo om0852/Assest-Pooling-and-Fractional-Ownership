@@ -10,6 +10,7 @@ export async function POST(req, res) {
         await connectDB();
         const data = { transactionHash, date: new Date(), Amount, Method: "withdraw" }
         const FundData = await orgTransfer.findOne({ PortfolioId: pid });
+        console.log(FundData)
         if (FundData == null) {
             await orgTransfer.create({
                 PortfolioId: pid,
@@ -19,7 +20,9 @@ export async function POST(req, res) {
         }
         else {
             FundData.Transaction.push(data)
-            await orgTransfer.updateOne({ portfolioId: pid, Transaction: FundData.Transaction, TotalAmount: (parseFloat(FundData.TotalAmount) + parseFloat(Amount)) })
+            console.log(FundData.Transaction)
+            const dataFD = await orgTransfer.updateOne({ PortfolioId: pid }, { Transaction: FundData.Transaction, TotalAmount: (parseFloat(FundData.TotalAmount) + parseFloat(Amount)) })
+            console.log(dataFD)
         }
         return NextResponse.json({ status: 200, error: "successfully" });
     } catch (error) {

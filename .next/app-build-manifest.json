@@ -45,6 +45,12 @@
       "static/chunks/main-app.js",
       "static/chunks/app/Portfolio/portfoliodetails/page.js"
     ],
+    "/dashboard/fundtransaction/addfunds/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/dashboard/fundtransaction/addfunds/page.css",
+      "static/chunks/app/dashboard/fundtransaction/addfunds/page.js"
+    ],
     "/not-found": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
