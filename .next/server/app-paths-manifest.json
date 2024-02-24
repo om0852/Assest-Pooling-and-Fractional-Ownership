@@ -1,13 +1,12 @@
 {
-  "/not-found": "app/not-found.js",
-  "/dashboard/portfolios/page": "app/dashboard/portfolios/page.js",
+  "/portfolios/page": "app/portfolios/page.js",
+  "/dashboard/Portfolio/portfoliodetails/page": "app/dashboard/Portfolio/portfoliodetails/page.js",
+  "/dashboard/Portfolio/portfolios/page": "app/dashboard/Portfolio/portfolios/page.js",
   "/Portfolio/assests/buyassest/page": "app/Portfolio/assests/buyassest/page.js",
-  "/Portfolio/assests/buyassestlist/page": "app/Portfolio/assests/buyassestlist/page.js",
-  "/dashboard/fundtransaction/addfunds/page": "app/dashboard/fundtransaction/addfunds/page.js",
-  "/dashboard/fundtransaction/withdrawfunds/page": "app/dashboard/fundtransaction/withdrawfunds/page.js",
-  "/api/portfolio/ownerChecker/route": "app/api/portfolio/ownerChecker/route.js",
   "/api/portfolio/portfoliodetails/route": "app/api/portfolio/portfoliodetails/route.js",
-  "/api/portfolio/funddetail/route": "app/api/portfolio/funddetail/route.js",
+  "/Portfolio/assests/buyassestlist/page": "app/Portfolio/assests/buyassestlist/page.js",
   "/api/user/profile/route": "app/api/user/profile/route.js",
-  "/api/portfolio/fundwithdraw/route": "app/api/portfolio/fundwithdraw/route.js"
+  "/api/portfolio/Assest/BuyAssest/route": "app/api/portfolio/Assest/BuyAssest/route.js",
+  "/api/portfolio/Assest/BuyAssestList/route": "app/api/portfolio/Assest/BuyAssestList/route.js",
+  "/api/portfolio/Assest/SellAssest/route": "app/api/portfolio/Assest/SellAssest/route.js"
 }

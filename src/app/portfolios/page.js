@@ -104,9 +104,7 @@ const Page = () => {
                           <p>
                             <span className="text-black font-medium text-lg tracking-tight ">
                               {/* {(elem ? elem.overview : "").slice(0, 100) + "..."} */}
-                              Explore Edward Babcock&apos;s board &apos;Tri color
-                              combinations&apos; on Pinterest. See more ideas about
-                              color, color combinations, color inspiration.
+                              
                             </span>
                           </p>
 

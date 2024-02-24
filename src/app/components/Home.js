@@ -99,12 +99,6 @@ const Home = () => {
                     </Link>
                     <div className="m-2 px-4 pb-4">
                       <p>
-                        <span className="text-black font-medium text-lg tracking-tight ">
-
-                          Explore Edward Babcock&apos;s board &apos;Tri color
-                          combinations&apos; on Pinterest. See more ideas about
-                          color, color combinations, color inspiration.
-                        </span>
                       </p>
 
                       <div className="flex flex-wrap items-center justify-center my-2 mt-4">

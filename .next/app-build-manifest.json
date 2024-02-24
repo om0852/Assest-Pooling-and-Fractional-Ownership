@@ -12,21 +12,11 @@
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
-    "/dashboard/portfolios/page": [
+    "/login/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/dashboard/portfolios/page.js"
-    ],
-    "/dashboard/fundtransaction/withdrawfunds/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/dashboard/fundtransaction/withdrawfunds/page.css",
-      "static/chunks/app/dashboard/fundtransaction/withdrawfunds/page.js"
-    ],
-    "/portfolios/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/portfolios/page.js"
+      "static/css/app/login/page.css",
+      "static/chunks/app/login/page.js"
     ],
     "/Portfolio/assests/buyassest/page": [
       "static/chunks/webpack.js",
@@ -40,21 +30,81 @@
       "static/css/app/Portfolio/assests/buyassestlist/page.css",
       "static/chunks/app/Portfolio/assests/buyassestlist/page.js"
     ],
+    "/portfolios/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/portfolios/page.js"
+    ],
     "/Portfolio/portfoliodetails/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/Portfolio/portfoliodetails/page.js"
     ],
-    "/dashboard/fundtransaction/addfunds/page": [
+    "/dashboard/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/dashboard/fundtransaction/addfunds/page.css",
-      "static/chunks/app/dashboard/fundtransaction/addfunds/page.js"
+      "static/chunks/app/dashboard/page.js"
     ],
-    "/not-found": [
+    "/dashboard/portfolios/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/not-found.js"
+      "static/chunks/app/dashboard/portfolios/page.js"
+    ],
+    "/Portfolio/assests/sellassests/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/Portfolio/assests/sellassests/page.css",
+      "static/chunks/app/Portfolio/assests/sellassests/page.js"
+    ],
+    "/about/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/about/page.js"
+    ],
+    "/contact/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/contact/page.css",
+      "static/chunks/app/contact/page.js"
+    ],
+    "/dashboard/profile/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/dashboard/profile/page.css",
+      "static/chunks/app/dashboard/profile/page.js"
+    ],
+    "/dashboard/Portfolio/createportfolio/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/dashboard/Portfolio/createportfolio/page.css",
+      "static/chunks/app/dashboard/Portfolio/createportfolio/page.js"
+    ],
+    "/dashboard/Portfolio/userList/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/dashboard/Portfolio/userList/page.js"
+    ],
+    "/dashboard/Portfolio/updatePortfolio/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/dashboard/Portfolio/updatePortfolio/page.css",
+      "static/chunks/app/dashboard/Portfolio/updatePortfolio/page.js"
+    ],
+    "/dashboard/fundtransaction/withdrawfunds/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/dashboard/fundtransaction/withdrawfunds/page.css",
+      "static/chunks/app/dashboard/fundtransaction/withdrawfunds/page.js"
+    ],
+    "/dashboard/Portfolio/portfoliodetails/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/dashboard/Portfolio/portfoliodetails/page.js"
+    ],
+    "/dashboard/Portfolio/portfolios/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/dashboard/Portfolio/portfolios/page.js"
     ]
   }
 }
