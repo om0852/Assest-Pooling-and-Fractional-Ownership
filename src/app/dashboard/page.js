@@ -20,8 +20,14 @@ export default function Graph() {
   const [totalAssest, settotalAssest] = useState(0);
   const [daydata, setdaydata] = useState([]);
   function changeData(e) {
-    if (e.target.value == "day" || e.target.value == "week") {
-      setSelectState(e.target.value)
+    if (e.target.value == "day") {
+      setSelectState("day")
+    }
+    else {
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+      let pid = urlParams.get("pid"); // value1
+      router.push("/dashboard/weekgraph?pid=" + pid);
     }
   }
   React.useEffect(() => {

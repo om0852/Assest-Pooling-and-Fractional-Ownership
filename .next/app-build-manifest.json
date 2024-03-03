@@ -18,93 +18,25 @@
       "static/css/app/login/page.css",
       "static/chunks/app/login/page.js"
     ],
-    "/Portfolio/assests/buyassest/page": [
+    "/dashboard/portfolios/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/Portfolio/assests/buyassest/page.css",
-      "static/chunks/app/Portfolio/assests/buyassest/page.js"
-    ],
-    "/Portfolio/assests/buyassestlist/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/Portfolio/assests/buyassestlist/page.css",
-      "static/chunks/app/Portfolio/assests/buyassestlist/page.js"
-    ],
-    "/portfolios/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/portfolios/page.js"
-    ],
-    "/Portfolio/portfoliodetails/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/Portfolio/portfoliodetails/page.js"
+      "static/chunks/app/dashboard/portfolios/page.js"
     ],
     "/dashboard/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/dashboard/page.js"
     ],
-    "/dashboard/portfolios/page": [
+    "/dashboard/weekgraph/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/dashboard/portfolios/page.js"
+      "static/chunks/app/dashboard/weekgraph/page.js"
     ],
-    "/Portfolio/assests/sellassests/page": [
+    "/not-found": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/Portfolio/assests/sellassests/page.css",
-      "static/chunks/app/Portfolio/assests/sellassests/page.js"
-    ],
-    "/about/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/about/page.js"
-    ],
-    "/contact/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/contact/page.css",
-      "static/chunks/app/contact/page.js"
-    ],
-    "/dashboard/profile/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/dashboard/profile/page.css",
-      "static/chunks/app/dashboard/profile/page.js"
-    ],
-    "/dashboard/Portfolio/createportfolio/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/dashboard/Portfolio/createportfolio/page.css",
-      "static/chunks/app/dashboard/Portfolio/createportfolio/page.js"
-    ],
-    "/dashboard/Portfolio/userList/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/dashboard/Portfolio/userList/page.js"
-    ],
-    "/dashboard/Portfolio/updatePortfolio/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/dashboard/Portfolio/updatePortfolio/page.css",
-      "static/chunks/app/dashboard/Portfolio/updatePortfolio/page.js"
-    ],
-    "/dashboard/fundtransaction/withdrawfunds/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/dashboard/fundtransaction/withdrawfunds/page.css",
-      "static/chunks/app/dashboard/fundtransaction/withdrawfunds/page.js"
-    ],
-    "/dashboard/Portfolio/portfoliodetails/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/dashboard/Portfolio/portfoliodetails/page.js"
-    ],
-    "/dashboard/Portfolio/portfolios/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/dashboard/Portfolio/portfolios/page.js"
+      "static/chunks/app/not-found.js"
     ]
   }
 }
